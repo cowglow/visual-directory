@@ -20,6 +20,19 @@ export class NetworkError extends Error {
   }
 }
 
+// Set once by the app's composition root (ports/context/context-providers.tsx) so
+// a 401 from *any* call - not just the initial session restore - flips auth state
+// back to "please sign in" instead of leaving the UI stuck showing per-request
+// error messages for a session that's actually gone. A plain callback (rather than
+// importing the store here) avoids a circular import between this module and
+// store.ts, which pulls in every saga - including the one that calls apiFetch -
+// through sagas.ts.
+let onUnauthorized: (() => void) | null = null;
+
+export function setUnauthorizedHandler(handler: () => void): void {
+  onUnauthorized = handler;
+}
+
 export async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
   const token = getStoredToken();
   const headers: Record<string, string> = {
@@ -38,6 +51,9 @@ export async function apiFetch<T>(path: string, options: RequestInit = {}): Prom
   }
 
   if (!response.ok) {
+    if (response.status === 401) {
+      onUnauthorized?.();
+    }
     const body = await response.json().catch(() => ({}) as { error?: string });
     throw new ApiError(body.error ?? `Request failed with status ${response.status}`, response.status);
   }

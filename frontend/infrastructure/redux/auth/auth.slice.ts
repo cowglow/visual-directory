@@ -63,6 +63,16 @@ const authSlice = createSlice({
         ? { ...state, status: "authenticated" as const, account: action.payload }
         : { ...state, status: "unauthenticated" as const };
     },
+    // Fired from any API call, not just session restore, when the server says the
+    // token is no longer valid - most commonly because it's now expired mid-session
+    // (see infrastructure/api/api-client.ts's onUnauthorized hook). Same end state
+    // as restoreSessionFailed's non-network branch: back to "please sign in", which
+    // is where the magic-link request form lives, so the user can just ask for a
+    // fresh one.
+    sessionExpired(state) {
+      clearStoredToken();
+      return { ...state, status: "unauthenticated" as const, account: null };
+    },
     restoreSessionFailed(state, action: PayloadAction<{ network: boolean }>) {
       if (action.payload.network) {
         // Server unreachable, not "your session is invalid" — don't log the user
@@ -171,6 +181,7 @@ const authSlice = createSlice({
 
 export const {
   logout,
+  sessionExpired,
   restoreSessionRequested,
   restoreSessionSucceeded,
   restoreSessionFailed,

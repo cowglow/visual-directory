@@ -10,6 +10,7 @@ import {
   inviteAccountRequested,
   inviteAccountSucceeded,
   logout,
+  sessionExpired,
   requestMagicLinkFailed,
   requestMagicLinkRequested,
   requestMagicLinkSucceeded,
@@ -150,8 +151,10 @@ function* updateAccountSaga(action: ReturnType<typeof updateAccountRequested>) {
   }
 }
 
-// Wipes open windows on logout so the next person to use this browser
-// doesn't inherit a leader-only dialog restored from localStorage.
+// Wipes open windows on logout (explicit, or the session simply expiring) so
+// the next person to use this browser - or this same person after a fresh
+// magic-link sign-in - doesn't inherit a leader-only dialog restored from
+// localStorage.
 function* logoutSaga() {
   yield put(resetWindows());
 }
@@ -165,5 +168,6 @@ export function* authSaga() {
     takeEvery(fetchAccountsRequested, fetchAccountsSaga),
     takeEvery(updateAccountRequested, updateAccountSaga),
     takeEvery(logout, logoutSaga),
+    takeEvery(sessionExpired, logoutSaga),
   ]);
 }
