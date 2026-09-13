@@ -13,7 +13,7 @@ const JWT_SECRET = getJwtSecret();
 
 export const jwtTokenSigner: TokenSigner = {
   sign(payload: SessionPayload): string {
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: "7d" });
+    return jwt.sign(payload, JWT_SECRET, { expiresIn: "7h" });
   },
   verify(token: string): SessionPayload {
     return jwt.verify(token, JWT_SECRET) as SessionPayload;

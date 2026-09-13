@@ -2,6 +2,8 @@ import { Router, type RequestHandler } from "express";
 import type { OrganizationRepository } from "../../../application/organization/organization.repository.js";
 import type { OrganizationInput } from "../../../domain/organization/organization.types.js";
 import { requireRole } from "../middleware/require-role.js";
+import { validateBody } from "../middleware/validate-body.js";
+import { organizationInputSchema } from "../validation/organization.schemas.js";
 import { asyncHandler } from "../lib/async-handler.js";
 
 export interface OrganizationRouterDeps {
@@ -25,6 +27,7 @@ export function createOrganizationRouter({ requireAuth, organizationRepository }
     "/",
     requireAuth,
     requireRole("leader"),
+    validateBody(organizationInputSchema),
     asyncHandler(async (req, res) => {
       const input = req.body as OrganizationInput;
       const organization = await organizationRepository.create(input, req.account!.accountId);
@@ -36,6 +39,7 @@ export function createOrganizationRouter({ requireAuth, organizationRepository }
     "/:id",
     requireAuth,
     requireRole("leader"),
+    validateBody(organizationInputSchema),
     asyncHandler(async (req, res) => {
       const { id } = req.params;
       const input = req.body as OrganizationInput;

@@ -1,5 +1,4 @@
 import { Router, type RequestHandler } from "express";
-import type { Role } from "../../../domain/shared/types.js";
 import {
   createInviteAccountUseCase,
   createRequestMagicLinkUseCase,
@@ -18,7 +17,16 @@ import {
   MemberNotFoundError,
 } from "../../../application/auth/auth.errors.js";
 import { requireRole } from "../middleware/require-role.js";
+import { validateBody } from "../middleware/validate-body.js";
+import { magicLinkRateLimiter, verifyRateLimiter } from "../middleware/rate-limit.js";
+import {
+  inviteAccountSchema,
+  magicLinkRequestSchema,
+  updateAccountSchema,
+  verifyMagicLinkSchema,
+} from "../validation/auth.schemas.js";
 import { asyncHandler } from "../lib/async-handler.js";
+import type { z } from "zod";
 
 export type AuthRouterDeps = RequestMagicLinkDeps & VerifyMagicLinkDeps & InviteAccountDeps & UpdateAccountDeps & {
   requireAuth: RequestHandler;
@@ -33,12 +41,10 @@ export function createAuthRouter(deps: AuthRouterDeps): Router {
 
   router.post(
     "/magic-link",
+    magicLinkRateLimiter,
+    validateBody(magicLinkRequestSchema),
     asyncHandler(async (req, res) => {
-      const { email } = req.body as { email?: string };
-      if (!email) {
-        res.status(400).json({ error: "email is required" });
-        return;
-      }
+      const { email } = req.body as z.infer<typeof magicLinkRequestSchema>;
 
       try {
         res.json(await requestMagicLink(email));
@@ -54,12 +60,10 @@ export function createAuthRouter(deps: AuthRouterDeps): Router {
 
   router.post(
     "/verify",
+    verifyRateLimiter,
+    validateBody(verifyMagicLinkSchema),
     asyncHandler(async (req, res) => {
-      const { token } = req.body as { token?: string };
-      if (!token) {
-        res.status(400).json({ error: "token is required" });
-        return;
-      }
+      const { token } = req.body as z.infer<typeof verifyMagicLinkSchema>;
 
       const result = await verifyMagicLink(token);
       if (!result) {
@@ -78,12 +82,9 @@ export function createAuthRouter(deps: AuthRouterDeps): Router {
     "/invite",
     deps.requireAuth,
     requireRole("leader"),
+    validateBody(inviteAccountSchema),
     asyncHandler(async (req, res) => {
-      const { email, role, memberId } = req.body as { email?: string; role?: Role; memberId?: string };
-      if (!email || !role) {
-        res.status(400).json({ error: "email and role are required" });
-        return;
-      }
+      const { email, role, memberId } = req.body as z.infer<typeof inviteAccountSchema>;
 
       try {
         const account = await inviteAccount({ email, role, memberId });
@@ -116,12 +117,9 @@ export function createAuthRouter(deps: AuthRouterDeps): Router {
     "/accounts/:id",
     deps.requireAuth,
     requireRole("leader"),
+    validateBody(updateAccountSchema),
     asyncHandler(async (req, res) => {
-      const { role, memberId } = req.body as { role?: Role; memberId?: string | null };
-      if (!role) {
-        res.status(400).json({ error: "role is required" });
-        return;
-      }
+      const { role, memberId } = req.body as z.infer<typeof updateAccountSchema>;
 
       try {
         const account = await updateAccount(
