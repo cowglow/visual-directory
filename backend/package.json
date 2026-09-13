@@ -34,9 +34,9 @@
     "@types/express": "^4.17.21",
     "@types/jsonwebtoken": "^9.0.7",
     "@types/node": "^22.10.5",
-    "@vitest/coverage-v8": "^3.2.6",
+    "@vitest/coverage-v8": "^4.1.11",
     "typescript": "^5.7.3",
-    "vitest": "^3.0.6"
+    "vitest": "^4.1.11"
   },
   "packageManager": "pnpm@9.15.1+sha512.1acb565e6193efbebda772702950469150cf12bcc764262e7587e71d19dc98a423dff9536e57ea44c49bdf790ff694e83c27be5faa23d67e0c033b583be4bfcf",
   "pnpm": {
