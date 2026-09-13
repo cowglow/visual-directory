@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -92,55 +92,55 @@
 <a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { RootState } from "infrastructure/redux/store.ts";
 import type { Organization } from "domain/organization/organization.types.ts";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getOrganizations(state: RootState): Organization[] {</span>
+export function <span class="fstat-no" title="function not covered" >getOrganizations(s</span>tate: RootState): Organization[] {
 <span class="cstat-no" title="statement not covered" >  return state.organization.items;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getOrganizationById(state: RootState, id: string): Organization | undefined {</span>
-<span class="cstat-no" title="statement not covered" >  return state.organization.items.find((organization) =&gt; organization.id === id);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export function <span class="fstat-no" title="function not covered" >getOrganizationById(s</span>tate: RootState, id: string): Organization | undefined {
+<span class="cstat-no" title="statement not covered" >  return state.organization.items.find(<span class="fstat-no" title="function not covered" >(o</span>rganization) =&gt; <span class="cstat-no" title="statement not covered" >organization.id === id)</span>;</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getOrganizationError(state: RootState): string | null {</span>
+export function <span class="fstat-no" title="function not covered" >getOrganizationError(s</span>tate: RootState): string | null {
 <span class="cstat-no" title="statement not covered" >  return state.organization.error;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getOrganizationMutationStatus(state: RootState) {</span>
+export function <span class="fstat-no" title="function not covered" >getOrganizationMutationStatus(s</span>tate: RootState) {
 <span class="cstat-no" title="statement not covered" >  return state.organization.mutationStatus;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getOrganizationMutationRequestId(state: RootState): string | null {</span>
+export function <span class="fstat-no" title="function not covered" >getOrganizationMutationRequestId(s</span>tate: RootState): string | null {
 <span class="cstat-no" title="statement not covered" >  return state.organization.mutationRequestId;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getOrganizationMutationError(state: RootState): string | null {</span>
+export function <span class="fstat-no" title="function not covered" >getOrganizationMutationError(s</span>tate: RootState): string | null {
 <span class="cstat-no" title="statement not covered" >  return state.organization.mutationError;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,7 +148,7 @@ import type { Organization } from "domain/organization/organization.types.ts";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>0/15</span>
             </div>
         
             
@@ -106,26 +106,12 @@
 <a name='L41'></a><a href='#L41'>41</a>
 <a name='L42'></a><a href='#L42'>42</a>
 <a name='L43'></a><a href='#L43'>43</a>
-<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L44'></a><a href='#L44'>44</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -133,65 +119,79 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { Resend } from "resend";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Resend } from "resend";
 import type { Mailer } from "../../application/mailer.js";
-<span class="cstat-no" title="statement not covered" >import { TOKEN_TTL_MS } from "../../domain/auth/magic-link.js";</span>
+import { TOKEN_TTL_MS } from "../../domain/auth/magic-link.js";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const EXPIRY_MINUTES = Math.round(TOKEN_TTL_MS / 60_000);</span>
+const EXPIRY_MINUTES = <span class="cstat-no" title="statement not covered" >Math.round(TOKEN_TTL_MS / 60_000);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >function buildMagicLinkEmail(url: string) {</span>
-<span class="cstat-no" title="statement not covered" >  const subject = "Your sign-in link";</span>
-<span class="cstat-no" title="statement not covered" >  const text = [</span>
-<span class="cstat-no" title="statement not covered" >    "Here's your sign-in link for Visual Directory:",</span>
-<span class="cstat-no" title="statement not covered" >    "",</span>
-<span class="cstat-no" title="statement not covered" >    url,</span>
-<span class="cstat-no" title="statement not covered" >    "",</span>
-<span class="cstat-no" title="statement not covered" >    `This link expires in ${EXPIRY_MINUTES} minutes. If you didn't request this, you can ignore this email.`,</span>
-<span class="cstat-no" title="statement not covered" >  ].join("\n");</span>
-<span class="cstat-no" title="statement not covered" >  const html = `</span>
+function <span class="fstat-no" title="function not covered" >buildMagicLinkEmail(u</span>rl: string) {
+  const subject = <span class="cstat-no" title="statement not covered" >"Your sign-in link";</span>
+  const text = <span class="cstat-no" title="statement not covered" >[</span>
+    "Here's your sign-in link for Visual Directory:",
+    "",
+    url,
+    "",
+    `This link expires in ${EXPIRY_MINUTES} minutes. If you didn't request this, you can ignore this email.`,
+  ].join("\n");
+  const html = <span class="cstat-no" title="statement not covered" >`</span>
     &lt;p&gt;Here's your sign-in link for Visual Directory:&lt;/p&gt;
-<span class="cstat-no" title="statement not covered" >    &lt;p&gt;&lt;a href="${url}"&gt;${url}&lt;/a&gt;&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;p&gt;This link expires in ${EXPIRY_MINUTES} minutes. If you didn't request this, you can ignore this email.&lt;/p&gt;</span>
-<span class="cstat-no" title="statement not covered" >  `.trim();</span>
+    &lt;p&gt;&lt;a href="${url}"&gt;${url}&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;This link expires in ${EXPIRY_MINUTES} minutes. If you didn't request this, you can ignore this email.&lt;/p&gt;
+  `.trim();
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return { subject, text, html };</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
 // Real email delivery via Resend (resend.com). Isolated behind the same Mailer
 // interface as consoleMailer so the provider can be swapped later without touching
 // callers — see get-mailer.ts for how the two are selected.
-<span class="cstat-no" title="statement not covered" >export const resendMailer: Mailer = {</span>
-<span class="cstat-no" title="statement not covered" >  async sendMagicLink(email, url) {</span>
-<span class="cstat-no" title="statement not covered" >    const apiKey = process.env.RESEND_API_KEY;</span>
-<span class="cstat-no" title="statement not covered" >    const from = process.env.EMAIL_FROM;</span>
+export const resendMailer: Mailer = <span class="cstat-no" title="statement not covered" >{</span>
+  async <span class="fstat-no" title="function not covered" >sendMagicLink(e</span>mail, url) {
+    const apiKey = <span class="cstat-no" title="statement not covered" >process.env.RESEND_API_KEY;</span>
+    const from = <span class="cstat-no" title="statement not covered" >process.env.EMAIL_FROM;</span>
 <span class="cstat-no" title="statement not covered" >    if (!apiKey || !from) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new Error("RESEND_API_KEY and EMAIL_FROM must be set to send email in production");</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    const { subject, text, html } = buildMagicLinkEmail(url);</span>
-<span class="cstat-no" title="statement not covered" >    const resend = new Resend(apiKey);</span>
-<span class="cstat-no" title="statement not covered" >    const { error } = await resend.emails.send({ from, to: email, subject, text, html });</span>
+    const { subject, text, html } = <span class="cstat-no" title="statement not covered" >buildMagicLinkEmail(url);</span>
+    const resend = <span class="cstat-no" title="statement not covered" >new Resend(apiKey);</span>
+    const { error } = <span class="cstat-no" title="statement not covered" >await resend.emails.send({ from, to: email, subject, text, html });</span>
 <span class="cstat-no" title="statement not covered" >    if (error) {</span>
 <span class="cstat-no" title="statement not covered" >      throw new Error(`Resend failed to send magic-link email: ${error.message}`);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+    }
+  },
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -199,7 +199,7 @@ import type { Mailer } from "../../application/mailer.js";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:30.683Z
+                at 2026-09-13T17:46:24.554Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

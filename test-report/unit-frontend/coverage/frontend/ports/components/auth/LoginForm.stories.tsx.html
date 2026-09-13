@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/16</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -88,7 +88,21 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -96,45 +110,31 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Meta, StoryObj } from "@storybook/react";
-<span class="cstat-no" title="statement not covered" >import { expect, userEvent, within } from "@storybook/test";</span>
-<span class="cstat-no" title="statement not covered" >import LoginForm from "ports/components/auth/LoginForm.tsx";</span>
+import { expect, userEvent, within } from "@storybook/test";
+import LoginForm from "ports/components/auth/LoginForm.tsx";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const meta: Meta&lt;typeof LoginForm&gt; = {</span>
-<span class="cstat-no" title="statement not covered" >  title: "ports/auth/LoginForm",</span>
-<span class="cstat-no" title="statement not covered" >  component: LoginForm,</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const meta: Meta&lt;typeof LoginForm&gt; = <span class="cstat-no" title="statement not covered" >{</span>
+  title: "ports/auth/LoginForm",
+  component: LoginForm,
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default meta;</span>
+export default meta;
 type Story = StoryObj&lt;typeof LoginForm&gt;;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const Default: Story = {};</span>
+export const Default: Story = <span class="cstat-no" title="statement not covered" >{};</span>
 &nbsp;
 // There's no real backend in Storybook, so the request can't succeed — this should
 // surface as a visible error, not silently claim the link was sent (see LoginForm.tsx).
-<span class="cstat-no" title="statement not covered" >export const RequestFailed: Story = {</span>
-<span class="cstat-no" title="statement not covered" >  play: async ({ canvasElement }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const canvas = within(canvasElement);</span>
+export const RequestFailed: Story = <span class="cstat-no" title="statement not covered" >{</span>
+  play: <span class="fstat-no" title="function not covered" >async ({</span> canvasElement }) =&gt; {
+    const <span class="cstat-no" title="statement not covered" >canvas = within(canvasElement);</span>
 <span class="cstat-no" title="statement not covered" >    await userEvent.type(canvas.getByLabelText("Email"), "member@example.com");</span>
 <span class="cstat-no" title="statement not covered" >    await userEvent.click(canvas.getByRole("button", { name: "Send login link" }));</span>
 <span class="cstat-no" title="statement not covered" >    await expect(await canvas.findByRole("alert")).toBeInTheDocument();</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+  },
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -142,7 +142,7 @@ type Story = StoryObj&lt;typeof LoginForm&gt;;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

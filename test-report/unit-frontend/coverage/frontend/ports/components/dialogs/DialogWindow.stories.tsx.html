@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/20</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
@@ -90,57 +90,57 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Meta, StoryObj } from "@storybook/react";
-<span class="cstat-no" title="statement not covered" >import { expect, fn, userEvent, within } from "@storybook/test";</span>
-<span class="cstat-no" title="statement not covered" >import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";</span>
+import { expect, fn, userEvent, within } from "@storybook/test";
+import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const meta: Meta&lt;typeof DialogWindow&gt; = {</span>
-<span class="cstat-no" title="statement not covered" >  title: "ports/dialogs/DialogWindow",</span>
-<span class="cstat-no" title="statement not covered" >  component: DialogWindow,</span>
-<span class="cstat-no" title="statement not covered" >  args: {</span>
-<span class="cstat-no" title="statement not covered" >    title: "Add Member",</span>
-<span class="cstat-no" title="statement not covered" >    onClose: fn(),</span>
-<span class="cstat-no" title="statement not covered" >    children: &lt;p&gt;Dialog content goes here.&lt;/p&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const meta: Meta&lt;typeof DialogWindow&gt; = <span class="cstat-no" title="statement not covered" >{</span>
+  title: "ports/dialogs/DialogWindow",
+  component: DialogWindow,
+  args: {
+    title: "Add Member",
+    onClose: fn(),
+    children: &lt;p&gt;Dialog content goes here.&lt;/p&gt;,
+  },
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default meta;</span>
+export default meta;
 type Story = StoryObj&lt;typeof DialogWindow&gt;;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const Default: Story = {};</span>
+export const Default: Story = <span class="cstat-no" title="statement not covered" >{};</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const CloseClicked: Story = {</span>
-<span class="cstat-no" title="statement not covered" >  play: async ({ canvasElement, args }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >    const canvas = within(canvasElement);</span>
+export const CloseClicked: Story = <span class="cstat-no" title="statement not covered" >{</span>
+  play: <span class="fstat-no" title="function not covered" >async ({</span> canvasElement, args }) =&gt; {
+    const <span class="cstat-no" title="statement not covered" >canvas = within(canvasElement);</span>
 <span class="cstat-no" title="statement not covered" >    await userEvent.click(canvas.getByRole("button", { name: "Close" }));</span>
 <span class="cstat-no" title="statement not covered" >    await expect(args.onClose).toHaveBeenCalled();</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+  },
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,7 +148,7 @@ type Story = StoryObj&lt;typeof DialogWindow&gt;;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

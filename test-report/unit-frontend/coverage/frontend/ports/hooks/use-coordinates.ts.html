@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/16</span>
             </div>
         
             
@@ -101,10 +101,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -112,49 +112,49 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { GeoCoordinate } from "domain/marker/geo-coordinate.ts";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { GeoCoordinate } from "domain/marker/geo-coordinate.ts";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const API_GATEWAY = "https://randomuser.me/api/?inc=location";</span>
+const API_GATEWAY = <span class="cstat-no" title="statement not covered" >"https://randomuser.me/api/?inc=location";</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const useCoordinates = () =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const getRandomCoordinate = async (): Promise&lt;GeoCoordinate | undefined&gt; =&gt; {</span>
+export const useCoordinates = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
+  const getRandomCoordinate = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (): Promise&lt;GeoCoordinate | undefined&gt; =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      const data = await fetch(`${API_GATEWAY}&amp;results=1`).then((res) =&gt; res.json());</span>
-<span class="cstat-no" title="statement not covered" >      const { latitude, longitude } = data.results[0].location.coordinates;</span>
+      const data = <span class="cstat-no" title="statement not covered" >await fetch(`${API_GATEWAY}&amp;results=1`).then(<span class="fstat-no" title="function not covered" >(r</span>es) =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>;</span>
+      const { latitude, longitude } = <span class="cstat-no" title="statement not covered" >data.results[0].location.coordinates;</span>
 <span class="cstat-no" title="statement not covered" >      return { lat: Number(latitude), lng: Number(longitude) };</span>
-<span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
+    } catch (error) {
 <span class="cstat-no" title="statement not covered" >      console.error("Fetch Error!! ", error);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+    }
+  };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const getRandomCoordinates = async (): Promise&lt;GeoCoordinate[] | undefined&gt; =&gt; {</span>
+  const getRandomCoordinates = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >async (): Promise&lt;GeoCoordinate[] | undefined&gt; =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      const data = await fetch(`${API_GATEWAY}&amp;results=10`).then((res) =&gt; res.json());</span>
-<span class="cstat-no" title="statement not covered" >      return data.results.map(({ location }) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >        const { latitude, longitude } = location.coordinates;</span>
+      const data = <span class="cstat-no" title="statement not covered" >await fetch(`${API_GATEWAY}&amp;results=10`).then(<span class="fstat-no" title="function not covered" >(r</span>es) =&gt; <span class="cstat-no" title="statement not covered" >res.json())</span>;</span>
+<span class="cstat-no" title="statement not covered" >      return data.results.map(<span class="fstat-no" title="function not covered" >({</span> location }) =&gt; {</span>
+        const { latitude, longitude } = <span class="cstat-no" title="statement not covered" >location.coordinates;</span>
 <span class="cstat-no" title="statement not covered" >        return { lat: Number(latitude), lng: Number(longitude) };</span>
-<span class="cstat-no" title="statement not covered" >      });</span>
-<span class="cstat-no" title="statement not covered" >    } catch (error) {</span>
+      });
+    } catch (error) {
 <span class="cstat-no" title="statement not covered" >      console.log("Fetch Error!! ", error);</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+    }
+  };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return { getRandomCoordinate, getRandomCoordinates };</span>
-<span class="cstat-no" title="statement not covered" >};</span></pre></td></tr></table></pre>
+};</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

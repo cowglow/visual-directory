@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -95,70 +95,70 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { ReactNode, useEffect, useState } from "react";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { TileServerContext } from "ports/context/tile-server/tile-server.context.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { useLocalStorage } from "ports/hooks/use-local-storage.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { baseMaps, defaultBaseMapName } from "infrastructure/tile-server/base-maps.ts";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { ReactNode, useEffect, useState } from "react";
+import { TileServerContext } from "ports/context/tile-server/tile-server.context.ts";
+import { useLocalStorage } from "ports/hooks/use-local-storage.ts";
+import { baseMaps, defaultBaseMapName } from "infrastructure/tile-server/base-maps.ts";
 import { TileServerName } from "ports/context/tile-server/tile-server.types.ts";
 &nbsp;
 interface TileServerContextProviderProps {
   children: ReactNode;
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const TileServerContextProvider = ({ children }: TileServerContextProviderProps) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >  const [storedName, setStoredName] = useLocalStorage&lt;TileServerName&gt;({</span>
-<span class="cstat-no" title="statement not covered" >    key: "TILE_SERVER",</span>
-<span class="cstat-no" title="statement not covered" >    defaultValue: defaultBaseMapName,</span>
-<span class="cstat-no" title="statement not covered" >  });</span>
+export const TileServerContextProvider = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> children }: TileServerContextProviderProps) =&gt; {</span>
+  const [storedName, setStoredName<span class="cstat-no" title="statement not covered" >] = useLocalStorage&lt;TileServerName&gt;({</span>
+    key: "TILE_SERVER",
+    defaultValue: defaultBaseMapName,
+  });
 &nbsp;
   // A name persisted by an older build may no longer exist — fall back rather
   // than hand the map an undefined source.
-<span class="cstat-no" title="statement not covered" >  const initialName = storedName in baseMaps ? storedName : defaultBaseMapName;</span>
-<span class="cstat-no" title="statement not covered" >  const [selectedBaseMap, setSelectedBaseMap] = useState&lt;TileServerName&gt;(initialName);</span>
+  const initialName = <span class="cstat-no" title="statement not covered" >storedName in baseMaps ? storedName : defaultBaseMapName;</span>
+  const [selectedBaseMap, setSelectedBaseMap<span class="cstat-no" title="statement not covered" >] = useState&lt;TileServerName&gt;(initialName);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >    setStoredName(selectedBaseMap);</span>
     // eslint-disable-next-line react-hooks/exhaustive-deps
-<span class="cstat-no" title="statement not covered" >  }, [selectedBaseMap]);</span>
+  }, [selectedBaseMap]);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;TileServerContext.Provider value={{ baseMaps, selectedBaseMap, setSelectedBaseMap }}&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {children}</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/TileServerContext.Provider&gt;</span>
+    &lt;TileServerContext.Provider value={{ baseMaps, selectedBaseMap, setSelectedBaseMap }}&gt;
+      {children}
+    &lt;/TileServerContext.Provider&gt;
   );
-<span class="cstat-no" title="statement not covered" >};</span>
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -166,7 +166,7 @@ interface TileServerContextProviderProps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

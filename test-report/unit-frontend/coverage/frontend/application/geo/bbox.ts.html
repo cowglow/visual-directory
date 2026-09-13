@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/19</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -95,10 +95,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -110,40 +110,40 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { GeoCoordinate } from "domain/marker/geo-coordinate.ts";
 &nbsp;
 // [[west, south], [east, north]] — the shape MapLibre's `fitBounds` expects.
 export type BBox = [[number, number], [number, number]];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function bbox(coordinates: GeoCoordinate[]): BBox | null {</span>
+export function <span class="fstat-no" title="function not covered" >bbox(c</span>oordinates: GeoCoordinate[]): BBox | null {
 <span class="cstat-no" title="statement not covered" >  if (coordinates.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >    return null;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  let west = Infinity;</span>
-<span class="cstat-no" title="statement not covered" >  let south = Infinity;</span>
-<span class="cstat-no" title="statement not covered" >  let east = -Infinity;</span>
-<span class="cstat-no" title="statement not covered" >  let north = -Infinity;</span>
+  let west = <span class="cstat-no" title="statement not covered" >Infinity;</span>
+  let south = <span class="cstat-no" title="statement not covered" >Infinity;</span>
+  let east = <span class="cstat-no" title="statement not covered" >-Infinity;</span>
+  let north = <span class="cstat-no" title="statement not covered" >-Infinity;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  for (const { lat, lng } of coordinates) {</span>
 <span class="cstat-no" title="statement not covered" >    west = Math.min(west, lng);</span>
 <span class="cstat-no" title="statement not covered" >    east = Math.max(east, lng);</span>
 <span class="cstat-no" title="statement not covered" >    south = Math.min(south, lat);</span>
 <span class="cstat-no" title="statement not covered" >    north = Math.max(north, lat);</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
+  }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return [</span>
-<span class="cstat-no" title="statement not covered" >    [west, south],</span>
-<span class="cstat-no" title="statement not covered" >    [east, north],</span>
-<span class="cstat-no" title="statement not covered" >  ];</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+    [west, south],
+    [east, north],
+  ];
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -151,7 +151,7 @@ export type BBox = [[number, number], [number, number]];
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

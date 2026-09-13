@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -88,56 +88,56 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import DesktopWindow from "ports/components/windows/DesktopWindow.tsx";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import MembersMap from "ports/components/map/MembersMap.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import { useDispatch } from "infrastructure/redux/hooks.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { bringToFront, closeWindow } from "infrastructure/redux/windows/windows.slice.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { useTranslation } from "ports/context/i18n/i18n.hook.ts";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import DesktopWindow from "ports/components/windows/DesktopWindow.tsx";
+import MembersMap from "ports/components/map/MembersMap.tsx";
+import { useDispatch } from "infrastructure/redux/hooks.ts";
+import { bringToFront, closeWindow } from "infrastructure/redux/windows/windows.slice.ts";
+import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default function MapWindow({ z }: { z?: number }) {</span>
-<span class="cstat-no" title="statement not covered" >  const dispatch = useDispatch();</span>
-<span class="cstat-no" title="statement not covered" >  const { t } = useTranslation();</span>
+export default function <span class="fstat-no" title="function not covered" >MapWindow({</span> z }: { z?: number }) {
+  const <span class="cstat-no" title="statement not covered" >dispatch = useDispatch();</span>
+  const { t <span class="cstat-no" title="statement not covered" >} = useTranslation();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
     // Dialogs renders every window at the viewport level, so DesktopWindow's
     // position is relative to the viewport. Offset it down enough to clear the
     // desktop menu bar instead of spawning underneath it.
-<span class="cstat-no" title="statement not covered" >    &lt;DesktopWindow</span>
-<span class="cstat-no" title="statement not covered" >      title={t.mapWindow.title}</span>
-<span class="cstat-no" title="statement not covered" >      initialPosition={{ x: 24, y: 44 }}</span>
-<span class="cstat-no" title="statement not covered" >      z={z}</span>
-<span class="cstat-no" title="statement not covered" >      onFocus={() =&gt; dispatch(bringToFront("MAP_DIALOG"))}</span>
-<span class="cstat-no" title="statement not covered" >      onClose={() =&gt; dispatch(closeWindow("MAP_DIALOG"))}</span>
+    &lt;DesktopWindow
+      title={t.mapWindow.title}
+      initialPosition={{ x: 24, y: 44 }}
+      z={z}
+      onFocus={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(bringToFront("MAP_DIALOG"))}</span>
+      onClose={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(closeWindow("MAP_DIALOG"))}</span>
     &gt;
-<span class="cstat-no" title="statement not covered" >      &lt;MembersMap /&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/DesktopWindow&gt;</span>
+      &lt;MembersMap /&gt;
+    &lt;/DesktopWindow&gt;
   );
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -145,7 +145,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

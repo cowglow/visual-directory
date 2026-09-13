@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/27</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/27</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -104,79 +104,79 @@
 <a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { RootState } from "infrastructure/redux/store.ts";
 import type { Member } from "domain/member/member.types.ts";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMembers(state: RootState): Member[] {</span>
+export function <span class="fstat-no" title="function not covered" >getMembers(s</span>tate: RootState): Member[] {
 <span class="cstat-no" title="statement not covered" >  return state.member.items;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getFilteredMembers(state: RootState): Member[] {</span>
+export function <span class="fstat-no" title="function not covered" >getFilteredMembers(s</span>tate: RootState): Member[] {
 <span class="cstat-no" title="statement not covered" >  return state.member.items.slice(0, state.member.filteredLimit);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMembersWithAddress(state: RootState): Member[] {</span>
-<span class="cstat-no" title="statement not covered" >  return state.member.items.filter((member) =&gt; Boolean(member.address));</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export function <span class="fstat-no" title="function not covered" >getMembersWithAddress(s</span>tate: RootState): Member[] {
+<span class="cstat-no" title="statement not covered" >  return state.member.items.filter(<span class="fstat-no" title="function not covered" >(m</span>ember) =&gt; <span class="cstat-no" title="statement not covered" >Boolean(member.address))</span>;</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMemberById(state: RootState, id: string): Member | undefined {</span>
-<span class="cstat-no" title="statement not covered" >  return state.member.items.find((member) =&gt; member.id === id);</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+export function <span class="fstat-no" title="function not covered" >getMemberById(s</span>tate: RootState, id: string): Member | undefined {
+<span class="cstat-no" title="statement not covered" >  return state.member.items.find(<span class="fstat-no" title="function not covered" >(m</span>ember) =&gt; <span class="cstat-no" title="statement not covered" >member.id === id)</span>;</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMemberError(state: RootState): string | null {</span>
+export function <span class="fstat-no" title="function not covered" >getMemberError(s</span>tate: RootState): string | null {
 <span class="cstat-no" title="statement not covered" >  return state.member.error;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMemberMutationStatus(state: RootState) {</span>
+export function <span class="fstat-no" title="function not covered" >getMemberMutationStatus(s</span>tate: RootState) {
 <span class="cstat-no" title="statement not covered" >  return state.member.mutationStatus;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMemberMutationRequestId(state: RootState): string | null {</span>
+export function <span class="fstat-no" title="function not covered" >getMemberMutationRequestId(s</span>tate: RootState): string | null {
 <span class="cstat-no" title="statement not covered" >  return state.member.mutationRequestId;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMemberMutationError(state: RootState): string | null {</span>
+export function <span class="fstat-no" title="function not covered" >getMemberMutationError(s</span>tate: RootState): string | null {
 <span class="cstat-no" title="statement not covered" >  return state.member.mutationError;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function getMemberImportResult(state: RootState) {</span>
+export function <span class="fstat-no" title="function not covered" >getMemberImportResult(s</span>tate: RootState) {
 <span class="cstat-no" title="statement not covered" >  return state.member.importResult;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -184,7 +184,7 @@ import type { Member } from "domain/member/member.types.ts";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

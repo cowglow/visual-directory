@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
@@ -100,68 +100,68 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// The one place concrete infrastructure gets wired into the application/ports
 // layers — everything else in this codebase depends on interfaces, not on Prisma,
 // jsonwebtoken, or Resend directly. See docs/CLEAR_ARCHITECTURE_TS.md.
 import type { AppDeps } from "./ports/http/app.js";
-<span class="cstat-no" title="statement not covered" >import { createRequireAuth } from "./ports/http/middleware/require-auth.js";</span>
-<span class="cstat-no" title="statement not covered" >import { prismaMemberRepository } from "./infrastructure/prisma/member.repository.js";</span>
-<span class="cstat-no" title="statement not covered" >import { prismaOrganizationRepository } from "./infrastructure/prisma/organization.repository.js";</span>
-<span class="cstat-no" title="statement not covered" >import { prismaAccountRepository } from "./infrastructure/prisma/account.repository.js";</span>
-<span class="cstat-no" title="statement not covered" >import { prismaMagicLinkTokenRepository } from "./infrastructure/prisma/magic-link-token.repository.js";</span>
-<span class="cstat-no" title="statement not covered" >import { getMailer } from "./infrastructure/mail/get-mailer.js";</span>
-<span class="cstat-no" title="statement not covered" >import { jwtTokenSigner } from "./infrastructure/auth/jwt-token-signer.js";</span>
-<span class="cstat-no" title="statement not covered" >import { randomTokenGenerator } from "./infrastructure/auth/token-generator.js";</span>
+import { createRequireAuth } from "./ports/http/middleware/require-auth.js";
+import { prismaMemberRepository } from "./infrastructure/prisma/member.repository.js";
+import { prismaOrganizationRepository } from "./infrastructure/prisma/organization.repository.js";
+import { prismaAccountRepository } from "./infrastructure/prisma/account.repository.js";
+import { prismaMagicLinkTokenRepository } from "./infrastructure/prisma/magic-link-token.repository.js";
+import { getMailer } from "./infrastructure/mail/get-mailer.js";
+import { jwtTokenSigner } from "./infrastructure/auth/jwt-token-signer.js";
+import { randomTokenGenerator } from "./infrastructure/auth/token-generator.js";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN ?? "http://localhost:3000";</span>
+const CLIENT_ORIGIN = <span class="cstat-no" title="statement not covered" >process.env.CLIENT_ORIGIN ?? "http://localhost:3000";</span>
 // Must match vite.config.ts's `base` — the SPA is served from this subpath
 // (a GitHub Pages project page), not from CLIENT_ORIGIN's root.
-<span class="cstat-no" title="statement not covered" >const CLIENT_APP_PATH = "/visual-directory";</span>
+const CLIENT_APP_PATH = <span class="cstat-no" title="statement not covered" >"/visual-directory";</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function buildAppDeps(): AppDeps {</span>
+export function <span class="fstat-no" title="function not covered" >buildAppDeps(): AppDeps {</span>
 <span class="cstat-no" title="statement not covered" >  return {</span>
-<span class="cstat-no" title="statement not covered" >    requireAuth: createRequireAuth(jwtTokenSigner, prismaAccountRepository),</span>
-<span class="cstat-no" title="statement not covered" >    memberRepository: prismaMemberRepository,</span>
-<span class="cstat-no" title="statement not covered" >    organizationRepository: prismaOrganizationRepository,</span>
-<span class="cstat-no" title="statement not covered" >    accountRepository: prismaAccountRepository,</span>
-<span class="cstat-no" title="statement not covered" >    magicLinkTokenRepository: prismaMagicLinkTokenRepository,</span>
-<span class="cstat-no" title="statement not covered" >    mailer: getMailer(),</span>
-<span class="cstat-no" title="statement not covered" >    tokenSigner: jwtTokenSigner,</span>
-<span class="cstat-no" title="statement not covered" >    tokenGenerator: randomTokenGenerator,</span>
-<span class="cstat-no" title="statement not covered" >    clientOrigin: CLIENT_ORIGIN,</span>
-<span class="cstat-no" title="statement not covered" >    clientAppPath: CLIENT_APP_PATH,</span>
-<span class="cstat-no" title="statement not covered" >    isDevMode: process.env.NODE_ENV !== "production",</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+    requireAuth: createRequireAuth(jwtTokenSigner, prismaAccountRepository),
+    memberRepository: prismaMemberRepository,
+    organizationRepository: prismaOrganizationRepository,
+    accountRepository: prismaAccountRepository,
+    magicLinkTokenRepository: prismaMagicLinkTokenRepository,
+    mailer: getMailer(),
+    tokenSigner: jwtTokenSigner,
+    tokenGenerator: randomTokenGenerator,
+    clientOrigin: CLIENT_ORIGIN,
+    clientAppPath: CLIENT_APP_PATH,
+    isDevMode: process.env.NODE_ENV !== "production",
+  };
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -169,7 +169,7 @@ import type { AppDeps } from "./ports/http/app.js";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:30.683Z
+                at 2026-09-13T17:46:24.554Z
             </div>
         <script src="../prettify.js"></script>
         <script>

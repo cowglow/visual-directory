@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -87,51 +87,51 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Meta, StoryObj } from "@storybook/react";
-<span class="cstat-no" title="statement not covered" >import ConnectionErrorBanner from "ports/components/ui/ConnectionErrorBanner.tsx";</span>
+import ConnectionErrorBanner from "ports/components/ui/ConnectionErrorBanner.tsx";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const meta: Meta&lt;typeof ConnectionErrorBanner&gt; = {</span>
-<span class="cstat-no" title="statement not covered" >  title: "ports/ui/ConnectionErrorBanner",</span>
-<span class="cstat-no" title="statement not covered" >  component: ConnectionErrorBanner,</span>
-<span class="cstat-no" title="statement not covered" >  args: {</span>
-<span class="cstat-no" title="statement not covered" >    message: "Couldn't load data: Network request failed",</span>
-<span class="cstat-no" title="statement not covered" >    onRetry: () =&gt; alert("Retry clicked"),</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+const meta: Meta&lt;typeof ConnectionErrorBanner&gt; = <span class="cstat-no" title="statement not covered" >{</span>
+  title: "ports/ui/ConnectionErrorBanner",
+  component: ConnectionErrorBanner,
+  args: {
+    message: "Couldn't load data: Network request failed",
+    onRetry: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >a</span>lert("Retry clicked"),</span>
+  },
+};
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default meta;</span>
+export default meta;
 type Story = StoryObj&lt;typeof ConnectionErrorBanner&gt;;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const Default: Story = {};</span>
+export const Default: Story = <span class="cstat-no" title="statement not covered" >{};</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const LongMessage: Story = {</span>
-<span class="cstat-no" title="statement not covered" >  args: {</span>
-<span class="cstat-no" title="statement not covered" >    message:</span>
-<span class="cstat-no" title="statement not covered" >      "Couldn't load data: the server at api.example.com timed out after 30 seconds. Check your connection and try again.",</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+export const LongMessage: Story = <span class="cstat-no" title="statement not covered" >{</span>
+  args: {
+    message:
+      "Couldn't load data: the server at api.example.com timed out after 30 seconds. Check your connection and try again.",
+  },
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -139,7 +139,7 @@ type Story = StoryObj&lt;typeof ConnectionErrorBanner&gt;;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

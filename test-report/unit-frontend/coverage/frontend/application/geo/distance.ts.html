@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -84,36 +84,36 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { GeoCoordinate } from "domain/marker/geo-coordinate.ts";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const EARTH_RADIUS_KM = 6371;</span>
+const EARTH_RADIUS_KM = <span class="cstat-no" title="statement not covered" >6371;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function calculateDistance(pointA: GeoCoordinate, pointB: GeoCoordinate): number {</span>
-<span class="cstat-no" title="statement not covered" >  const lat1 = pointA.lat * (Math.PI / 180);</span>
-<span class="cstat-no" title="statement not covered" >  const lat2 = pointB.lat * (Math.PI / 180);</span>
-<span class="cstat-no" title="statement not covered" >  const deltaLat = (pointB.lat - pointA.lat) * (Math.PI / 180);</span>
-<span class="cstat-no" title="statement not covered" >  const deltaLon = (pointB.lng - pointA.lng) * (Math.PI / 180);</span>
+export function <span class="fstat-no" title="function not covered" >calculateDistance(p</span>ointA: GeoCoordinate, pointB: GeoCoordinate): number {
+  const lat1 = <span class="cstat-no" title="statement not covered" >pointA.lat * (Math.PI / 180);</span>
+  const lat2 = <span class="cstat-no" title="statement not covered" >pointB.lat * (Math.PI / 180);</span>
+  const <span class="cstat-no" title="statement not covered" >deltaLat = (pointB.lat - pointA.lat) * (Math.PI / 180);</span>
+  const <span class="cstat-no" title="statement not covered" >deltaLon = (pointB.lng - pointA.lng) * (Math.PI / 180);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const a =</span>
+  const a =
 <span class="cstat-no" title="statement not covered" >    Math.sin(deltaLat / 2) * Math.sin(deltaLat / 2) +</span>
-<span class="cstat-no" title="statement not covered" >    Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);</span>
-<span class="cstat-no" title="statement not covered" >  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));</span>
+    Math.cos(lat1) * Math.cos(lat2) * Math.sin(deltaLon / 2) * Math.sin(deltaLon / 2);
+  const c = <span class="cstat-no" title="statement not covered" >2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return EARTH_RADIUS_KM * c;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -121,7 +121,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

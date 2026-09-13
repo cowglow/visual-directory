@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/15</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
@@ -88,56 +88,56 @@
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
 <a name='L25'></a><a href='#L25'>25</a>
-<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L26'></a><a href='#L26'>26</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import rateLimit from "express-rate-limit";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import rateLimit from "express-rate-limit";
 &nbsp;
 // /auth/magic-link sends a real email per request - without a limit, one IP can
 // spam an arbitrary inbox with sign-in links or burn through the Resend quota.
 // Keyed by IP rather than the submitted email, since the email itself isn't
 // authenticated yet at this point in the flow.
-<span class="cstat-no" title="statement not covered" >export const magicLinkRateLimiter = rateLimit({</span>
-<span class="cstat-no" title="statement not covered" >  windowMs: 15 * 60 * 1000,</span>
-<span class="cstat-no" title="statement not covered" >  limit: 5,</span>
-<span class="cstat-no" title="statement not covered" >  standardHeaders: true,</span>
-<span class="cstat-no" title="statement not covered" >  legacyHeaders: false,</span>
-<span class="cstat-no" title="statement not covered" >  message: { error: "Too many login link requests. Please wait a few minutes and try again." },</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+export const <span class="cstat-no" title="statement not covered" >magicLinkRateLimiter = rateLimit({</span>
+  windowMs: 15 * 60 * 1000,
+  limit: 5,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many login link requests. Please wait a few minutes and try again." },
+});
 &nbsp;
 // /auth/verify tokens are 256 bits of random data (see
 // infrastructure/auth/token-generator.ts), so guessing one is infeasible
 // regardless of rate limiting - this exists to slow and surface repeated
 // attempts rather than to make brute force merely difficult.
-<span class="cstat-no" title="statement not covered" >export const verifyRateLimiter = rateLimit({</span>
-<span class="cstat-no" title="statement not covered" >  windowMs: 15 * 60 * 1000,</span>
-<span class="cstat-no" title="statement not covered" >  limit: 20,</span>
-<span class="cstat-no" title="statement not covered" >  standardHeaders: true,</span>
-<span class="cstat-no" title="statement not covered" >  legacyHeaders: false,</span>
-<span class="cstat-no" title="statement not covered" >  message: { error: "Too many attempts. Please wait a few minutes and try again." },</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+export const <span class="cstat-no" title="statement not covered" >verifyRateLimiter = rateLimit({</span>
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many attempts. Please wait a few minutes and try again." },
+});
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -145,7 +145,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:30.683Z
+                at 2026-09-13T17:46:24.554Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

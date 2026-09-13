@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -109,7 +109,7 @@
 <a name='L44'></a><a href='#L44'>44</a>
 <a name='L45'></a><a href='#L45'>45</a>
 <a name='L46'></a><a href='#L46'>46</a>
-<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L47'></a><a href='#L47'>47</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -122,40 +122,40 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { createSlice, PayloadAction } from "@reduxjs/toolkit";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 &nbsp;
 // The current selection is always a set of member ids. Selecting an organization
 // just means selecting all of its members — the map never needs to know about
@@ -165,42 +165,42 @@ export type SelectionState = {
   memberIds: string[];
 };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const initialState: SelectionState = { memberIds: [] };</span>
+const initialState: SelectionState = <span class="cstat-no" title="statement not covered" >{ memberIds: [] };</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const selectionSlice = createSlice({</span>
-<span class="cstat-no" title="statement not covered" >  name: "selection",</span>
-<span class="cstat-no" title="statement not covered" >  initialState,</span>
-<span class="cstat-no" title="statement not covered" >  reducers: {</span>
-<span class="cstat-no" title="statement not covered" >    selectMembers(state, action: PayloadAction&lt;string[]&gt;) {</span>
-<span class="cstat-no" title="statement not covered" >      const next = [...new Set(action.payload)];</span>
+const <span class="cstat-no" title="statement not covered" >selectionSlice = createSlice({</span>
+  name: "selection",
+  initialState,
+  reducers: {
+<span class="fstat-no" title="function not covered" >    selectMembers(s</span>tate, action: PayloadAction&lt;string[]&gt;) {
+      const next = <span class="cstat-no" title="statement not covered" >[...new Set(action.payload)];</span>
       // Re-selecting the same set is a no-op — return the identical state so
       // downstream effects (the camera) don't re-fire.
-<span class="cstat-no" title="statement not covered" >      const sortedNext = [...next].sort();</span>
-<span class="cstat-no" title="statement not covered" >      const sortedCurrent = [...state.memberIds].sort();</span>
+      const sortedNext = <span class="cstat-no" title="statement not covered" >[...next].sort();</span>
+      const sortedCurrent = <span class="cstat-no" title="statement not covered" >[...state.memberIds].sort();</span>
 <span class="cstat-no" title="statement not covered" >      if (</span>
-<span class="cstat-no" title="statement not covered" >        sortedNext.length === sortedCurrent.length &amp;&amp;</span>
-<span class="cstat-no" title="statement not covered" >        sortedNext.every((id, index) =&gt; id === sortedCurrent[index])</span>
-<span class="cstat-no" title="statement not covered" >      ) {</span>
+        sortedNext.length === sortedCurrent.length &amp;&amp;
+        sortedNext.every(<span class="fstat-no" title="function not covered" >(i</span>d, index) =&gt; <span class="cstat-no" title="statement not covered" >id === sortedCurrent[index])</span>
+      ) {
 <span class="cstat-no" title="statement not covered" >        return state;</span>
-<span class="cstat-no" title="statement not covered" >      }</span>
+      }
 <span class="cstat-no" title="statement not covered" >      return { memberIds: next };</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    toggleMember(state, action: PayloadAction&lt;string&gt;) {</span>
-<span class="cstat-no" title="statement not covered" >      const id = action.payload;</span>
+    },
+<span class="fstat-no" title="function not covered" >    toggleMember(s</span>tate, action: PayloadAction&lt;string&gt;) {
+      const id = <span class="cstat-no" title="statement not covered" >action.payload;</span>
 <span class="cstat-no" title="statement not covered" >      return {</span>
-<span class="cstat-no" title="statement not covered" >        memberIds: state.memberIds.includes(id)</span>
-<span class="cstat-no" title="statement not covered" >          ? state.memberIds.filter((memberId) =&gt; memberId !== id)</span>
-<span class="cstat-no" title="statement not covered" >          : [...state.memberIds, id],</span>
-<span class="cstat-no" title="statement not covered" >      };</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >    clearSelection() {</span>
+        memberIds: state.memberIds.includes(id)
+          ? state.memberIds.filter(<span class="fstat-no" title="function not covered" >(m</span>emberId) =&gt; <span class="cstat-no" title="statement not covered" >memberId !== id)</span>
+          : [...state.memberIds, id],
+      };
+    },
+<span class="fstat-no" title="function not covered" >    clearSelection() {</span>
 <span class="cstat-no" title="statement not covered" >      return { memberIds: [] };</span>
-<span class="cstat-no" title="statement not covered" >    },</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+    },
+  },
+});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const { selectMembers, toggleMember, clearSelection } = selectionSlice.actions;</span>
-<span class="cstat-no" title="statement not covered" >export default selectionSlice.reducer;</span>
+export const { selectMembers, toggleMember, clearSelection } = <span class="cstat-no" title="statement not covered" >selectionSlice.actions;</span>
+export default selectionSlice.reducer;
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -208,7 +208,7 @@ export type SelectionState = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

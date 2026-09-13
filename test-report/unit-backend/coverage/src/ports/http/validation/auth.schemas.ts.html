@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
@@ -84,48 +84,48 @@
 <a name='L19'></a><a href='#L19'>19</a>
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
-<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L22'></a><a href='#L22'>22</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { z } from "zod";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { roleSchema, uuidSchema } from "./shared.schemas.js";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { z } from "zod";
+import { roleSchema, uuidSchema } from "./shared.schemas.js";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const magicLinkRequestSchema = z.object({</span>
-<span class="cstat-no" title="statement not covered" >  email: z.string().trim().toLowerCase().email().max(254),</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+export const magicLinkRequestSchema = <span class="cstat-no" title="statement not covered" >z.object({</span>
+  email: z.string().trim().toLowerCase().email().max(254),
+});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const verifyMagicLinkSchema = z.object({</span>
-<span class="cstat-no" title="statement not covered" >  token: z.string().min(1).max(512),</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+export const verifyMagicLinkSchema = <span class="cstat-no" title="statement not covered" >z.object({</span>
+  token: z.string().min(1).max(512),
+});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const inviteAccountSchema = z.object({</span>
-<span class="cstat-no" title="statement not covered" >  email: z.string().trim().toLowerCase().email().max(254),</span>
-<span class="cstat-no" title="statement not covered" >  role: roleSchema,</span>
-<span class="cstat-no" title="statement not covered" >  memberId: uuidSchema.optional(),</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+export const inviteAccountSchema = <span class="cstat-no" title="statement not covered" >z.object({</span>
+  email: z.string().trim().toLowerCase().email().max(254),
+  role: roleSchema,
+  memberId: uuidSchema.optional(),
+});
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const updateAccountSchema = z.object({</span>
-<span class="cstat-no" title="statement not covered" >  role: roleSchema,</span>
-<span class="cstat-no" title="statement not covered" >  memberId: uuidSchema.nullable().optional(),</span>
-<span class="cstat-no" title="statement not covered" >});</span>
+export const updateAccountSchema = <span class="cstat-no" title="statement not covered" >z.object({</span>
+  role: roleSchema,
+  memberId: uuidSchema.nullable().optional(),
+});
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -133,7 +133,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:30.683Z
+                at 2026-09-13T17:46:24.554Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

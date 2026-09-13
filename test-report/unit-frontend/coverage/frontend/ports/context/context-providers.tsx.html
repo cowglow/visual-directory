@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/5</span>
             </div>
         
             
@@ -90,12 +90,21 @@
 <a name='L25'></a><a href='#L25'>25</a>
 <a name='L26'></a><a href='#L26'>26</a>
 <a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -105,42 +114,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { PropsWithChildren } from "react";
-<span class="cstat-no" title="statement not covered" >import { Provider } from "react-redux";</span>
-<span class="cstat-no" title="statement not covered" >import { AppStore, setupStore } from "infrastructure/redux/store.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { loadWindowsState } from "infrastructure/redux/windows/windows-storage.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { setUnauthorizedHandler } from "infrastructure/api/api-client.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { sessionExpired } from "infrastructure/redux/auth/auth.slice.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { TileServerContextProvider } from "ports/context/tile-server/tile-server.provider.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import { I18nContextProvider } from "ports/context/i18n/i18n.provider.tsx";</span>
+import { Provider } from "react-redux";
+import { AppStore, setupStore } from "infrastructure/redux/store.ts";
+import { loadWindowsState } from "infrastructure/redux/windows/windows-storage.ts";
+import { setUnauthorizedHandler } from "infrastructure/api/api-client.ts";
+import { sessionExpired } from "infrastructure/redux/auth/auth.slice.ts";
+import { TileServerContextProvider } from "ports/context/tile-server/tile-server.provider.tsx";
+import { I18nContextProvider } from "ports/context/i18n/i18n.provider.tsx";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >const persistedWindows = loadWindowsState();</span>
-<span class="cstat-no" title="statement not covered" >const reduxStore: AppStore = setupStore(persistedWindows ? { windows: persistedWindows } : {});</span>
+const <span class="cstat-no" title="statement not covered" >persistedWindows = loadWindowsState();</span>
+const <span class="cstat-no" title="statement not covered" >reduxStore: AppStore = setupStore(persistedWindows ? { windows: persistedWindows } : {});</span>
 &nbsp;
 // The session's token is now short-lived (see backend/src/infrastructure/auth/
 // jwt-token-signer.ts), so it can expire while the app is open, not just between
 // visits. Any API call that gets a 401 should drop straight back to "please sign
 // in" instead of leaving the UI stuck on a stale authenticated view.
-<span class="cstat-no" title="statement not covered" >setUnauthorizedHandler(() =&gt; reduxStore.dispatch(sessionExpired()));</span>
+<span class="cstat-no" title="statement not covered" >setUnauthorizedHandler(<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >r</span>eduxStore.dispatch(sessionExpired()))</span>;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const ContextProviders = ({ children }: PropsWithChildren) =&gt; (</span>
+export const ContextProviders = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >({</span> children }: PropsWithChildren) =&gt; (</span>
 <span class="cstat-no" title="statement not covered" >  &lt;Provider store={reduxStore}&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;I18nContextProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;TileServerContextProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >        &lt;&gt;{children}&lt;/&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/TileServerContextProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >    &lt;/I18nContextProvider&gt;</span>
-<span class="cstat-no" title="statement not covered" >  &lt;/Provider&gt;</span>
+    &lt;I18nContextProvider&gt;
+      &lt;TileServerContextProvider&gt;
+        &lt;&gt;{children}&lt;/&gt;
+      &lt;/TileServerContextProvider&gt;
+    &lt;/I18nContextProvider&gt;
+  &lt;/Provider&gt;
 );</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -148,7 +148,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

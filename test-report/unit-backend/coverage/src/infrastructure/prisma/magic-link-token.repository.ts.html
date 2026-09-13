@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
@@ -92,61 +92,61 @@
 <a name='L27'></a><a href='#L27'>27</a>
 <a name='L28'></a><a href='#L28'>28</a>
 <a name='L29'></a><a href='#L29'>29</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { MagicLinkTokenRepository } from "../../application/magic-link/magic-link-token.repository.js";
-<span class="cstat-no" title="statement not covered" >import { prisma } from "./prisma-client.js";</span>
+import { prisma } from "./prisma-client.js";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const prismaMagicLinkTokenRepository: MagicLinkTokenRepository = {</span>
-<span class="cstat-no" title="statement not covered" >  async create(accountId, tokenHash, expiresAt) {</span>
+export const prismaMagicLinkTokenRepository: MagicLinkTokenRepository = <span class="cstat-no" title="statement not covered" >{</span>
+  async <span class="fstat-no" title="function not covered" >create(a</span>ccountId, tokenHash, expiresAt) {
 <span class="cstat-no" title="statement not covered" >    await prisma.magicLinkToken.create({ data: { accountId, tokenHash, expiresAt } });</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
+  },
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  async findByHash(tokenHash) {</span>
-<span class="cstat-no" title="statement not covered" >    const record = await prisma.magicLinkToken.findUnique({ where: { tokenHash }, include: { account: true } });</span>
+  async <span class="fstat-no" title="function not covered" >findByHash(t</span>okenHash) {
+    const record = <span class="cstat-no" title="statement not covered" >await prisma.magicLinkToken.findUnique({ where: { tokenHash }, include: { account: true } });</span>
 <span class="cstat-no" title="statement not covered" >    if (!record) {</span>
 <span class="cstat-no" title="statement not covered" >      return null;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    }
 <span class="cstat-no" title="statement not covered" >    return {</span>
-<span class="cstat-no" title="statement not covered" >      record: { id: record.id, expiresAt: record.expiresAt, usedAt: record.usedAt },</span>
-<span class="cstat-no" title="statement not covered" >      account: {</span>
-<span class="cstat-no" title="statement not covered" >        id: record.account.id,</span>
-<span class="cstat-no" title="statement not covered" >        email: record.account.email,</span>
-<span class="cstat-no" title="statement not covered" >        role: record.account.role,</span>
-<span class="cstat-no" title="statement not covered" >        memberId: record.account.memberId,</span>
-<span class="cstat-no" title="statement not covered" >      },</span>
-<span class="cstat-no" title="statement not covered" >    };</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
+      record: { id: record.id, expiresAt: record.expiresAt, usedAt: record.usedAt },
+      account: {
+        id: record.account.id,
+        email: record.account.email,
+        role: record.account.role,
+        memberId: record.account.memberId,
+      },
+    };
+  },
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  async markUsed(id) {</span>
+  async <span class="fstat-no" title="function not covered" >markUsed(i</span>d) {
 <span class="cstat-no" title="statement not covered" >    await prisma.magicLinkToken.update({ where: { id }, data: { usedAt: new Date() } });</span>
-<span class="cstat-no" title="statement not covered" >  },</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+  },
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -154,7 +154,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:30.683Z
+                at 2026-09-13T17:46:24.554Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/1</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/33</span>
+                <span class='fraction'>0/19</span>
             </div>
         
             
@@ -104,29 +104,21 @@
 <a name='L39'></a><a href='#L39'>39</a>
 <a name='L40'></a><a href='#L40'>40</a>
 <a name='L41'></a><a href='#L41'>41</a>
-<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L42'></a><a href='#L42'>42</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -137,55 +129,63 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import { useEffect } from "react";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
-<span class="cstat-no" title="statement not covered" >import { useMap } from "@vis.gl/react-maplibre";</span>
-<span class="cstat-no" title="statement not covered" >import { useSelector } from "infrastructure/redux/hooks.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { getSelectedMemberIds } from "infrastructure/redux/selection/selection.selectors.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { getMembers } from "infrastructure/redux/member/member.selectors.ts";</span>
-<span class="cstat-no" title="statement not covered" >import { bbox } from "application/geo/bbox.ts";</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect } from "react";
+import { useMap } from "@vis.gl/react-maplibre";
+import { useSelector } from "infrastructure/redux/hooks.ts";
+import { getSelectedMemberIds } from "infrastructure/redux/selection/selection.selectors.ts";
+import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
+import { bbox } from "application/geo/bbox.ts";
 &nbsp;
 // Centres the map on the selection whenever it changes — the selected marker for
 // a single pick, the group's centre for several. Never changes zoom, and (thanks
 // to the slice's no-op guard) re-selecting the same set doesn't move the camera.
-<span class="cstat-no" title="statement not covered" >export default function SelectionCamera() {</span>
-<span class="cstat-no" title="statement not covered" >  const { current: map } = useMap();</span>
-<span class="cstat-no" title="statement not covered" >  const selectedIds = useSelector(getSelectedMemberIds);</span>
-<span class="cstat-no" title="statement not covered" >  const members = useSelector(getMembers);</span>
+export default function <span class="fstat-no" title="function not covered" >SelectionCamera() {</span>
+  const { current: map <span class="cstat-no" title="statement not covered" >} = useMap();</span>
+  const <span class="cstat-no" title="statement not covered" >selectedIds = useSelector(getSelectedMemberIds);</span>
+  const <span class="cstat-no" title="statement not covered" >members = useSelector(getMembers);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >() =&gt; {</span></span>
 <span class="cstat-no" title="statement not covered" >    if (!map || selectedIds.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >    const selected = new Set(selectedIds);</span>
-<span class="cstat-no" title="statement not covered" >    const coordinates = members</span>
-<span class="cstat-no" title="statement not covered" >      .filter((member) =&gt; selected.has(member.id) &amp;&amp; member.address)</span>
-<span class="cstat-no" title="statement not covered" >      .map((member) =&gt; member.address!.coordinates);</span>
+    }
+    const selected = <span class="cstat-no" title="statement not covered" >new Set(selectedIds);</span>
+    const coordinates = <span class="cstat-no" title="statement not covered" >members</span>
+      .filter(<span class="fstat-no" title="function not covered" >(m</span>ember) =&gt; <span class="cstat-no" title="statement not covered" >selected.has(member.id) &amp;&amp; member.address)</span>
+      .map(<span class="fstat-no" title="function not covered" >(m</span>ember) =&gt; <span class="cstat-no" title="statement not covered" >member.address!.coordinates)</span>;
 <span class="cstat-no" title="statement not covered" >    if (coordinates.length === 0) {</span>
 <span class="cstat-no" title="statement not covered" >      return;</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    let target: [number, number];</span>
+    let target: [number, number];
 <span class="cstat-no" title="statement not covered" >    if (coordinates.length === 1) {</span>
 <span class="cstat-no" title="statement not covered" >      target = [coordinates[0].lng, coordinates[0].lat];</span>
-<span class="cstat-no" title="statement not covered" >    } else {</span>
-<span class="cstat-no" title="statement not covered" >      const bounds = bbox(coordinates);</span>
-<span class="cstat-no" title="statement not covered" >      if (!bounds) return;</span>
+    } else {
+      const <span class="cstat-no" title="statement not covered" >bounds = bbox(coordinates);</span>
+<span class="cstat-no" title="statement not covered" >      if (!bounds) <span class="cstat-no" title="statement not covered" >return;</span></span>
 <span class="cstat-no" title="statement not covered" >      target = [(bounds[0][0] + bounds[1][0]) / 2, (bounds[0][1] + bounds[1][1]) / 2];</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
+    }
 <span class="cstat-no" title="statement not covered" >    map.getMap().panTo(target, { duration: 400 });</span>
     // eslint-disable-next-line react-hooks/exhaustive-deps
-<span class="cstat-no" title="statement not covered" >  }, [map, selectedIds]);</span>
+  }, [map, selectedIds]);
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return null;</span>
-<span class="cstat-no" title="statement not covered" >}</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -193,7 +193,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

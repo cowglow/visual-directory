@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/1</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -81,44 +81,44 @@
 <a name='L16'></a><a href='#L16'>16</a>
 <a name='L17'></a><a href='#L17'>17</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { GeoCoordinate } from "domain/marker/geo-coordinate.ts";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { GeoCoordinate } from "domain/marker/geo-coordinate.ts";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export function calculateBearing(pointA: GeoCoordinate, pointB: GeoCoordinate): number {</span>
-<span class="cstat-no" title="statement not covered" >  const lat1 = pointA.lat * (Math.PI / 180);</span>
-<span class="cstat-no" title="statement not covered" >  const lat2 = pointB.lat * (Math.PI / 180);</span>
-<span class="cstat-no" title="statement not covered" >  const lon1 = pointA.lng * (Math.PI / 180);</span>
-<span class="cstat-no" title="statement not covered" >  const lon2 = pointB.lng * (Math.PI / 180);</span>
+export function <span class="fstat-no" title="function not covered" >calculateBearing(p</span>ointA: GeoCoordinate, pointB: GeoCoordinate): number {
+  const lat1 = <span class="cstat-no" title="statement not covered" >pointA.lat * (Math.PI / 180);</span>
+  const lat2 = <span class="cstat-no" title="statement not covered" >pointB.lat * (Math.PI / 180);</span>
+  const lon1 = <span class="cstat-no" title="statement not covered" >pointA.lng * (Math.PI / 180);</span>
+  const lon2 = <span class="cstat-no" title="statement not covered" >pointB.lng * (Math.PI / 180);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const y = Math.sin(lon2 - lon1) * Math.cos(lat2);</span>
-<span class="cstat-no" title="statement not covered" >  const x =</span>
+  const y = <span class="cstat-no" title="statement not covered" >Math.sin(lon2 - lon1) * Math.cos(lat2);</span>
+  const x =
 <span class="cstat-no" title="statement not covered" >    Math.cos(lat1) * Math.sin(lat2) -</span>
-<span class="cstat-no" title="statement not covered" >    Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);</span>
-<span class="cstat-no" title="statement not covered" >  let bearing = Math.atan2(y, x) * (180 / Math.PI);</span>
+    Math.sin(lat1) * Math.cos(lat2) * Math.cos(lon2 - lon1);
+  let bearing = <span class="cstat-no" title="statement not covered" >Math.atan2(y, x) * (180 / Math.PI);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (bearing &lt; 0) bearing += 360;</span>
+<span class="cstat-no" title="statement not covered" >  if (bearing &lt; 0) <span class="cstat-no" title="statement not covered" >bearing += 360;</span></span>
 <span class="cstat-no" title="statement not covered" >  return bearing;</span>
-<span class="cstat-no" title="statement not covered" >}</span></pre></td></tr></table></pre>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

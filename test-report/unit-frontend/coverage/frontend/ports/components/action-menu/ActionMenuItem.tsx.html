@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/3</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/31</span>
+                <span class='fraction'>0/11</span>
             </div>
         
             
@@ -113,27 +113,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,63 +123,83 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { MenuConfigItem, Divider } from "ports/components/action-menu/action-menu.types.ts";
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { MenuConfigItem, Divider } from "ports/components/action-menu/action-menu.types.ts";
 &nbsp;
 interface ActionMenuItemProps {
   config: MenuConfigItem | Divider;
   key?: string;
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export default function ActionMenuItem({ config }: ActionMenuItemProps) {</span>
+export default function <span class="fstat-no" title="function not covered" >ActionMenuItem({</span> config }: ActionMenuItemProps) {
 <span class="cstat-no" title="statement not covered" >  if (config === "---") {</span>
 <span class="cstat-no" title="statement not covered" >    return &lt;hr /&gt;;</span>
-<span class="cstat-no" title="statement not covered" >  }</span>
-<span class="cstat-no" title="statement not covered" >  const { label, ...rest } = config;</span>
+  }
+  const { label, ...rest } = <span class="cstat-no" title="statement not covered" >config;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  const clickHandler = (event) =&gt; {</span>
+  const clickHandler = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(e</span>vent) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >    event.currentTarget.blur();</span>
 <span class="cstat-no" title="statement not covered" >    if ("action" in rest) {</span>
 <span class="cstat-no" title="statement not covered" >      rest.action();</span>
-<span class="cstat-no" title="statement not covered" >    }</span>
-<span class="cstat-no" title="statement not covered" >  };</span>
+    }
+  };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if ("items" in rest) {</span>
 <span class="cstat-no" title="statement not covered" >    return (</span>
-<span class="cstat-no" title="statement not covered" >      &lt;li role="menu-item" tabIndex={0} aria-haspopup="true"&gt;</span>
-<span class="cstat-no" title="statement not covered" >        {label}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;ul role="menu"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {rest.items.map((item, index) =&gt; (</span>
+      &lt;li role="menu-item" tabIndex={0} aria-haspopup="true"&gt;
+        {label}
+        &lt;ul role="menu"&gt;
+          {rest.items.map(<span class="fstat-no" title="function not covered" >(i</span>tem, index) =&gt; (
 <span class="cstat-no" title="statement not covered" >            &lt;ActionMenuItem key={`action-menu-submenu-item-${index}`} config={item} /&gt;</span>
-<span class="cstat-no" title="statement not covered" >          ))}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/ul&gt;</span>
-<span class="cstat-no" title="statement not covered" >      &lt;/li&gt;</span>
+          ))}
+        &lt;/ul&gt;
+      &lt;/li&gt;
     );
-<span class="cstat-no" title="statement not covered" >  }</span>
+  }
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-<span class="cstat-no" title="statement not covered" >    &lt;li role="menu-item"&gt;</span>
-<span class="cstat-no" title="statement not covered" >      {"action" in rest &amp;&amp; &lt;button onClick={clickHandler}&gt;{label}&lt;/button&gt;}</span>
-<span class="cstat-no" title="statement not covered" >      {"href" in rest &amp;&amp; (</span>
-<span class="cstat-no" title="statement not covered" >        &lt;a href={rest.href} target="_blank" rel="nofollow noreferrer"&gt;</span>
-<span class="cstat-no" title="statement not covered" >          {label}</span>
-<span class="cstat-no" title="statement not covered" >        &lt;/a&gt;</span>
+    &lt;li role="menu-item"&gt;
+      {"action" in rest &amp;&amp; &lt;button onClick={clickHandler}&gt;{label}&lt;/button&gt;}
+      {"href" in rest &amp;&amp; (
+        &lt;a href={rest.href} target="_blank" rel="nofollow noreferrer"&gt;
+          {label}
+        &lt;/a&gt;
       )}
-<span class="cstat-no" title="statement not covered" >    &lt;/li&gt;</span>
+    &lt;/li&gt;
   );
-<span class="cstat-no" title="statement not covered" >}</span></pre></td></tr></table></pre>
+}</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
             </div><!-- /wrapper -->
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

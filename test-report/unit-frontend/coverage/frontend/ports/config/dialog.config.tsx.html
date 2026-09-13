@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/0</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/1</span>
+                <span class='fraction'>0/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
@@ -86,6 +86,19 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -94,41 +107,28 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { DialogPayload, DialogType } from "infrastructure/redux/windows/windows.slice.ts";
-<span class="cstat-no" title="statement not covered" >import MemberForm from "ports/components/forms/MemberForm.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import OrganizationForm from "ports/components/forms/OrganizationForm.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import InviteForm from "ports/components/forms/InviteForm.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import AccountsForm from "ports/components/forms/AccountsForm.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import OrganizationTree from "ports/components/organization-tree/OrganizationTree.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import MapWindow from "ports/components/map/MapWindow.tsx";</span>
-<span class="cstat-no" title="statement not covered" >import PrivacyDialog from "ports/components/privacy/PrivacyDialog.tsx";</span>
+import MemberForm from "ports/components/forms/MemberForm.tsx";
+import OrganizationForm from "ports/components/forms/OrganizationForm.tsx";
+import InviteForm from "ports/components/forms/InviteForm.tsx";
+import AccountsForm from "ports/components/forms/AccountsForm.tsx";
+import OrganizationTree from "ports/components/organization-tree/OrganizationTree.tsx";
+import MapWindow from "ports/components/map/MapWindow.tsx";
+import PrivacyDialog from "ports/components/privacy/PrivacyDialog.tsx";
 import { JSX } from "react";
 &nbsp;
-<span class="cstat-no" title="statement not covered" >export const dialogConfig: Record&lt;</span>
+export const dialogConfig: Record&lt;
   DialogType,
   (payload: DialogPayload | null, z?: number) =&gt; JSX.Element
-<span class="cstat-no" title="statement not covered" >&gt; = {</span>
-<span class="cstat-no" title="statement not covered" >  MEMBER_DIALOG: (payload) =&gt; &lt;MemberForm payload={payload} /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  ORGANIZATION_DIALOG: (payload, z) =&gt; &lt;OrganizationForm payload={payload} z={z} /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  INVITE_DIALOG: () =&gt; &lt;InviteForm /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  ACCOUNTS_DIALOG: () =&gt; &lt;AccountsForm /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  ORGANIZATION_TREE_DIALOG: (_payload, z) =&gt; &lt;OrganizationTree z={z} /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  MAP_DIALOG: (_payload, z) =&gt; &lt;MapWindow z={z} /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >  PRIVACY_DIALOG: () =&gt; &lt;PrivacyDialog /&gt;,</span>
-<span class="cstat-no" title="statement not covered" >};</span>
+&gt; = <span class="cstat-no" title="statement not covered" >{</span>
+  MEMBER_DIALOG: <span class="fstat-no" title="function not covered" >(p</span>ayload) =&gt; <span class="cstat-no" title="statement not covered" >&lt;MemberForm payload={payload} /&gt;,</span>
+  ORGANIZATION_DIALOG: <span class="fstat-no" title="function not covered" >(p</span>ayload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;OrganizationForm payload={payload} z={z} /&gt;,</span>
+  INVITE_DIALOG: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >&lt;</span>InviteForm /&gt;,</span>
+  ACCOUNTS_DIALOG: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >&lt;</span>AccountsForm /&gt;,</span>
+  ORGANIZATION_TREE_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;OrganizationTree z={z} /&gt;,</span>
+  MAP_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;MapWindow z={z} /&gt;,</span>
+  PRIVACY_DIALOG: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >&lt;</span>PrivacyDialog /&gt;,</span>
+};
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -136,7 +136,7 @@ import { JSX } from "react";
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T17:32:29.723Z
+                at 2026-09-13T17:46:23.346Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
