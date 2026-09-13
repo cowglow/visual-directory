@@ -119,7 +119,7 @@ jobs:
           cache-to: type=gha,mode=max
 
       - name: Copy compose file and Caddyfile to server
-        uses: appleboy/scp-action@v0.1.7
+        uses: appleboy/scp-action@v1.0.0
         with:
           host: ${{ secrets.HETZNER_HOST }}
           username: ${{ secrets.HETZNER_USER }}
