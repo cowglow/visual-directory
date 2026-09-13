@@ -37,7 +37,7 @@
     "@mui/icons-material": "^6.4.5",
     "@mui/material": "^6.4.5",
     "@playwright/test": "^1.61.1",
-    "@reduxjs/toolkit": "^2.5.1",
+    "@reduxjs/toolkit": "^2.12.0",
     "@sakun/system.css": "^0.1.11",
     "@storybook/addon-actions": "^8.6.17",
     "@storybook/addon-backgrounds": "^8.6.17",
