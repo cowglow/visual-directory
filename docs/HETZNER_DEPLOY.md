@@ -396,12 +396,23 @@ picked up automatically.
   To redeploy manually: `docker compose -f docker-compose.prod.yml pull api && docker compose -f docker-compose.prod.yml up -d`.
 - **New migrations**: CI/CD runs `pnpm prisma:deploy` automatically on every deploy.
   To run manually: `docker compose -f docker-compose.prod.yml exec api pnpm prisma:deploy`.
-- **Backups**: `postgres-data` is a named Docker volume with no backup mechanism of
-  its own. At minimum, periodically:
+- **Backups**: there is currently no backup of any kind — not a scheduled job, not
+  even a manual habit. `postgres-data` is this database's only copy. This is a
+  known, accepted gap for now, not an oversight: the plan is for this app to
+  eventually ingest from Asana as the real system of record, at which point this
+  Postgres instance stops being the one place the data lives. Until that happens,
+  losing this volume means losing every member's data outright, so revisit this
+  the moment real member data goes in here that you'd mind losing. When ready to
+  add a backup, the minimum viable version is:
   `docker compose exec db pg_dump -U app contact_book > backup-$(date +%F).sql`,
   copied somewhere off the box (Hetzner Storage Box, or just `scp` it out on a cron).
-  This isn't wired up as an automated job here — worth setting up before you have
-  real member data on this box you'd mind losing.
+- **Wiping the data on purpose**: `docker compose down` (no flags) does **not**
+  delete `postgres-data` — Compose only removes named volumes when you pass
+  `--volumes`/`-v`, so the data survives a plain `down`/`up` cycle. To actually
+  destroy it — the fail-safe/"kill switch" this project is currently relying on
+  instead of a backup — run `docker compose -f docker-compose.prod.yml down --volumes`
+  or `docker volume rm visual-directory_postgres-data` directly. Treat that command
+  with the same care as `rm -rf`: there is nothing to restore from once it runs.
 - **Adminer, when you actually need it**: rather than exposing it publicly, tunnel to
   it over SSH when needed: `ssh -L 8081:localhost:8081 deploy@YOUR_SERVER_IP`, then
   `docker compose up -d adminer` on the box and visit `http://localhost:8081` on your

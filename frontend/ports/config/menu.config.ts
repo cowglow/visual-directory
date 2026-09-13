@@ -143,6 +143,7 @@ export function createMenuConfig({
       { label: t.menu.sakunsTwitter, href: "https://x.com/sakofchit" },
       "---",
       { label: t.menu.githubRepo, href: "https://github.com/cowglow/visual-directory" },
+      { label: t.menu.privacy, action: () => dispatch(openWindow({ type: "PRIVACY_DIALOG" })) },
     ],
   };
 }

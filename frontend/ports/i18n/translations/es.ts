@@ -44,6 +44,7 @@ const es: Translations = {
     systemCss: "system.css",
     sakunsTwitter: "Twitter de sakun",
     githubRepo: "Repositorio de GitHub",
+    privacy: "Privacidad",
   },
   auth: {
     signIn: "Iniciar sesión",
@@ -54,6 +55,25 @@ const es: Translations = {
     genericError: "Algo salió mal. Por favor, inténtelo de nuevo.",
     loading: "Cargando…",
     cantConnect: "No se pudo conectar",
+    privacyLink: "Aviso de privacidad",
+  },
+  privacy: {
+    title: "Aviso de privacidad",
+    intro:
+      "Este directorio contiene datos personales proporcionados por los líderes de su organización para que los miembros puedan ser localizados y contactados. Esto es lo que eso significa para usted.",
+    whatWeCollectTitle: "Qué se recopila",
+    whatWeCollect:
+      "Nombre, dirección particular y ubicación en el mapa, teléfono y/o correo electrónico, su organización y rol dentro de ella, y si está marcado como activo o con contacto perdido. Si usted mismo inicia sesión, también el correo con el que accede.",
+    whyTitle: "Por qué",
+    why: "Únicamente para operar el directorio: ayudar a los líderes a localizar y coordinarse con los miembros. Nada de esto se usa con fines publicitarios ni se comparte con nadie para sus propios fines.",
+    whoSeesTitle: "Quién puede verlo",
+    whoSees:
+      "Cualquier miembro o líder con sesión iniciada puede ver el directorio completo. Solo los líderes pueden agregar, editar o eliminar entradas. No existe una configuración de visibilidad por miembro.",
+    retentionTitle: "Cuánto tiempo se conserva",
+    retention:
+      "Hasta que un líder la elimine. Cada cambio queda registrado en un historial de auditoría permanente, por lo que el historial de un registro eliminado no desaparece por completo tras borrarlo.",
+    rightsTitle: "Sus opciones",
+    rights: "Contacte al líder de su organización para ver, corregir o solicitar la eliminación de su información.",
   },
   connectionError: (message: string) => `No se pudieron cargar los datos: ${message}`,
   connectionErrorBanner: {

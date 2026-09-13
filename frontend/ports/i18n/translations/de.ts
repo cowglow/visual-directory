@@ -44,6 +44,7 @@ const de: Translations = {
     systemCss: "system.css",
     sakunsTwitter: "sakuns Twitter",
     githubRepo: "GitHub-Repo",
+    privacy: "Datenschutz",
   },
   auth: {
     signIn: "Anmelden",
@@ -54,6 +55,25 @@ const de: Translations = {
     genericError: "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
     loading: "Lädt…",
     cantConnect: "Verbindung fehlgeschlagen",
+    privacyLink: "Datenschutzhinweis",
+  },
+  privacy: {
+    title: "Datenschutzhinweis",
+    intro:
+      "Dieses Verzeichnis enthält persönliche Daten, die von den Leitungspersonen Ihrer Organisation bereitgestellt wurden, damit Mitglieder gefunden und kontaktiert werden können. Hier erfahren Sie, was das für Sie bedeutet.",
+    whatWeCollectTitle: "Was erfasst wird",
+    whatWeCollect:
+      "Name, Wohnadresse und Standort auf der Karte, Telefonnummer und/oder E-Mail-Adresse, Ihre Organisation und Rolle darin sowie der Status aktiv oder Kontakt verloren. Wenn Sie sich selbst anmelden, zusätzlich die E-Mail-Adresse, mit der Sie sich anmelden.",
+    whyTitle: "Warum",
+    why: "Ausschließlich zum Betrieb des Verzeichnisses: damit Leitungspersonen Mitglieder finden und mit ihnen koordinieren können. Nichts davon wird für Werbung verwendet oder an Dritte für eigene Zwecke weitergegeben.",
+    whoSeesTitle: "Wer es sehen kann",
+    whoSees:
+      "Jedes angemeldete Mitglied oder jede Leitungsperson kann das gesamte Verzeichnis einsehen. Nur Leitungspersonen können Einträge hinzufügen, bearbeiten oder entfernen. Es gibt keine individuelle Sichtbarkeitseinstellung pro Mitglied.",
+    retentionTitle: "Wie lange die Daten gespeichert werden",
+    retention:
+      "Bis eine Leitungsperson sie entfernt. Jede Änderung wird in einem dauerhaften Prüfprotokoll festgehalten, sodass der Verlauf eines entfernten Eintrags auch nach dem Löschen nicht vollständig verschwindet.",
+    rightsTitle: "Ihre Möglichkeiten",
+    rights: "Wenden Sie sich an die Leitungsperson Ihrer Organisation, um Ihre Daten einzusehen, zu korrigieren oder deren Entfernung zu beantragen.",
   },
   connectionError: (message: string) =>
     `Daten konnten nicht geladen werden: ${message}`,

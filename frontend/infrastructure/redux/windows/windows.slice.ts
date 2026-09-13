@@ -7,7 +7,8 @@ export type DialogType =
   | "INVITE_DIALOG"
   | "ACCOUNTS_DIALOG"
   | "ORGANIZATION_TREE_DIALOG"
-  | "MAP_DIALOG";
+  | "MAP_DIALOG"
+  | "PRIVACY_DIALOG";
 
 export type DialogPayload = {
   coordinates?: GeoCoordinate;

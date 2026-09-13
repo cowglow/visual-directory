@@ -1,0 +1,18 @@
+.privacy-notice {
+  max-height: 60vh;
+  overflow-y: auto;
+  padding-right: 0.25rem;
+}
+
+.privacy-notice h3 {
+  margin: 0.9rem 0 0.15rem;
+  font-size: 0.95em;
+}
+
+.privacy-notice h3:first-child {
+  margin-top: 0;
+}
+
+.privacy-notice p {
+  margin: 0 0 0.5rem;
+}

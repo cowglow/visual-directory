@@ -42,6 +42,7 @@ const en = {
     systemCss: "system.css",
     sakunsTwitter: "sakun's twitter",
     githubRepo: "GitHub Repo",
+    privacy: "Privacy",
   },
   auth: {
     signIn: "Sign in",
@@ -52,6 +53,25 @@ const en = {
     genericError: "Something went wrong. Please try again.",
     loading: "Loading…",
     cantConnect: "Can't connect",
+    privacyLink: "Privacy notice",
+  },
+  privacy: {
+    title: "Privacy notice",
+    intro:
+      "This directory holds personal information provided by your organization's leaders so members can be found and contacted. Here's what that means for you.",
+    whatWeCollectTitle: "What's collected",
+    whatWeCollect:
+      "Name, home address and map location, phone number and/or email, your organization and role within it, and whether you're marked active or lost-contact. If you sign in yourself, also the email you sign in with.",
+    whyTitle: "Why",
+    why: "Solely to run the directory: helping leaders find and coordinate with members. Nothing here is used for advertising, and it isn't shared with anyone for their own purposes.",
+    whoSeesTitle: "Who can see it",
+    whoSees:
+      "Any signed-in member or leader can see the full directory. Only leaders can add, edit, or remove entries. There is no per-member visibility setting.",
+    retentionTitle: "How long it's kept",
+    retention:
+      "Until a leader removes it. Every change is recorded in a permanent audit trail, so a removed record's history isn't fully erased even after deletion.",
+    rightsTitle: "Your options",
+    rights: "Contact your organization's leader to see, correct, or request removal of your information.",
   },
   connectionError: (message: string) => `Couldn't load data: ${message}`,
   connectionErrorBanner: {

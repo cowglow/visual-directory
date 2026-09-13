@@ -219,3 +219,7 @@ each step ships independently:
 - A full pairwise distance matrix.
 - Passkey login (viable alternative to magic-link, revisit if magic-link email proves
   friction-prone).
+- Ingesting/syncing membership data from Asana, which is expected to become the
+  real system of record — this Postgres database would then hold a derived copy
+  rather than the only copy. Not scoped yet; see `docs/PRIVACY.md`'s retention
+  section for how this affects the current no-backup tradeoff.

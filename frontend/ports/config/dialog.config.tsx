@@ -5,6 +5,7 @@ import InviteForm from "ports/components/forms/InviteForm.tsx";
 import AccountsForm from "ports/components/forms/AccountsForm.tsx";
 import OrganizationTree from "ports/components/organization-tree/OrganizationTree.tsx";
 import MapWindow from "ports/components/map/MapWindow.tsx";
+import PrivacyDialog from "ports/components/privacy/PrivacyDialog.tsx";
 import { JSX } from "react";
 
 export const dialogConfig: Record<
@@ -17,4 +18,5 @@ export const dialogConfig: Record<
   ACCOUNTS_DIALOG: () => <AccountsForm />,
   ORGANIZATION_TREE_DIALOG: (_payload, z) => <OrganizationTree z={z} />,
   MAP_DIALOG: (_payload, z) => <MapWindow z={z} />,
+  PRIVACY_DIALOG: () => <PrivacyDialog />,
 };
