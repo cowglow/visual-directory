@@ -3,10 +3,14 @@ import rateLimit from "express-rate-limit";
 // /auth/magic-link sends a real email per request - without a limit, one IP can
 // spam an arbitrary inbox with sign-in links or burn through the Resend quota.
 // Keyed by IP rather than the submitted email, since the email itself isn't
-// authenticated yet at this point in the flow.
+// authenticated yet at this point in the flow. 20, not something tighter like 5:
+// this is a shared-IP app (a handful of people behind one office/home NAT can all
+// be signing in around the same time) and the e2e suite alone calls loginAs 11
+// times in one run - a limit that fails legitimate concurrent use isn't a
+// security win, it's just a worse outage than the abuse it's meant to stop.
 export const magicLinkRateLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  limit: 5,
+  limit: 20,
   standardHeaders: true,
   legacyHeaders: false,
   message: { error: "Too many login link requests. Please wait a few minutes and try again." },

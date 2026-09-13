@@ -27,7 +27,11 @@ export const memberInputSchema = z.object({
   contact: z
     .object({
       telephone: z.string().max(40).optional(),
-      email: z.string().trim().toLowerCase().email().max(254).optional(),
+      // MemberForm always sends both fields, "" when left blank (see
+      // updateMemberTelephone/updateMemberEmail in domain/member/member.factory.ts) -
+      // an empty string means "no email", not an invalid one, so it must pass
+      // alongside a real address format check on anything non-empty.
+      email: z.union([z.string().trim().toLowerCase().email().max(254), z.literal("")]).optional(),
     })
     .optional(),
   responsibility: z
