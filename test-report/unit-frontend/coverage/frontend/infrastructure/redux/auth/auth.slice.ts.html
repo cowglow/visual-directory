@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/155</span>
+                <span class='fraction'>0/160</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/155</span>
+                <span class='fraction'>0/160</span>
             </div>
         
             
@@ -258,7 +258,18 @@
 <a name='L193'></a><a href='#L193'>193</a>
 <a name='L194'></a><a href='#L194'>194</a>
 <a name='L195'></a><a href='#L195'>195</a>
-<a name='L196'></a><a href='#L196'>196</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L196'></a><a href='#L196'>196</a>
+<a name='L197'></a><a href='#L197'>197</a>
+<a name='L198'></a><a href='#L198'>198</a>
+<a name='L199'></a><a href='#L199'>199</a>
+<a name='L200'></a><a href='#L200'>200</a>
+<a name='L201'></a><a href='#L201'>201</a>
+<a name='L202'></a><a href='#L202'>202</a>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -323,6 +334,16 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -429,6 +450,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -517,6 +539,16 @@ export type AuthState = {
 <span class="cstat-no" title="statement not covered" >      return action.payload</span>
 <span class="cstat-no" title="statement not covered" >        ? { ...state, status: "authenticated" as const, account: action.payload }</span>
 <span class="cstat-no" title="statement not covered" >        : { ...state, status: "unauthenticated" as const };</span>
+<span class="cstat-no" title="statement not covered" >    },</span>
+    // Fired from any API call, not just session restore, when the server says the
+    // token is no longer valid - most commonly because it's now expired mid-session
+    // (see infrastructure/api/api-client.ts's onUnauthorized hook). Same end state
+    // as restoreSessionFailed's non-network branch: back to "please sign in", which
+    // is where the magic-link request form lives, so the user can just ask for a
+    // fresh one.
+<span class="cstat-no" title="statement not covered" >    sessionExpired(state) {</span>
+<span class="cstat-no" title="statement not covered" >      clearStoredToken();</span>
+<span class="cstat-no" title="statement not covered" >      return { ...state, status: "unauthenticated" as const, account: null };</span>
 <span class="cstat-no" title="statement not covered" >    },</span>
 <span class="cstat-no" title="statement not covered" >    restoreSessionFailed(state, action: PayloadAction&lt;{ network: boolean }&gt;) {</span>
 <span class="cstat-no" title="statement not covered" >      if (action.payload.network) {</span>
@@ -626,6 +658,7 @@ export type AuthState = {
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export const {</span>
 <span class="cstat-no" title="statement not covered" >  logout,</span>
+<span class="cstat-no" title="statement not covered" >  sessionExpired,</span>
 <span class="cstat-no" title="statement not covered" >  restoreSessionRequested,</span>
 <span class="cstat-no" title="statement not covered" >  restoreSessionSucceeded,</span>
 <span class="cstat-no" title="statement not covered" >  restoreSessionFailed,</span>
@@ -655,7 +688,7 @@ export type AuthState = {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T11:27:55.761Z
+                at 2026-09-13T17:32:29.723Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/38</span>
+                <span class='fraction'>0/45</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/38</span>
+                <span class='fraction'>0/45</span>
             </div>
         
             
@@ -113,7 +113,23 @@
 <a name='L48'></a><a href='#L48'>48</a>
 <a name='L49'></a><a href='#L49'>49</a>
 <a name='L50'></a><a href='#L50'>50</a>
-<a name='L51'></a><a href='#L51'>51</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L51'></a><a href='#L51'>51</a>
+<a name='L52'></a><a href='#L52'>52</a>
+<a name='L53'></a><a href='#L53'>53</a>
+<a name='L54'></a><a href='#L54'>54</a>
+<a name='L55'></a><a href='#L55'>55</a>
+<a name='L56'></a><a href='#L56'>56</a>
+<a name='L57'></a><a href='#L57'>57</a>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -135,6 +151,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -152,6 +181,9 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -185,6 +217,19 @@
 <span class="cstat-no" title="statement not covered" >  }</span>
 <span class="cstat-no" title="statement not covered" >}</span>
 &nbsp;
+// Set once by the app's composition root (ports/context/context-providers.tsx) so
+// a 401 from *any* call - not just the initial session restore - flips auth state
+// back to "please sign in" instead of leaving the UI stuck showing per-request
+// error messages for a session that's actually gone. A plain callback (rather than
+// importing the store here) avoids a circular import between this module and
+// store.ts, which pulls in every saga - including the one that calls apiFetch -
+// through sagas.ts.
+<span class="cstat-no" title="statement not covered" >let onUnauthorized: (() =&gt; void) | null = null;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >export function setUnauthorizedHandler(handler: () =&gt; void): void {</span>
+<span class="cstat-no" title="statement not covered" >  onUnauthorized = handler;</span>
+<span class="cstat-no" title="statement not covered" >}</span>
+&nbsp;
 <span class="cstat-no" title="statement not covered" >export async function apiFetch&lt;T&gt;(path: string, options: RequestInit = {}): Promise&lt;T&gt; {</span>
 <span class="cstat-no" title="statement not covered" >  const token = getStoredToken();</span>
 <span class="cstat-no" title="statement not covered" >  const headers: Record&lt;string, string&gt; = {</span>
@@ -203,6 +248,9 @@
 <span class="cstat-no" title="statement not covered" >  }</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  if (!response.ok) {</span>
+<span class="cstat-no" title="statement not covered" >    if (response.status === 401) {</span>
+<span class="cstat-no" title="statement not covered" >      onUnauthorized?.();</span>
+<span class="cstat-no" title="statement not covered" >    }</span>
 <span class="cstat-no" title="statement not covered" >    const body = await response.json().catch(() =&gt; ({}) as { error?: string });</span>
 <span class="cstat-no" title="statement not covered" >    throw new ApiError(body.error ?? `Request failed with status ${response.status}`, response.status);</span>
 <span class="cstat-no" title="statement not covered" >  }</span>
@@ -220,7 +268,7 @@
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T11:27:55.761Z
+                at 2026-09-13T17:32:29.723Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

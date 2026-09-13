@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/54</span>
+                <span class='fraction'>0/58</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/54</span>
+                <span class='fraction'>0/58</span>
             </div>
         
             
@@ -130,31 +130,26 @@
 <a name='L65'></a><a href='#L65'>65</a>
 <a name='L66'></a><a href='#L66'>66</a>
 <a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -164,6 +159,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -201,6 +209,8 @@
 import type { OrganizationRepository } from "../../../application/organization/organization.repository.js";
 import type { OrganizationInput } from "../../../domain/organization/organization.types.js";
 <span class="cstat-no" title="statement not covered" >import { requireRole } from "../middleware/require-role.js";</span>
+<span class="cstat-no" title="statement not covered" >import { validateBody } from "../middleware/validate-body.js";</span>
+<span class="cstat-no" title="statement not covered" >import { organizationInputSchema } from "../validation/organization.schemas.js";</span>
 <span class="cstat-no" title="statement not covered" >import { asyncHandler } from "../lib/async-handler.js";</span>
 &nbsp;
 export interface OrganizationRouterDeps {
@@ -224,6 +234,7 @@ export interface OrganizationRouterDeps {
 <span class="cstat-no" title="statement not covered" >    "/",</span>
 <span class="cstat-no" title="statement not covered" >    requireAuth,</span>
 <span class="cstat-no" title="statement not covered" >    requireRole("leader"),</span>
+<span class="cstat-no" title="statement not covered" >    validateBody(organizationInputSchema),</span>
 <span class="cstat-no" title="statement not covered" >    asyncHandler(async (req, res) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      const input = req.body as OrganizationInput;</span>
 <span class="cstat-no" title="statement not covered" >      const organization = await organizationRepository.create(input, req.account!.accountId);</span>
@@ -235,6 +246,7 @@ export interface OrganizationRouterDeps {
 <span class="cstat-no" title="statement not covered" >    "/:id",</span>
 <span class="cstat-no" title="statement not covered" >    requireAuth,</span>
 <span class="cstat-no" title="statement not covered" >    requireRole("leader"),</span>
+<span class="cstat-no" title="statement not covered" >    validateBody(organizationInputSchema),</span>
 <span class="cstat-no" title="statement not covered" >    asyncHandler(async (req, res) =&gt; {</span>
 <span class="cstat-no" title="statement not covered" >      const { id } = req.params;</span>
 <span class="cstat-no" title="statement not covered" >      const input = req.body as OrganizationInput;</span>
@@ -271,7 +283,7 @@ export interface OrganizationRouterDeps {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T11:27:57.223Z
+                at 2026-09-13T17:32:30.683Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/17</span>
+                <span class='fraction'>0/20</span>
             </div>
         
             
@@ -86,7 +86,21 @@
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
-<a name='L24'></a><a href='#L24'>24</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -96,6 +110,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -111,6 +137,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js"><span class="cstat-no" title="statement not covered" >import express from "express";<span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" ></span></span></span>
 <span class="cstat-no" title="statement not covered" >import cors from "cors";</span>
+<span class="cstat-no" title="statement not covered" >import helmet from "helmet";</span>
 <span class="cstat-no" title="statement not covered" >import { createAuthRouter, type AuthRouterDeps } from "./routes/auth.routes.js";</span>
 <span class="cstat-no" title="statement not covered" >import { createMemberRouter, type MemberRouterDeps } from "./routes/member.routes.js";</span>
 <span class="cstat-no" title="statement not covered" >import { createOrganizationRouter, type OrganizationRouterDeps } from "./routes/organization.routes.js";</span>
@@ -120,6 +147,18 @@ export type AppDeps = AuthRouterDeps &amp; MemberRouterDeps &amp; OrganizationRo
 &nbsp;
 <span class="cstat-no" title="statement not covered" >export function createApp(deps: AppDeps) {</span>
 <span class="cstat-no" title="statement not covered" >  const app = express();</span>
+  // In production this sits behind exactly one reverse proxy (Caddy, same Docker
+  // network - see docker-compose.prod.yml). Trusting exactly one hop lets Express
+  // read the real client IP from X-Forwarded-For for rate limiting, without
+  // trusting the header unconditionally (which would let a client spoof its own
+  // IP by setting X-Forwarded-For directly).
+<span class="cstat-no" title="statement not covered" >  app.set("trust proxy", 1);</span>
+  // A pure JSON API with no server-rendered pages, so helmet's defaults (HSTS,
+  // X-Content-Type-Options, a locked-down CSP, etc.) apply cleanly. The one default
+  // that must be relaxed is Cross-Origin-Resource-Policy: "same-origin" - it would
+  // block every response from being read by this app's own frontend, which is
+  // deliberately served from a different origin (GitHub Pages vs. api.cowglow.io).
+<span class="cstat-no" title="statement not covered" >  app.use(helmet({ crossOriginResourcePolicy: { policy: "cross-origin" } }));</span>
 <span class="cstat-no" title="statement not covered" >  app.use(cors({ origin: process.env.CLIENT_ORIGIN ?? "http://localhost:3000" }));</span>
 <span class="cstat-no" title="statement not covered" >  app.use(express.json());</span>
 &nbsp;
@@ -139,7 +178,7 @@ export type AppDeps = AuthRouterDeps &amp; MemberRouterDeps &amp; OrganizationRo
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-13T11:27:57.223Z
+                at 2026-09-13T17:32:30.683Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
