@@ -63,6 +63,12 @@ function updateAccountApi(
 function* restoreSessionSaga() {
   const token = getStoredToken();
   if (!token) {
+    // No token at all means whatever's in the windows slice belongs to
+    // nobody currently signed in - a manually cleared token, a cross-tab
+    // logout, or (for real users) a stale localStorage entry from before
+    // this browser ever had a session. Same reasoning as the explicit
+    // logout below, just reached a different way.
+    yield put(resetWindows());
     yield put(restoreSessionSucceeded(null));
     return;
   }
@@ -70,7 +76,13 @@ function* restoreSessionSaga() {
     const { account }: { account: Account } = yield call(fetchAccountApi);
     yield put(restoreSessionSucceeded(account));
   } catch (error) {
-    yield put(restoreSessionFailed({ network: error instanceof NetworkError }));
+    const network = error instanceof NetworkError;
+    if (!network) {
+      // Token was rejected outright (expired/invalid), not just unreachable -
+      // the reducer already clears it; clear any leftover windows the same way.
+      yield put(resetWindows());
+    }
+    yield put(restoreSessionFailed({ network }));
   }
 }
 
