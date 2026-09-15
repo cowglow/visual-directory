@@ -1,0 +1,419 @@
+<style>
+  :root {
+    --ink: #2A2320;
+    --cream: #FBF3E4;
+    --pumpkin: #E8720C;
+    --pumpkin-dark: #C15A05;
+    --dusk: #2B1B4D;
+    --dusk-light: #4A3574;
+    --moss: #5C7A4A;
+    --paper: #FFFDF8;
+    --line: #E4D8C3;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: 'Nunito', -apple-system, sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+  }
+  .wrap { max-width: 640px; margin: 0 auto; padding: 28px 20px 60px; }
+
+  h1 {
+    font-family: 'Grandstander', 'Nunito', sans-serif;
+    font-weight: 800;
+    font-size: 2.1rem;
+    color: var(--dusk);
+    margin: 0 0 4px;
+    line-height: 1.05;
+  }
+  .sub {
+    color: #6b5e4f;
+    font-size: 0.98rem;
+    margin: 0 0 24px;
+    max-width: 44ch;
+  }
+
+  .card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--dusk);
+    margin: 14px 0 6px;
+  }
+  label:first-child { margin-top: 0; }
+  input[type=text] {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1.5px solid var(--line);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--cream);
+    color: var(--ink);
+  }
+  input[type=text]:focus {
+    outline: none;
+    border-color: var(--pumpkin);
+  }
+  .hint { font-size: 0.8rem; color: #8a7c69; margin-top: 4px; }
+
+  .addr-row { display: flex; gap: 8px; align-items: flex-start; }
+  .addr-row input[type=text] { flex: 1; }
+  .btn-location {
+    background: var(--paper);
+    color: var(--dusk);
+    border: 1.5px solid var(--line);
+    padding: 0 12px;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    align-self: stretch;
+  }
+  .btn-location:hover { border-color: var(--pumpkin); }
+  .btn-location:disabled { color: #a3927a; cursor: not-allowed; }
+  .loc-status {
+    font-size: 0.8rem;
+    margin-top: 4px;
+    min-height: 1.2em;
+  }
+  .loc-status.ok { color: var(--moss); }
+  .loc-status.err { color: var(--pumpkin-dark); }
+
+  button {
+    font-family: inherit;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--pumpkin);
+    color: white;
+    padding: 12px 20px;
+    font-size: 1rem;
+    width: 100%;
+    margin-top: 18px;
+  }
+  .btn-primary:hover { background: var(--pumpkin-dark); }
+  .btn-primary:disabled { background: #d8cbb5; cursor: not-allowed; }
+
+  .section-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 36px 0 14px;
+  }
+  .section-head h2 {
+    font-family: 'Grandstander', sans-serif;
+    font-size: 1.3rem;
+    color: var(--dusk);
+    margin: 0;
+  }
+  .count { color: #8a7c69; font-size: 0.9rem; }
+
+  .print-btn {
+    background: var(--dusk);
+    color: white;
+    padding: 8px 14px;
+    font-size: 0.85rem;
+  }
+  .print-btn:hover { background: var(--dusk-light); }
+
+  .house-list { list-style: none; margin: 0; padding: 0; }
+  .house {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    padding: 14px 4px;
+    border-bottom: 1px solid var(--line);
+  }
+  .house:last-child { border-bottom: none; }
+  .house-icon {
+    font-size: 1.4rem;
+    line-height: 1.2;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+  .house-info { flex: 1; min-width: 0; }
+  .house-addr {
+    font-weight: 800;
+    color: var(--ink);
+  }
+  .house-name { color: #6b5e4f; font-size: 0.92rem; }
+  .house-note {
+    font-size: 0.88rem;
+    color: var(--moss);
+    margin-top: 2px;
+  }
+  .remove-btn {
+    background: none;
+    color: #b08a70;
+    font-size: 0.8rem;
+    padding: 4px 8px;
+    flex-shrink: 0;
+  }
+  .remove-btn:hover { color: var(--pumpkin-dark); text-decoration: underline; }
+
+  .empty {
+    text-align: center;
+    padding: 30px 10px;
+    color: #a3927a;
+    font-size: 0.95rem;
+  }
+
+  .status {
+    font-size: 0.85rem;
+    margin-top: 10px;
+    min-height: 1.2em;
+  }
+  .status.ok { color: var(--moss); }
+  .status.err { color: var(--pumpkin-dark); }
+
+  .shared-note {
+    font-size: 0.78rem;
+    color: #a3927a;
+    text-align: center;
+    margin-top: 8px;
+  }
+
+  @media print {
+    body { background: white; }
+    .card.form-card, .print-btn, .remove-btn, .shared-note { display: none !important; }
+    .wrap { padding: 10px; max-width: 100%; }
+    h1 { font-size: 1.6rem; }
+    .card { border: none; padding: 0; }
+    .house { break-inside: avoid; }
+  }
+</style>
+
+<div class="wrap">
+  <h1>🎃 Trick-or-Treat Sign-Up</h1>
+  <p class="sub">Add your house to the map so trick-or-treaters know where to stop. Everyone on the block can see this list.</p>
+
+  <div class="card form-card">
+    <label for="addr">House number & street</label>
+    <div class="addr-row">
+      <input type="text" id="addr" placeholder="e.g. 214 Maple St">
+      <button type="button" class="btn-location" id="useLocationBtn">📍 Use my location</button>
+    </div>
+    <div class="loc-status" id="locStatus"></div>
+
+    <label for="name">Your name (optional)</label>
+    <input type="text" id="name" placeholder="e.g. The Ramirez family">
+
+    <label for="note">Note for trick-or-treaters (optional)</label>
+    <input type="text" id="note" placeholder="e.g. Porch light on 6–8pm, nut-free candy">
+
+    <button class="btn-primary" id="submitBtn">Add my house</button>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="section-head">
+    <h2>Participating houses</h2>
+    <span class="count" id="count"></span>
+  </div>
+  <button class="print-btn" id="printBtn" style="margin-bottom:14px;">Print map list</button>
+
+  <div class="card" style="padding: 6px 16px;">
+    <ul class="house-list" id="houseList"></ul>
+  </div>
+  <p class="shared-note">This list is shared — anyone with this link can add or remove a house.</p>
+</div>
+
+<script>
+const icons = ['🎃','👻','🦇','🕸️','🍬','🦴'];
+
+function slugify(addr) {
+  return addr.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+}
+
+function escapeHtml(s) {
+  return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+
+function parseHouseNumber(addr) {
+  const m = addr.match(/\d+/);
+  return m ? parseInt(m[0], 10) : Infinity;
+}
+
+async function loadHouses() {
+  const listEl = document.getElementById('houseList');
+  const countEl = document.getElementById('count');
+  try {
+    const res = await window.storage.list('house:', true);
+    const keys = (res && res.keys) || [];
+    if (keys.length === 0) {
+      listEl.innerHTML = '<li class="empty">No houses yet — be the first on the block! 🎃</li>';
+      countEl.textContent = '';
+      return;
+    }
+    const houses = [];
+    for (const key of keys) {
+      try {
+        const r = await window.storage.get(key, true);
+        if (r && r.value) houses.push(JSON.parse(r.value));
+      } catch (e) { /* skip missing/corrupt entry */ }
+    }
+    houses.sort((a, b) => parseHouseNumber(a.address) - parseHouseNumber(b.address) || a.address.localeCompare(b.address));
+    countEl.textContent = houses.length + (houses.length === 1 ? ' house' : ' houses');
+    listEl.innerHTML = houses.map((h, i) => `
+      <li class="house">
+        <span class="house-icon">${icons[i % icons.length]}</span>
+        <div class="house-info">
+          <div class="house-addr">${escapeHtml(h.address)}</div>
+          ${h.name ? `<div class="house-name">${escapeHtml(h.name)}</div>` : ''}
+          ${h.note ? `<div class="house-note">${escapeHtml(h.note)}</div>` : ''}
+        </div>
+        <button class="remove-btn" data-slug="${encodeURIComponent(h.slug)}">Remove</button>
+      </li>
+    `).join('');
+    listEl.querySelectorAll('.remove-btn').forEach(btn => {
+      btn.addEventListener('click', () => removeHouse(decodeURIComponent(btn.dataset.slug)));
+    });
+  } catch (e) {
+    listEl.innerHTML = '<li class="empty">Couldn\'t load the list. Try refreshing.</li>';
+  }
+}
+
+async function removeHouse(slug) {
+  try {
+    await window.storage.delete('house:' + slug, true);
+    loadHouses();
+  } catch (e) {
+    console.error('Remove failed', e);
+  }
+}
+
+// Coordinates from the last successful "Use my location" lookup, attached to
+// the entry on submit so it's ready for a future map view without requiring a
+// visible map in this prototype. Cleared whenever the address is hand-edited
+// afterward, so a manually corrected/typed address never carries a stale pin.
+let locatedCoords = null;
+
+const GEOLOCATION_ERROR_MESSAGES = {
+  1: 'Location access was denied — please type your address instead.',
+  2: 'Location is unavailable right now — please type your address instead.',
+  3: 'Location lookup timed out — please type your address instead.',
+};
+
+function useMyLocation() {
+  const addrEl = document.getElementById('addr');
+  const statusEl = document.getElementById('locStatus');
+  const btn = document.getElementById('useLocationBtn');
+
+  if (!('geolocation' in navigator)) {
+    statusEl.textContent = "This browser doesn't support location — please type your address.";
+    statusEl.className = 'loc-status err';
+    return;
+  }
+
+  btn.disabled = true;
+  statusEl.textContent = 'Finding your location…';
+  statusEl.className = 'loc-status';
+
+  navigator.geolocation.getCurrentPosition(
+    async (position) => {
+      const { latitude, longitude } = position.coords;
+      statusEl.textContent = 'Looking up the address…';
+      try {
+        const res = await fetch(
+          `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}&zoom=18&addressdetails=1`,
+          { headers: { Accept: 'application/json' } },
+        );
+        const json = await res.json();
+        const a = json.address || {};
+        const guess = [a.house_number, a.road || a.pedestrian].filter(Boolean).join(' ') || json.display_name;
+        if (guess) {
+          addrEl.value = guess;
+          locatedCoords = { lat: latitude, lng: longitude };
+          statusEl.textContent = 'Found it — double-check the address looks right.';
+          statusEl.className = 'loc-status ok';
+        } else {
+          statusEl.textContent = "Found your location, but couldn't match an address — please type it in.";
+          statusEl.className = 'loc-status err';
+        }
+      } catch (e) {
+        statusEl.textContent = 'Found your location, but the address lookup failed — please type it in.';
+        statusEl.className = 'loc-status err';
+      } finally {
+        btn.disabled = false;
+      }
+    },
+    (error) => {
+      btn.disabled = false;
+      statusEl.textContent = GEOLOCATION_ERROR_MESSAGES[error.code] || 'Could not get your location — please type your address instead.';
+      statusEl.className = 'loc-status err';
+    },
+    { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 },
+  );
+}
+
+async function submitHouse() {
+  const addrEl = document.getElementById('addr');
+  const nameEl = document.getElementById('name');
+  const noteEl = document.getElementById('note');
+  const statusEl = document.getElementById('status');
+  const btn = document.getElementById('submitBtn');
+
+  const address = addrEl.value.trim();
+  if (!address) {
+    statusEl.textContent = 'Please enter your house number and street.';
+    statusEl.className = 'status err';
+    return;
+  }
+  const slug = slugify(address);
+  if (!slug) {
+    statusEl.textContent = 'Please enter a valid address.';
+    statusEl.className = 'status err';
+    return;
+  }
+
+  btn.disabled = true;
+  statusEl.textContent = 'Adding your house...';
+  statusEl.className = 'status';
+
+  const data = {
+    address,
+    name: nameEl.value.trim(),
+    note: noteEl.value.trim(),
+    slug,
+    addedAt: Date.now(),
+    ...(locatedCoords ? { lat: locatedCoords.lat, lng: locatedCoords.lng } : {}),
+  };
+
+  try {
+    const result = await window.storage.set('house:' + slug, JSON.stringify(data), true);
+    if (!result) throw new Error('Storage returned no result');
+    statusEl.textContent = 'Your house is on the list! 🎃';
+    statusEl.className = 'status ok';
+    addrEl.value = ''; nameEl.value = ''; noteEl.value = '';
+    locatedCoords = null;
+    document.getElementById('locStatus').textContent = '';
+    loadHouses();
+  } catch (e) {
+    statusEl.textContent = 'Something went wrong — please try again.';
+    statusEl.className = 'status err';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+document.getElementById('submitBtn').addEventListener('click', submitHouse);
+document.getElementById('printBtn').addEventListener('click', () => window.print());
+document.getElementById('useLocationBtn').addEventListener('click', useMyLocation);
+document.getElementById('addr').addEventListener('keydown', e => { if (e.key === 'Enter') submitHouse(); });
+// A manual edit after a lookup means the address may no longer match the
+// located coordinates - drop them rather than attach a stale/wrong pin.
+document.getElementById('addr').addEventListener('input', () => { locatedCoords = null; });
+
+loadHouses();
+</script>
