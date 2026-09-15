@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import { requestMagicLinkRequested } from "infrastructure/redux/auth/auth.slice.ts";
 import { getMagicLinkError, getMagicLinkStatus } from "infrastructure/redux/auth/auth.selectors.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
+import { languageLabels, languages } from "ports/i18n/language.ts";
 import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
 import "ports/components/dialogs/dialogs.css";
 import PrivacyNotice from "ports/components/privacy/PrivacyNotice.tsx";
@@ -10,7 +11,7 @@ import "./login-form.css";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
+  const { t, language, setLanguage } = useTranslation();
   const [email, setEmail] = useState("");
   // No windows/dialog system is mounted pre-auth (AuthGate renders this instead
   // of App+Dialogs), so the privacy notice's visibility here is plain local
@@ -26,6 +27,18 @@ export default function LoginForm() {
 
   return (
     <div className="standard-dialog" style={{ maxWidth: "320px", margin: "10vh auto" }}>
+      <select
+        className="login-form-language"
+        aria-label={t.menu.language}
+        value={language}
+        onChange={(event) => setLanguage(event.target.value as typeof language)}
+      >
+        {languages.map((lang) => (
+          <option key={lang} value={lang}>
+            {languageLabels[lang]}
+          </option>
+        ))}
+      </select>
       <h2>{t.auth.signIn}</h2>
       {magicLinkStatus === "sent" ? (
         <p>{t.auth.linkSent}</p>

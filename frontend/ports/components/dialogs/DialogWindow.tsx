@@ -7,18 +7,28 @@ interface DialogWindowProps {
   onClose: () => void;
 }
 
-export default function DialogWindow({ title, onClose, children }: PropsWithChildren<DialogWindowProps>) {
+export default function DialogWindow({
+  title,
+  onClose,
+  children,
+}: PropsWithChildren<DialogWindowProps>) {
   const { t } = useTranslation();
 
   return (
     <div className="window">
       <div className="title-bar">
-        <button aria-label={t.common.close} className="close" onClick={onClose} />
+        <button
+          aria-label={t.common.close}
+          className="close"
+          onClick={onClose}
+        />
         <h1 className="title">{title}</h1>
         <button aria-label={t.common.resize} disabled className="hidden" />
       </div>
       <div className="separator" />
-      <div className="modal-dialog">{children}</div>
+      <div className="modal-dialog" style={{ padding: 0 }}>
+        {children}
+      </div>
     </div>
   );
 }
