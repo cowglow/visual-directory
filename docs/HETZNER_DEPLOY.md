@@ -328,6 +328,7 @@ Add these in `Settings → Secrets and variables → Actions`:
 | `POSTGRES_PASSWORD` | Database password |
 | `POSTGRES_DB` | Database name (e.g. `contact_book`) |
 | `JWT_SECRET` | Random secret string for JWT signing |
+| `SPACE_JWT_SECRET` | Random secret string for the opt-in Spaces feature's own sessions — must differ from `JWT_SECRET` (see `application/space-token-signer.ts`) |
 | `CLIENT_ORIGIN` | The frontend's exact origin — scheme + host, **no path** (e.g. `https://cowglow.github.io`, not `.../visual-directory`) — must match the browser's `Origin` header exactly for CORS to pass |
 | `RESEND_API_KEY` | *(optional — see [`RESEND_EMAIL_SETUP.md`](./RESEND_EMAIL_SETUP.md))* API key for sending real magic-link emails; unset means console-logged links instead |
 | `EMAIL_FROM` | *(optional, same as above)* Sender address, e.g. `Visual Directory <login@mail.cowglow.io>` — domain must be verified in Resend first |
@@ -359,6 +360,7 @@ gh secret set POSTGRES_USER --repo "$GITHUB_REPO" --body "app"
 gh secret set POSTGRES_PASSWORD --repo "$GITHUB_REPO" --body "$(openssl rand -hex 24)"
 gh secret set POSTGRES_DB --repo "$GITHUB_REPO" --body "contact_book"
 gh secret set JWT_SECRET --repo "$GITHUB_REPO" --body "$(openssl rand -hex 32)"
+gh secret set SPACE_JWT_SECRET --repo "$GITHUB_REPO" --body "$(openssl rand -hex 32)"
 gh secret set CLIENT_ORIGIN --repo "$GITHUB_REPO" --body "$CLIENT_ORIGIN"
 gh secret set GHCR_PAT --repo "$GITHUB_REPO" --body "YOUR_GHCR_PAT"
 ```

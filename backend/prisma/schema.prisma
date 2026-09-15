@@ -109,3 +109,82 @@ model AuditLogEntry {
 
   @@index([sequence])
 }
+
+// --- Opt-in signups (Spaces/Events/Entries) ---
+// Deliberately decoupled from Account/Member/Organization above: this is a
+// separate, multi-tenant system (many independent neighborhoods) bolted onto
+// the same app, not an extension of the single-organization directory. No
+// foreign keys cross the boundary in either direction, and no audit log -
+// that trail is a directory-specific trust mechanism, not a blanket app rule.
+
+model Space {
+  id        String   @id @default(uuid())
+  slug      String   @unique
+  name      String
+  createdAt DateTime @default(now())
+
+  participants SpaceParticipant[]
+  events       OptInEvent[]
+}
+
+model SpaceParticipant {
+  id          String   @id @default(uuid())
+  spaceId     String
+  space       Space    @relation(fields: [spaceId], references: [id])
+  email       String
+  displayName String?
+  createdAt   DateTime @default(now())
+
+  magicLinkTokens SpaceMagicLinkToken[]
+  entries         OptInEntry[]
+
+  @@unique([spaceId, email])
+}
+
+model SpaceMagicLinkToken {
+  id            String    @id @default(uuid())
+  tokenHash     String    @unique
+  participantId String
+  participant   SpaceParticipant @relation(fields: [participantId], references: [id])
+  expiresAt     DateTime
+  usedAt        DateTime?
+  createdAt     DateTime  @default(now())
+}
+
+model OptInEvent {
+  id          String    @id @default(uuid())
+  spaceId     String
+  space       Space     @relation(fields: [spaceId], references: [id])
+  slug        String
+  title       String
+  // Free-text tag ("trick-or-treat", "block-party", ...), not an enum - a new
+  // kind of event never needs a migration.
+  kind        String
+  // FieldDef[] (see domain/space/space.types.ts) - what an entry's `data` must
+  // contain for this event. The whole point: a new event type is a new
+  // fieldSchema value, not a new table or form component.
+  fieldSchema Json
+  opensAt     DateTime?
+  closesAt    DateTime?
+  createdAt   DateTime  @default(now())
+
+  entries OptInEntry[]
+
+  @@unique([spaceId, slug])
+}
+
+model OptInEntry {
+  id            String   @id @default(uuid())
+  eventId       String
+  event         OptInEvent @relation(fields: [eventId], references: [id])
+  participantId String
+  participant   SpaceParticipant @relation(fields: [participantId], references: [id])
+  // Denormalized for sorting/display/print even though the full answer set
+  // lives in `data` - avoids parsing JSON just to sort the list.
+  addressLabel  String?
+  data          Json
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([eventId])
+}

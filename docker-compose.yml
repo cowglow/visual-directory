@@ -48,6 +48,7 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER:-app}:${POSTGRES_PASSWORD:-app}@db:5432/${POSTGRES_DB:-contact_book}
       JWT_SECRET: ${JWT_SECRET:-dev-secret-change-me}
+      SPACE_JWT_SECRET: ${SPACE_JWT_SECRET:-dev-space-secret-change-me}
       PORT: 4000
       # https, not http — the frontend's own vite.config.ts always serves over TLS
       # (vite-plugin-basic-ssl), so this must match or the browser's CORS check

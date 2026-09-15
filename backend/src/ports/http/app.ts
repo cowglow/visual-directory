@@ -4,9 +4,10 @@ import helmet from "helmet";
 import { createAuthRouter, type AuthRouterDeps } from "./routes/auth.routes.js";
 import { createMemberRouter, type MemberRouterDeps } from "./routes/member.routes.js";
 import { createOrganizationRouter, type OrganizationRouterDeps } from "./routes/organization.routes.js";
+import { createSpaceRouter, type SpaceRouterDeps } from "./routes/space.routes.js";
 import { errorHandler } from "./middleware/error-handler.js";
 
-export type AppDeps = AuthRouterDeps & MemberRouterDeps & OrganizationRouterDeps;
+export type AppDeps = AuthRouterDeps & MemberRouterDeps & OrganizationRouterDeps & SpaceRouterDeps;
 
 export function createApp(deps: AppDeps) {
   const app = express();
@@ -29,6 +30,7 @@ export function createApp(deps: AppDeps) {
   app.use("/auth", createAuthRouter(deps));
   app.use("/members", createMemberRouter(deps));
   app.use("/organizations", createOrganizationRouter(deps));
+  app.use("/spaces", createSpaceRouter(deps));
 
   app.use(errorHandler);
 

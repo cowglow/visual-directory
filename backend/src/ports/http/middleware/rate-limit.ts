@@ -27,3 +27,14 @@ export const verifyRateLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: "Too many attempts. Please wait a few minutes and try again." },
 });
+
+// Same shape and reasoning as magicLinkRateLimiter above, kept as its own
+// instance (own counters) since it's a different route on a different trust
+// boundary (Space participants, not directory accounts).
+export const spaceMagicLinkRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many login link requests. Please wait a few minutes and try again." },
+});

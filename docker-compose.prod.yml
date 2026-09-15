@@ -24,6 +24,7 @@ services:
     environment:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       JWT_SECRET: ${JWT_SECRET}
+      SPACE_JWT_SECRET: ${SPACE_JWT_SECRET}
       PORT: 4000
       CLIENT_ORIGIN: ${CLIENT_ORIGIN}
       NODE_ENV: production

@@ -10,6 +10,12 @@ import { prismaMagicLinkTokenRepository } from "./infrastructure/prisma/magic-li
 import { getMailer } from "./infrastructure/mail/get-mailer.js";
 import { jwtTokenSigner } from "./infrastructure/auth/jwt-token-signer.js";
 import { randomTokenGenerator } from "./infrastructure/auth/token-generator.js";
+import { createRequireSpaceAuth } from "./ports/http/middleware/require-space-auth.js";
+import { prismaSpaceParticipantRepository, prismaSpaceRepository } from "./infrastructure/prisma/space.repository.js";
+import { prismaSpaceMagicLinkTokenRepository } from "./infrastructure/prisma/space-magic-link-token.repository.js";
+import { prismaEventRepository } from "./infrastructure/prisma/event.repository.js";
+import { prismaEntryRepository } from "./infrastructure/prisma/entry.repository.js";
+import { spaceJwtTokenSigner } from "./infrastructure/auth/space-jwt-token-signer.js";
 
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN ?? "http://localhost:3000";
 // Must match vite.config.ts's `base` — the SPA is served from this subpath
@@ -29,5 +35,12 @@ export function buildAppDeps(): AppDeps {
     clientOrigin: CLIENT_ORIGIN,
     clientAppPath: CLIENT_APP_PATH,
     isDevMode: process.env.NODE_ENV !== "production",
+    requireSpaceAuth: createRequireSpaceAuth(spaceJwtTokenSigner, prismaSpaceParticipantRepository),
+    spaceRepository: prismaSpaceRepository,
+    spaceParticipantRepository: prismaSpaceParticipantRepository,
+    spaceMagicLinkTokenRepository: prismaSpaceMagicLinkTokenRepository,
+    eventRepository: prismaEventRepository,
+    entryRepository: prismaEntryRepository,
+    spaceTokenSigner: spaceJwtTokenSigner,
   };
 }

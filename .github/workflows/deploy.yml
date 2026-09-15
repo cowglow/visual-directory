@@ -134,6 +134,7 @@ jobs:
           POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
           POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
           JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          SPACE_JWT_SECRET: ${{ secrets.SPACE_JWT_SECRET }}
           CLIENT_ORIGIN: ${{ secrets.CLIENT_ORIGIN }}
           RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
@@ -142,7 +143,7 @@ jobs:
           host: ${{ secrets.HETZNER_HOST }}
           username: ${{ secrets.HETZNER_USER }}
           key: ${{ secrets.HETZNER_SSH_KEY }}
-          envs: POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,JWT_SECRET,CLIENT_ORIGIN,RESEND_API_KEY,EMAIL_FROM,GHCR_PAT
+          envs: POSTGRES_USER,POSTGRES_PASSWORD,POSTGRES_DB,JWT_SECRET,SPACE_JWT_SECRET,CLIENT_ORIGIN,RESEND_API_KEY,EMAIL_FROM,GHCR_PAT
           script: |
             set -e
             mkdir -p /opt/visual-directory
@@ -154,6 +155,7 @@ jobs:
             POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
             POSTGRES_DB=${POSTGRES_DB}
             JWT_SECRET=${JWT_SECRET}
+            SPACE_JWT_SECRET=${SPACE_JWT_SECRET}
             CLIENT_ORIGIN=${CLIENT_ORIGIN}
             RESEND_API_KEY=${RESEND_API_KEY}
             EMAIL_FROM=${EMAIL_FROM}
