@@ -43,6 +43,7 @@ const en = {
     sakunsTwitter: "sakun's twitter",
     githubRepo: "GitHub Repo",
     privacy: "Privacy",
+    spaces: "Community Spaces",
   },
   auth: {
     signIn: "Sign in",

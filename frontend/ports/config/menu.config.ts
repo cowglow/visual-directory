@@ -144,6 +144,13 @@ export function createMenuConfig({
       "---",
       { label: t.menu.githubRepo, href: "https://github.com/cowglow/visual-directory" },
       { label: t.menu.privacy, action: () => dispatch(openWindow({ type: "PRIVACY_DIALOG" })) },
+      // A real cross-bundle navigation (see frontend/spaces-main.tsx) - `href`
+      // renders it as a plain link, same as the other About entries above,
+      // rather than an in-app action. BASE_URL isn't guaranteed to carry a
+      // trailing slash, so strip any existing one before joining rather than
+      // assume - a bare string concat here silently produced
+      // ".../visual-directoryspaces/" once already.
+      { label: t.menu.spaces, href: `${import.meta.env.BASE_URL.replace(/\/+$/, "")}/spaces/` },
     ],
   };
 }

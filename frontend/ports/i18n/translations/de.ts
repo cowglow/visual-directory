@@ -45,6 +45,7 @@ const de: Translations = {
     sakunsTwitter: "sakuns Twitter",
     githubRepo: "GitHub-Repo",
     privacy: "Datenschutz",
+    spaces: "Nachbarschaftsseiten",
   },
   auth: {
     signIn: "Anmelden",

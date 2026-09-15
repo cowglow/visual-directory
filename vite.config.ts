@@ -31,4 +31,19 @@ export default defineConfig({
     port: 3000,
     https: hasMkcertCert ? { key: fs.readFileSync(keyFile), cert: fs.readFileSync(certFile) } : undefined,
   },
+  build: {
+    // A second real HTML entry, not a route inside the main one - the opt-in
+    // Spaces feature is served at /visual-directory/spaces/ as its own page
+    // (frontend/spaces-main.tsx), the same pattern this repo already uses for
+    // Storybook (dist/storybook/, built as a separate step - see
+    // .github/workflows/deploy.yml). Rollup preserves each input's own
+    // directory structure in dist/, so spaces/index.html lands at
+    // dist/spaces/index.html.
+    rollupOptions: {
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        spaces: path.resolve(__dirname, "spaces/index.html"),
+      },
+    },
+  },
 });

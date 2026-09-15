@@ -45,6 +45,7 @@ const es: Translations = {
     sakunsTwitter: "Twitter de sakun",
     githubRepo: "Repositorio de GitHub",
     privacy: "Privacidad",
+    spaces: "Páginas comunitarias",
   },
   auth: {
     signIn: "Iniciar sesión",
