@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for src/application/account/account.repository.ts</title>
+    <title>Code coverage report for frontend/ports/i18n/detect-language.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../../prettify.css" />
     <link rel="stylesheet" href="../../../base.css" />
@@ -19,34 +19,34 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../../index.html">All files</a> / <a href="index.html">src/application/account</a> account.repository.ts</h1>
+        <h1><a href="../../../index.html">All files</a> / <a href="index.html">frontend/ports/i18n</a> detect-language.ts</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>2/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">71.42% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/0</span>
+                <span class='fraction'>5/7</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -78,7 +78,14 @@
 <a name='L13'></a><a href='#L13'>13</a>
 <a name='L14'></a><a href='#L14'>14</a>
 <a name='L15'></a><a href='#L15'>15</a>
-<a name='L16'></a><a href='#L16'>16</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L16'></a><a href='#L16'>16</a>
+<a name='L17'></a><a href='#L17'>17</a>
+<a name='L18'></a><a href='#L18'>18</a>
+<a name='L19'></a><a href='#L19'>19</a>
+<a name='L20'></a><a href='#L20'>20</a>
+<a name='L21'></a><a href='#L21'>21</a>
+<a name='L22'></a><a href='#L22'>22</a>
+<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -87,26 +94,40 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import type { Account } from "../../domain/account/account.types.js";
-import type { Role } from "../../domain/shared/types.js";
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { languages, type Language } from "ports/i18n/language.ts";
 &nbsp;
-export interface AccountRepository {
-  findAll(): Promise&lt;Account[]&gt;;
-  findById(id: string): Promise&lt;Account | null&gt;;
-  findByEmail(email: string): Promise&lt;Account | null&gt;;
-  findByMemberId(memberId: string): Promise&lt;Account | null&gt;;
-  create(input: { email: string; role: Role; memberId: string | null }): Promise&lt;Account&gt;;
-  update(
-    id: string,
-    input: { role: Role; memberId: string | null },
-    actorAccountId: string,
-  ): Promise&lt;Account | null&gt;;
+// Pure and testable: given the visitor's own ordered language preferences
+// (most preferred first, e.g. from navigator.languages), returns the first
+// one whose base subtag - the part before a region, "de" out of "de-DE" - is
+// one we actually support, or "en" if none of them are. Only ever runs once,
+// as the seed for the LANGUAGE localStorage key (see i18n.provider.tsx) -
+// an explicit choice, once made, always wins on every later visit.
+export function detectDefaultLanguage(candidates: readonly string[]): Language {
+  for (const candidate of candidates) {
+    const base = candidate.split("-")[0]?.toLowerCase();
+    if ((languages as readonly string[]).includes(base)) {
+      return base as Language;
+    }
+  }
+  return "en";
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >detectBrowserLanguage(): Language {</span>
+  const candidates = <span class="cstat-no" title="statement not covered" >navigator.languages?.length ? navigator.languages : [navigator.language];</span>
+<span class="cstat-no" title="statement not covered" >  return detectDefaultLanguage(candidates);</span>
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -115,7 +136,7 @@ export interface AccountRepository {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-16T22:02:38.030Z
+                at 2026-09-16T22:02:37.221Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
