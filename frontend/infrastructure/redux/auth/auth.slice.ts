@@ -89,7 +89,11 @@ const authSlice = createSlice({
     },
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     requestMagicLinkRequested(state, _action: PayloadAction<{ email: string }>) {
-      return { ...state, magicLinkStatus: "pending" as const, magicLinkError: null };
+      // Also clears `error` (not just magicLinkError) - a stale "your link
+      // expired" message from a previous failed verify shouldn't keep
+      // showing once the person's taken the obvious next step and asked for
+      // a new one.
+      return { ...state, magicLinkStatus: "pending" as const, magicLinkError: null, error: null };
     },
     requestMagicLinkSucceeded(state) {
       // The API always responds the same way whether or not the account exists

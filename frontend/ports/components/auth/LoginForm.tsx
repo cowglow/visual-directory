@@ -1,7 +1,7 @@
 import { FormEvent, useState } from "react";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import { requestMagicLinkRequested } from "infrastructure/redux/auth/auth.slice.ts";
-import { getMagicLinkError, getMagicLinkStatus } from "infrastructure/redux/auth/auth.selectors.ts";
+import { getAuthError, getMagicLinkError, getMagicLinkStatus } from "infrastructure/redux/auth/auth.selectors.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
 import "ports/components/dialogs/dialogs.css";
@@ -18,6 +18,12 @@ export default function LoginForm() {
   const [showPrivacy, setShowPrivacy] = useState(false);
   const magicLinkStatus = useSelector(getMagicLinkStatus);
   const magicLinkError = useSelector(getMagicLinkError);
+  // Set when a magic link was clicked but rejected (expired - 15 min TTL - or
+  // already used) - see verifyMagicLinkFailed in auth.slice.ts. Previously
+  // this was silently dropped: AuthGate only ever displayed `error` in its
+  // "offline" branch, so someone clicking a stale link just landed back on a
+  // blank sign-in form with no explanation at all.
+  const authError = useSelector(getAuthError);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -27,6 +33,11 @@ export default function LoginForm() {
   return (
     <div className="standard-dialog" style={{ maxWidth: "320px", margin: "10vh auto" }}>
       <h2>{t.auth.signIn}</h2>
+      {authError ? (
+        <p role="alert" style={{ color: "firebrick" }}>
+          {t.auth.linkExpired}
+        </p>
+      ) : null}
       {magicLinkStatus === "sent" ? (
         <p>{t.auth.linkSent}</p>
       ) : (
@@ -52,9 +63,17 @@ export default function LoginForm() {
         </form>
       )}
       <p style={{ marginTop: "1rem" }}>
-        <button type="button" className="login-form-privacy-link" onClick={() => setShowPrivacy(true)}>
+        <button type="button" className="login-form-link" onClick={() => setShowPrivacy(true)}>
           {t.auth.privacyLink}
         </button>
+        <a
+          className="login-form-link"
+          href="https://github.com/cowglow/visual-directory"
+          target="_blank"
+          rel="nofollow noreferrer"
+        >
+          {t.auth.source}
+        </a>
       </p>
       {showPrivacy ? (
         <div className="dialog-backdrop" onClick={() => setShowPrivacy(false)}>

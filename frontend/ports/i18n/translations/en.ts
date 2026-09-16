@@ -54,6 +54,8 @@ const en = {
     loading: "Loading…",
     cantConnect: "Can't connect",
     privacyLink: "Privacy notice",
+    linkExpired: "That sign-in link is invalid or expired. Please request a new one.",
+    source: "Source",
   },
   privacy: {
     title: "Privacy notice",

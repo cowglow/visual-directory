@@ -56,6 +56,8 @@ const de: Translations = {
     loading: "Lädt…",
     cantConnect: "Verbindung fehlgeschlagen",
     privacyLink: "Datenschutzhinweis",
+    linkExpired: "Dieser Anmeldelink ist ungültig oder abgelaufen. Bitte fordern Sie einen neuen an.",
+    source: "Quellcode",
   },
   privacy: {
     title: "Datenschutzhinweis",

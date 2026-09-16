@@ -56,6 +56,8 @@ const es: Translations = {
     loading: "Cargando…",
     cantConnect: "No se pudo conectar",
     privacyLink: "Aviso de privacidad",
+    linkExpired: "Ese enlace de acceso no es válido o ha caducado. Por favor, solicite uno nuevo.",
+    source: "Código fuente",
   },
   privacy: {
     title: "Aviso de privacidad",
