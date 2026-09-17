@@ -35,7 +35,7 @@ export default function LoginForm() {
   return (
     <div
       className="standard-dialog"
-      style={{ minWidth: "320px", maxWidth: "80%", margin: "10vh auto" }}
+      style={{ minWidth: "320px", maxWidth: "66%", margin: "10vh auto" }}
     >
       {/* field-row, right-aligned per System.css's own docs. */}
       <div className="field-row" style={{ justifyContent: "flex-end" }}>
