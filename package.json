@@ -19,6 +19,7 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "backend:up": "docker compose up -d db api adminer",
+    "backend:up:local": "RESEND_API_KEY= EMAIL_FROM= docker compose up -d db api adminer",
     "backend:down": "docker compose down",
     "backend:logs": "docker compose logs -f api",
     "backend:migrate": "docker compose exec api pnpm prisma:deploy",

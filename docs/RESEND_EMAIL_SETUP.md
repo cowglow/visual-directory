@@ -13,6 +13,15 @@ read the link from `docker compose logs api` instead of getting an email. Real u
 can't get their link by email until this is done, but nothing in `HETZNER_DEPLOY.md`
 depends on it.
 
+**Local dev note**: the root `.env` has a real Resend sandbox key checked in for testing
+the directory app's own delivery, but Resend's sandbox sender can only deliver to the
+account owner's own address — any other email (including a seeded test leader) will
+fail with "Couldn't send the login email." Run `pnpm backend:up:local` instead of
+`pnpm backend:up` to force `RESEND_API_KEY`/`EMAIL_FROM` empty for that session, which
+falls back to `consoleMailer` and — since `NODE_ENV` is `development` by default —
+makes every magic-link request return a `devToken` the frontend auto-verifies with
+immediately, no email needed for any address.
+
 ## Setting up Resend + domain verification
 
 1. Sign up at [resend.com](https://resend.com) (free tier is enough here).

@@ -60,6 +60,10 @@ README for one-time `.env` setup):
 
 ```bash
 pnpm backend:up        # docker compose up -d db api adminer
+pnpm backend:up:local  # same, but forces RESEND_API_KEY/EMAIL_FROM empty — use this for local
+                       # dev/testing so magic-link requests always return a devToken instead of
+                       # trying real Resend delivery, which the root .env's key can only send
+                       # to its own account owner's address (see docs/RESEND_EMAIL_SETUP.md)
 pnpm backend:migrate   # apply migrations inside the api container
 pnpm backend:seed      # SEED_LEADER_EMAIL=... pnpm backend:seed
 pnpm backend:logs
