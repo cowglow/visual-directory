@@ -278,6 +278,21 @@ function OrgNodeItem({
           {header}
         </summary>
         <ul>
+          {/* A branch org can itself have direct members, not just child
+          orgs - membership isn't restricted to leaf (typically Group)
+          level. Previously only a leaf's own directMembers ever rendered
+          here, so a member assigned straight to a Region/Headquarter/Area/
+          District was counted in the header above but never actually
+          listed. */}
+          {directMembers.map((member) => (
+            <MemberRow
+              key={member.id}
+              member={member}
+              selected={selectedSet.has(member.id)}
+              onSelect={(event) => onSelectMember(member.id, event)}
+              t={t}
+            />
+          ))}
           {node.children.map((child) => (
             <OrgNodeItem
               key={child.organization.id}
