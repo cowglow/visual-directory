@@ -60,6 +60,11 @@ services:
       NODE_ENV: ${NODE_ENV:-development}
       RESEND_API_KEY: ${RESEND_API_KEY:-}
       EMAIL_FROM: ${EMAIL_FROM:-}
+      # Read by backend/prisma/seed.ts (pnpm backend:seed) — baked into the
+      # container so it doesn't need re-typing per invocation; override per-run
+      # with `SEED_LEADER_EMAIL=you@example.com pnpm backend:seed` same as any
+      # other var here, or set it once in the root .env.
+      SEED_LEADER_EMAIL: ${SEED_LEADER_EMAIL:-leader@example.com}
     depends_on:
       db:
         condition: service_healthy
