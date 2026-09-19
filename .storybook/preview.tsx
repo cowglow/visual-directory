@@ -4,7 +4,7 @@ import { Map as MapLibreMap } from "@vis.gl/react-maplibre";
 import { setupStore } from "../frontend/infrastructure/redux/store.ts";
 import { installGeoSim } from "../frontend/infrastructure/geo-simulation/geo-simulation.ts";
 import { TileServerContext } from "../frontend/ports/context/tile-server/tile-server.context.ts";
-import { baseMaps, rasterStyle } from "../frontend/infrastructure/tile-server/base-maps.ts";
+import { baseMaps, mapStyleFor } from "../frontend/infrastructure/tile-server/base-maps.ts";
 import { I18nContext } from "../frontend/ports/context/i18n/i18n.context.ts";
 import { translations } from "../frontend/ports/i18n/translations/index.ts";
 import { languages, languageLabels, type Language } from "../frontend/ports/i18n/language.ts";
@@ -45,7 +45,7 @@ const withMap: Decorator = (Story, context) => {
   return (
     <MapLibreMap
       initialViewState={{ ...NUREMBERG, zoom: 8 }}
-      mapStyle={rasterStyle(baseMaps[selectedBaseMap])}
+      mapStyle={mapStyleFor(baseMaps[selectedBaseMap])}
       style={{ height: "400px", width: "100%" }}
     >
       <Story />
