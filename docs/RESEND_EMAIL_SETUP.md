@@ -16,11 +16,14 @@ depends on it.
 **Local dev note**: the root `.env` has a real Resend sandbox key checked in for testing
 the directory app's own delivery, but Resend's sandbox sender can only deliver to the
 account owner's own address — any other email (including a seeded test leader) will
-fail with "Couldn't send the login email." Run `pnpm backend:up:local` instead of
-`pnpm backend:up` to force `RESEND_API_KEY`/`EMAIL_FROM` empty for that session, which
-falls back to `consoleMailer` and — since `NODE_ENV` is `development` by default —
-makes every magic-link request return a `devToken` the frontend auto-verifies with
-immediately, no email needed for any address.
+fail to actually send. Outside production, `requestMagicLink`
+(`backend/src/application/auth/auth.use-cases.ts`) treats the returned `devToken` as a
+full substitute for email delivery, not an extra on top of it: a mailer failure is
+logged (`[mailer] failed to send magic-link email to ...`) but doesn't block the
+response, so login still works even when the real Resend send fails for this reason.
+Run `pnpm backend:up:local` instead of `pnpm backend:up` if you'd rather skip the real
+Resend attempt (and its logged failure) entirely — that forces `RESEND_API_KEY`/
+`EMAIL_FROM` empty for the session, falling back to `consoleMailer` from the start.
 
 ## Setting up Resend + domain verification
 

@@ -1,5 +1,6 @@
 import { afterEach, describe, expect, it, vi } from "vitest";
 import { createRequestMagicLinkUseCase, type RequestMagicLinkDeps } from "./auth.use-cases.js";
+import { MailDeliveryError } from "./auth.errors.js";
 import type { Account } from "../../domain/account/account.types.js";
 
 const account: Account = {
@@ -72,5 +73,36 @@ describe("requestMagicLink", () => {
 
     expect(deps.mailer.sendMagicLink).toHaveBeenCalledWith(account.email, expect.stringContaining("https://example.com/login?token="));
     expect(logSpy).toHaveBeenCalledWith(expect.stringContaining(`magic-link sent to ${account.email}`));
+  });
+
+  it("outside production, still returns a devToken when the mailer fails - it's a substitute for email, not an extra on top of it", async () => {
+    const deps = makeDeps({
+      isDevMode: true,
+      mailer: { sendMagicLink: vi.fn().mockRejectedValue(new Error("Resend: from-address not verified")) },
+    });
+    const errorSpy = vi.spyOn(console, "error").mockImplementation(() => {});
+    const requestMagicLink = createRequestMagicLinkUseCase(deps);
+
+    const result = await requestMagicLink(account.email);
+
+    expect(result).toEqual({
+      message: "If that email has an account, a login link has been sent.",
+      devToken: "test-token",
+    });
+    expect(errorSpy).toHaveBeenCalledWith(
+      expect.stringContaining(`failed to send magic-link email to ${account.email}`),
+      expect.any(Error),
+    );
+  });
+
+  it("in production, a mailer failure still throws rather than silently granting a token", async () => {
+    const deps = makeDeps({
+      isDevMode: false,
+      mailer: { sendMagicLink: vi.fn().mockRejectedValue(new Error("Resend: from-address not verified")) },
+    });
+    vi.spyOn(console, "error").mockImplementation(() => {});
+    const requestMagicLink = createRequestMagicLinkUseCase(deps);
+
+    await expect(requestMagicLink(account.email)).rejects.toBeInstanceOf(MailDeliveryError);
   });
 });

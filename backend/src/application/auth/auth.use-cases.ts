@@ -50,12 +50,20 @@ export function createRequestMagicLinkUseCase(deps: RequestMagicLinkDeps) {
 
     try {
       await deps.mailer.sendMagicLink(email, url);
+      console.log(`[auth] magic-link sent to ${email}`);
     } catch (err) {
       // Log the failure, not the link/token.
       console.error(`[mailer] failed to send magic-link email to ${email}:`, err);
-      throw new MailDeliveryError("Couldn't send the login email. Please try again.");
+      // Outside production, the devToken below is a full substitute for email
+      // delivery, not an extra convenience on top of it - a real Resend failure
+      // (e.g. the local sandbox key's own-address-only restriction, see
+      // docs/RESEND_EMAIL_SETUP.md) shouldn't block login when that substitute
+      // path exists. In production there is no substitute, so this must still
+      // surface as a failure.
+      if (!deps.isDevMode) {
+        throw new MailDeliveryError("Couldn't send the login email. Please try again.");
+      }
     }
-    console.log(`[auth] magic-link sent to ${email}`);
 
     return { message, ...(deps.isDevMode ? { devToken: token } : {}) };
   };
