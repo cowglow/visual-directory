@@ -76,6 +76,7 @@ const de: Translations = {
       "Bis eine Leitungsperson sie entfernt. Jede Änderung wird in einem dauerhaften Prüfprotokoll festgehalten, sodass der Verlauf eines entfernten Eintrags auch nach dem Löschen nicht vollständig verschwindet.",
     rightsTitle: "Ihre Möglichkeiten",
     rights: "Wenden Sie sich an die Leitungsperson Ihrer Organisation, um Ihre Daten einzusehen, zu korrigieren oder deren Entfernung zu beantragen.",
+    exportMyData: "Meine Daten exportieren",
   },
   connectionError: (message: string) =>
     `Daten konnten nicht geladen werden: ${message}`,

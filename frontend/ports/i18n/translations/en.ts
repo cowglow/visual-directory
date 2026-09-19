@@ -74,6 +74,7 @@ const en = {
       "Until a leader removes it. Every change is recorded in a permanent audit trail, so a removed record's history isn't fully erased even after deletion.",
     rightsTitle: "Your options",
     rights: "Contact your organization's leader to see, correct, or request removal of your information.",
+    exportMyData: "Export my data",
   },
   connectionError: (message: string) => `Couldn't load data: ${message}`,
   connectionErrorBanner: {

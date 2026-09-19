@@ -76,6 +76,7 @@ const es: Translations = {
       "Hasta que un líder la elimine. Cada cambio queda registrado en un historial de auditoría permanente, por lo que el historial de un registro eliminado no desaparece por completo tras borrarlo.",
     rightsTitle: "Sus opciones",
     rights: "Contacte al líder de su organización para ver, corregir o solicitar la eliminación de su información.",
+    exportMyData: "Exportar mis datos",
   },
   connectionError: (message: string) => `No se pudieron cargar los datos: ${message}`,
   connectionErrorBanner: {

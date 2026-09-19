@@ -124,11 +124,17 @@ everything in it. A plain `docker compose down`, without `--volumes`, does
 
 ### Access requests ("what do you have on me?")
 
-A leader can look up the member's record directly (map or organization view) and
-share it with the requester. There's no self-service export yet; if this becomes a
-frequent request, it's a reasonable feature to build (a member reading their own
-record already has partial precedent — see `docs/PLAN.md`'s "Members editing their
-own record," currently deferred).
+Any account linked to a member record (`Account.memberId` set) can self-serve this:
+the Privacy dialog (About → Privacy, also shown pre-login) has an "Export my data"
+button that downloads a `my-data.json` with exactly the fields listed in "What we
+collect" above — name, address, phone/email, organization/role, status, signup
+date, plus the sign-in email and account role
+(`frontend/application/member/member-export.ts`). A leader-only account (no
+`memberId`) has nothing to export this way and won't see the button.
+
+For a leader-only account, or anyone who'd rather not self-serve, a leader can
+still look up the member's record directly (map or organization view) and share it
+with the requester by hand.
 
 ### Sub-processors
 
