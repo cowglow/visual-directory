@@ -1,10 +1,15 @@
 # Adding request logging
 
-**Status: Option B implemented** (`request-logger.ts` middleware, the two
-`[auth]`-prefixed log lines in `requestMagicLink`, and the `Caddyfile`'s `log`
-directive are all in place — see the "Option B" section below for what each one
-does). Not yet deployed to prod as of this writing. Option A (`pino-http`) is still
-just a plan, for whenever a new dependency is okay.
+**Status: Option B implemented, deployed, and validated live on prod** (2026-09-19).
+`request-logger.ts` middleware, the two `[auth]`-prefixed log lines in
+`requestMagicLink`, and the `Caddyfile`'s `log` directive are all in place — see the
+"Option B" section below for what each one does. Confirmed end-to-end against
+`api.cowglow.io`: a real invite → magic-link request → Resend delivery → `/auth/verify`
+round trip, with both the Caddy access log and the `[auth] magic-link sent to ...`
+line showing up exactly as expected at each hop. See
+[`VALIDATE_PRODUCTION.md`](./VALIDATE_PRODUCTION.md)'s magic-link step for the
+repeatable version of that check. Option A (`pino-http`) is still just a plan, for
+whenever a new dependency is okay.
 
 ## Why
 

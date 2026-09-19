@@ -142,6 +142,41 @@ ssh -i $HETZNER_KEY deploy@$HETZNER_HOST "df -h /"
 Worth a glance periodically since `postgres-data` is an ever-growing named volume with
 no automated pruning (see the **Backups** note in `docs/HETZNER_DEPLOY.md` step 9).
 
+## 9. Magic-link email actually sends
+
+Steps 3 and 6 confirm the API is up, not that the magic-link email path works. By
+design, `POST /auth/magic-link` always returns the same `200` — whether or not an
+Account exists for that email, and (before request logging was added, see
+[`OBSERVABILITY_LOGGING.md`](./OBSERVABILITY_LOGGING.md)) whether or not Resend
+actually sent anything — so a healthy-looking response here proves nothing on its
+own. Trigger a real request against an email with a known Account and check for the
+positive log line, not just the absence of an error:
+
+```bash
+curl -sS -X POST https://api.cowglow.io/auth/magic-link \
+  -H "Content-Type: application/json" \
+  -d '{"email":"YOUR_TEST_ACCOUNT_EMAIL"}'
+
+ssh -i $HETZNER_KEY deploy@$HETZNER_HOST \
+  "docker compose -f /opt/visual-directory/docker-compose.prod.yml logs --tail=20 api"
+```
+
+Look for exactly one of these three, logged by `requestMagicLink`
+(`backend/src/application/auth/auth.use-cases.ts`):
+
+- `[auth] magic-link sent to ...` — the real path worked, `mailer.sendMagicLink`
+  resolved. Cross-check actual delivery in the Resend dashboard, or:
+  `curl -sS -H "Authorization: Bearer $RESEND_API_KEY" https://api.resend.com/emails`
+  — the matching entry's `last_event` should reach `delivered`.
+- `[auth] magic-link request: no account found for ...` — the request itself is
+  fine, there's just no Account for that email yet. Use a real invited account's
+  email instead, or invite one first (`POST /auth/invite`, leader-only).
+- No `[auth]` line at all, but `[mailer] failed to send magic-link email to ...` —
+  `resendMailer` was called and Resend rejected it. The logged error is the actual
+  Resend API error; read it directly rather than guessing (sandbox/unverified-domain
+  restrictions are the common cause — see
+  [`RESEND_EMAIL_SETUP.md`](./RESEND_EMAIL_SETUP.md)).
+
 ## If something's wrong
 
 - Steps 1-5 fail → check GitHub Actions logs first (`gh run view --log-failed`),

@@ -54,6 +54,12 @@ immediately, no email needed for any address.
    gh secret set EMAIL_FROM --repo cowglow/visual-directory --body "Visual Directory <login@mail.cowglow.io>"
    ```
 8. Test end-to-end: trigger a magic-link request against the real API and confirm the
-   email actually arrives (not just logged) — `docker compose logs api` should show no
-   `[mailer] magic link for ...` fallback line for that request once this is wired up
-   correctly.
+   email actually arrives (not just logged). `docker compose logs api` should show a
+   positive `[auth] magic-link sent to ...` line for that request (logged by
+   `requestMagicLink` in `backend/src/application/auth/auth.use-cases.ts`) — don't
+   just check for the *absence* of the `consoleMailer` fallback line, since a request
+   for an email with no Account yet returns the exact same `200` response and, before
+   this logging was added, produced no output at all either way (see
+   [`OBSERVABILITY_LOGGING.md`](./OBSERVABILITY_LOGGING.md)). See
+   [`VALIDATE_PRODUCTION.md`](./VALIDATE_PRODUCTION.md)'s magic-link step for the full
+   command sequence, including cross-checking delivery in Resend's own dashboard.
