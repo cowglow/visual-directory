@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">26% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>13/50</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">9.37% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/32</span>
+                <span class='fraction'>3/32</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">26% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/48</span>
+                <span class='fraction'>13/50</span>
             </div>
         
             
@@ -221,7 +221,11 @@
 <a name='L156'></a><a href='#L156'>156</a>
 <a name='L157'></a><a href='#L157'>157</a>
 <a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a>
+<a name='L161'></a><a href='#L161'>161</a>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -252,31 +256,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -411,30 +419,34 @@ export interface RequestMagicLinkDeps {
   isDevMode: boolean;
 }
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >createRequestMagicLinkUseCase(d</span>eps: RequestMagicLinkDeps) {
-<span class="cstat-no" title="statement not covered" >  return async function <span class="fstat-no" title="function not covered" >requestMagicLink(e</span>mail: string): Promise&lt;{ message: string; devToken?: string }&gt; {</span>
+export function createRequestMagicLinkUseCase(deps: RequestMagicLinkDeps) {
+  return async function requestMagicLink(email: string): Promise&lt;{ message: string; devToken?: string }&gt; {
     // Always respond the same way regardless of whether the account exists, so this
     // endpoint can't be used to enumerate registered emails.
-    const message = <span class="cstat-no" title="statement not covered" >"If that email has an account, a login link has been sent.";</span>
+    const message = "If that email has an account, a login link has been sent.";
 &nbsp;
-    const account = <span class="cstat-no" title="statement not covered" >await deps.accountRepository.findByEmail(email);</span>
-<span class="cstat-no" title="statement not covered" >    if (!account) {</span>
-<span class="cstat-no" title="statement not covered" >      return { message };</span>
+    const account = await deps.accountRepository.findByEmail(email);
+    if (!account) {
+      // Server-side only - the HTTP response stays identical either way (see
+      // `message` above) so this can't be used to enumerate registered emails.
+      console.log(`[auth] magic-link request: no account found for ${email}`);
+      return { message };
     }
 &nbsp;
-    const token = <span class="cstat-no" title="statement not covered" >deps.tokenGenerator.generate();</span>
-<span class="cstat-no" title="statement not covered" >    await deps.magicLinkTokenRepository.create(account.id, hashToken(token), new Date(Date.now() + TOKEN_TTL_MS));</span>
-    const url = <span class="cstat-no" title="statement not covered" >`${deps.clientOrigin}${deps.clientAppPath}?token=${token}`;</span>
+    const token = deps.tokenGenerator.generate();
+    await deps.magicLinkTokenRepository.create(account.id, hashToken(token), new Date(Date.now() + TOKEN_TTL_MS));
+    const url = `${deps.clientOrigin}${deps.clientAppPath}?token=${token}`;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    try {</span>
-<span class="cstat-no" title="statement not covered" >      await deps.mailer.sendMagicLink(email, url);</span>
+    try {
+      await deps.mailer.sendMagicLink(email, url);
     } catch (err) {
       // Log the failure, not the link/token.
 <span class="cstat-no" title="statement not covered" >      console.error(`[mailer] failed to send magic-link email to ${email}:`, err);</span>
 <span class="cstat-no" title="statement not covered" >      throw new MailDeliveryError("Couldn't send the login email. Please try again.");</span>
     }
+    console.log(`[auth] magic-link sent to ${email}`);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return { message, ...(deps.isDevMode ? { devToken: token } : {}) };</span>
+    return { message, ...(deps.isDevMode ? <span class="branch-0 cbranch-no" title="branch not covered" >{ devToken: token } : {</span>}) };
   };
 }
 &nbsp;
@@ -544,7 +556,7 @@ export function <span class="fstat-no" title="function not covered" >createUpdat
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-17T21:19:43.945Z
+                at 2026-09-19T12:13:36.476Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
