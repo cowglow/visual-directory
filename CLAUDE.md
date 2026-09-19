@@ -93,8 +93,9 @@ a dependency rule where each layer may only depend on itself or layers inward of
   `sagas.ts` — see `docs/CLEAR_ARCHITECTURE_TS.md` for the request/response action
   pattern this follows), `api/` (REST client for the backend), `csv/`, `tile-server/`
   (raster basemap sources + `rasterStyle()`, the MapLibre style JSON the map renders —
-  `TileServerContext`'s `setSelectedBaseMap` has no UI hooked up to it currently, so in
-  practice the app is stuck on `defaultBaseMapName`), `geo-simulation/`.
+  `TileServerContext`'s `setSelectedBaseMap` is wired to a Map menu → Basemap submenu
+  in `ActionMenu.tsx`/`menu.config.ts`, listing every key of `baseMaps` and persisting
+  the choice to `localStorage`), `geo-simulation/`.
 - **`ports/`** — the public/UI surface: `components/` (React components, grouped by
   feature area — `map/`, `markers/`, `forms/`, `dialogs/`, `auth/`, etc.),
   `context/` (React context providers: dialogs, i18n, tile server config), `hooks/`,
