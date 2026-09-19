@@ -60,11 +60,15 @@ services:
       NODE_ENV: ${NODE_ENV:-development}
       RESEND_API_KEY: ${RESEND_API_KEY:-}
       EMAIL_FROM: ${EMAIL_FROM:-}
-      # Read by backend/prisma/seed.ts (pnpm backend:seed) — baked into the
-      # container so it doesn't need re-typing per invocation; override per-run
-      # with `SEED_LEADER_EMAIL=you@example.com pnpm backend:seed` same as any
-      # other var here, or set it once in the root .env.
-      SEED_LEADER_EMAIL: ${SEED_LEADER_EMAIL:-leader@example.com}
+      # backend/prisma/seed.ts (pnpm backend:seed) reads SEED_LEADER_EMAIL inside
+      # the container — baked in here from DEV_SEED_LEADER_EMAIL (a distinct name,
+      # same pattern as e2e/helpers/config.ts's E2E_SEED_LEADER_EMAIL) so it's
+      # clearly this dev stack's own override, not confusable with backend/.env's
+      # own SEED_LEADER_EMAIL (read directly by the non-docker `cd backend && pnpm
+      # seed` path) or deploy/hetzner/config.env's separate LEADER_EMAIL (prod).
+      # Override per-run with `DEV_SEED_LEADER_EMAIL=you@example.com pnpm
+      # backend:seed`, or set it once in the root .env.
+      SEED_LEADER_EMAIL: ${DEV_SEED_LEADER_EMAIL:-leader@example.com}
     depends_on:
       db:
         condition: service_healthy

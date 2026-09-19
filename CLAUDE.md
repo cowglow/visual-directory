@@ -65,8 +65,8 @@ pnpm backend:up:local  # same, but forces RESEND_API_KEY/EMAIL_FROM empty — us
                        # trying real Resend delivery, which the root .env's key can only send
                        # to its own account owner's address (see docs/RESEND_EMAIL_SETUP.md)
 pnpm backend:migrate   # apply migrations inside the api container
-pnpm backend:seed      # bootstraps SEED_LEADER_EMAIL from root .env (default
-                       # leader@example.com); SEED_LEADER_EMAIL=you@example.com
+pnpm backend:seed      # bootstraps DEV_SEED_LEADER_EMAIL from root .env (default
+                       # leader@example.com); DEV_SEED_LEADER_EMAIL=you@example.com
                        # pnpm backend:seed overrides it for one run
 pnpm backend:logs
 pnpm backend:down

@@ -23,8 +23,8 @@
     "backend:down": "docker compose down",
     "backend:logs": "docker compose logs -f api",
     "backend:migrate": "docker compose exec api pnpm prisma:deploy",
-    "backend:seed": "docker compose exec ${SEED_LEADER_EMAIL:+-e SEED_LEADER_EMAIL=$SEED_LEADER_EMAIL} api pnpm seed",
-    "backend:seed:demo": "docker compose exec ${SEED_LEADER_EMAIL:+-e SEED_LEADER_EMAIL=$SEED_LEADER_EMAIL} api pnpm seed:demo"
+    "backend:seed": "docker compose exec ${DEV_SEED_LEADER_EMAIL:+-e SEED_LEADER_EMAIL=$DEV_SEED_LEADER_EMAIL} api pnpm seed",
+    "backend:seed:demo": "docker compose exec ${DEV_SEED_LEADER_EMAIL:+-e SEED_LEADER_EMAIL=$DEV_SEED_LEADER_EMAIL} api pnpm seed:demo"
   },
   "dependencies": {
     "react": "^19.0.0",

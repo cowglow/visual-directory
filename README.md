@@ -75,9 +75,9 @@ cp .env.example .env               # VITE_API_URL should point at the backend
 cd backend && cp .env.example .env && cd ..
 pnpm backend:up
 pnpm backend:migrate
-pnpm backend:seed   # first time only - bootstraps SEED_LEADER_EMAIL from .env
+pnpm backend:seed   # first time only - bootstraps DEV_SEED_LEADER_EMAIL from .env
                      # (defaults to leader@example.com); override once with
-                     # SEED_LEADER_EMAIL=you@example.com pnpm backend:seed
+                     # DEV_SEED_LEADER_EMAIL=you@example.com pnpm backend:seed
 
 pnpm dev:all               # backend (already up) + frontend dev server + Storybook, one terminal
 ```
@@ -106,8 +106,8 @@ pnpm backend:up       # docker compose up -d db api adminer
 pnpm backend:down     # docker compose down
 pnpm backend:logs     # tail the api container's logs
 pnpm backend:migrate  # apply pending Prisma migrations inside the api container
-pnpm backend:seed     # bootstrap the first leader account - reads SEED_LEADER_EMAIL from
-                      # .env (default leader@example.com); SEED_LEADER_EMAIL=you@example.com
+pnpm backend:seed     # bootstrap the first leader account - reads DEV_SEED_LEADER_EMAIL from
+                      # .env (default leader@example.com); DEV_SEED_LEADER_EMAIL=you@example.com
                       # pnpm backend:seed overrides it for one run without editing .env
 ```
 
@@ -164,8 +164,8 @@ schema change):
 
 ```bash
 pnpm backend:migrate
-pnpm backend:seed   # reads SEED_LEADER_EMAIL from root .env (default leader@example.com);
-                    # SEED_LEADER_EMAIL=you@example.com pnpm backend:seed overrides it once
+pnpm backend:seed   # reads DEV_SEED_LEADER_EMAIL from root .env (default leader@example.com);
+                    # DEV_SEED_LEADER_EMAIL=you@example.com pnpm backend:seed overrides it once
 ```
 
 Confirm it's up:
