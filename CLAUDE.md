@@ -92,10 +92,12 @@ a dependency rule where each layer may only depend on itself or layers inward of
   + selectors + a `<domain>.saga.ts` per domain, wired together in `store.ts` and
   `sagas.ts` — see `docs/CLEAR_ARCHITECTURE_TS.md` for the request/response action
   pattern this follows), `api/` (REST client for the backend), `csv/`, `tile-server/`
-  (raster basemap sources + `rasterStyle()`, the MapLibre style JSON the map renders —
-  `TileServerContext`'s `setSelectedBaseMap` is wired to a Map menu → Basemap submenu
-  in `ActionMenu.tsx`/`menu.config.ts`, listing every key of `baseMaps` and persisting
-  the choice to `localStorage`), `geo-simulation/`.
+  (raster and vector basemap sources + `mapStyleFor()`, which returns the MapLibre
+  style the map renders — a locally-built wrapper style for a raster source, or the
+  provider's own hosted style URL passed straight through for a vector one (e.g.
+  `OpenFreeMap`) — `TileServerContext`'s `setSelectedBaseMap` is wired to a Map menu →
+  Basemap submenu in `ActionMenu.tsx`/`menu.config.ts`, listing every key of
+  `baseMaps` and persisting the choice to `localStorage`), `geo-simulation/`.
 - **`ports/`** — the public/UI surface: `components/` (React components, grouped by
   feature area — `map/`, `markers/`, `forms/`, `dialogs/`, `auth/`, etc.),
   `context/` (React context providers: dialogs, i18n, tile server config), `hooks/`,

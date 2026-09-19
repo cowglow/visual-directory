@@ -4,7 +4,7 @@ import "maplibre-gl/dist/maplibre-gl.css";
 import styled from "styled-components";
 import { Box } from "@mui/material";
 import { useTileServer } from "ports/context/tile-server/tile-server.hook.ts";
-import { rasterStyle } from "infrastructure/tile-server/base-maps.ts";
+import { mapStyleFor } from "infrastructure/tile-server/base-maps.ts";
 
 const MapWrapper = styled(Box)`
   flex: 1;
@@ -48,7 +48,7 @@ export default function Map({
   // every render, which reloads the raster source (and blanks the tiles); key it
   // to the selected provider instead.
   const mapStyle = useMemo(
-    () => rasterStyle(baseMaps[selectedBaseMap]),
+    () => mapStyleFor(baseMaps[selectedBaseMap]),
     [baseMaps, selectedBaseMap],
   );
 
