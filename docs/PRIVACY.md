@@ -154,10 +154,26 @@ review:
 
 ### Incident response
 
-Not yet written. At minimum, decide and record: who gets notified if the database
-is exposed or a leader account is compromised, and within what timeframe — some
-privacy regimes (GDPR included) impose a hard deadline (72 hours) for notifying a
-regulator once you're aware of a personal-data breach.
+If the database is exposed or an account (leader or member) is compromised:
+
+1. **Point of contact**: the developer/operator, who also holds a `member` account
+   in the directory, is the designated contact and decision-maker for any incident.
+   There's no separate on-call rotation or IT contact beyond them at this org's
+   current size — if that changes, update this section rather than leaving it stale.
+2. **Notifying affected members**: out-of-band first — phone, in-person, or another
+   channel outside this app — not email by default. Email (via Resend, the same
+   path as magic links) is a fallback only, used once a genuine out-of-band attempt
+   has actually been made and didn't reach someone, not as the first resort. The
+   reasoning: a compromise here could mean email itself isn't trustworthy for this
+   purpose, and this organization is small enough that direct contact is practical.
+3. **Regulatory notification**: if any affected member is in the EU/UK (see "Open
+   decisions" above), GDPR/UK GDPR requires notifying the relevant supervisory
+   authority within 72 hours of becoming aware of the breach. Confirm which
+   authority applies *before* an incident, not during one — that's not a call this
+   document can make for you.
+4. **What starts the clock**: the moment there's a reasonable basis to believe
+   personal data was exposed, not confirmed proof. Investigate promptly, but don't
+   wait for certainty before starting notification.
 
 ### Review
 
