@@ -38,6 +38,9 @@ export function createRequestMagicLinkUseCase(deps: RequestMagicLinkDeps) {
 
     const account = await deps.accountRepository.findByEmail(email);
     if (!account) {
+      // Server-side only - the HTTP response stays identical either way (see
+      // `message` above) so this can't be used to enumerate registered emails.
+      console.log(`[auth] magic-link request: no account found for ${email}`);
       return { message };
     }
 
@@ -52,6 +55,7 @@ export function createRequestMagicLinkUseCase(deps: RequestMagicLinkDeps) {
       console.error(`[mailer] failed to send magic-link email to ${email}:`, err);
       throw new MailDeliveryError("Couldn't send the login email. Please try again.");
     }
+    console.log(`[auth] magic-link sent to ${email}`);
 
     return { message, ...(deps.isDevMode ? { devToken: token } : {}) };
   };

@@ -1,4 +1,10 @@
-# Adding request logging (idea, not yet implemented)
+# Adding request logging
+
+**Status: Option B implemented** (`request-logger.ts` middleware, the two
+`[auth]`-prefixed log lines in `requestMagicLink`, and the `Caddyfile`'s `log`
+directive are all in place — see the "Option B" section below for what each one
+does). Not yet deployed to prod as of this writing. Option A (`pino-http`) is still
+just a plan, for whenever a new dependency is okay.
 
 ## Why
 
@@ -49,25 +55,35 @@ rather than reaching for the bare `console`.
 Tradeoff: one more dependency to keep patched, and pino's default output is
 newline-delimited JSON — fine for `docker logs | jq`, less pleasant to eyeball raw.
 
-## Option B (zero-dependency, do this now): hand-rolled middleware + Caddy access log
+## Option B (zero-dependency, implemented): hand-rolled middleware + Caddy access log
 
-**1. Minimal request-logging middleware**, same `app.use()` position as above, no new
-package — just `console.log` plus `res.on("finish", ...)`:
-
-```ts
-app.use((req, res, next) => {
-  const start = Date.now();
-  res.on("finish", () => {
-    console.log(`${req.method} ${req.path} ${res.statusCode} ${Date.now() - start}ms`);
-  });
-  next();
-});
-```
+**1. Minimal request-logging middleware** —
+`backend/src/ports/http/middleware/request-logger.ts`, wired as `app.use(requestLogger)`
+right after `app.set("trust proxy", 1)` in `createApp()`, before `helmet`. Just
+`console.log` plus `res.on("finish", ...)`, covered by
+`request-logger.test.ts` (spins up a bare `express()` app on an ephemeral port,
+spies on `console.log`, asserts the logged line for both a 200 and a 500 response).
 
 Gets every request's method/path/status/duration into `docker logs
 visual-directory-api` — including successful ones — with no dependency and no
 formatting/rotation niceties. Good enough to answer "did this request even reach the
 API, and what did it return" during the next incident like this one.
+
+**1b. Two extra log lines in `requestMagicLink` itself**
+(`backend/src/application/auth/auth.use-cases.ts`), covered by
+`auth.use-cases.test.ts`:
+
+- `[auth] magic-link request: no account found for <email>` on the early-return path
+  when `accountRepository.findByEmail` comes back empty. Server-side only — the HTTP
+  response is still the same generic message either way, so this doesn't weaken the
+  anti-enumeration design, it just makes the "account didn't exist yet" case
+  distinguishable in the logs instead of looking identical to a real send.
+- `[auth] magic-link sent to <email>` once `mailer.sendMagicLink` resolves
+  successfully.
+
+Together with the existing `[mailer] failed to send...` line on a thrown/rejected
+send, every branch of `requestMagicLink` is now observable: no-account, sent, or
+failed.
 
 **2. Turn on Caddy's built-in access log.** Caddy already logs (its ACME/TLS
 housekeeping shows up in `docker logs visual-directory-caddy` today) — the site block
