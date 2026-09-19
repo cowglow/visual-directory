@@ -66,11 +66,24 @@ account used for deployment, to the container's internal IP rather than `localho
 
 The box has two keys authorized for `deploy`: `github-actions-deploy` (passphrase-free,
 used only by CI — see `docs/HETZNER_DEPLOY.md`) and a personal `id_hetzner_admin` key
-for manual access like this. Use the admin key below, not the CI one:
+for manual access like this. Prefer the admin key below over the CI one — but if you
+don't have/remember its passphrase, the CI key works too (it's just meant to stay
+exclusive to automation as a matter of hygiene, not a hard technical requirement):
 
 ```bash
-export HETZNER_KEY=cert/id_hetzner_admin
+export HETZNER_KEY=cert/id_hetzner_admin   # or cert/id_hetzner if you don't have this one's passphrase
 ```
+
+`$HETZNER_KEY` is a relative path — the commands below only resolve it correctly if
+your shell's current directory is the repo root. Running from anywhere else (e.g. your
+home directory), use the absolute path instead, e.g.
+`/Users/you/path/to/visual-directory/cert/id_hetzner_admin`.
+
+`id_hetzner_admin` is passphrase-protected — every `ssh`/`scp` command below using it
+will prompt for that passphrase interactively. That's expected, not an error; a
+"Permission denied (publickey,password)" instead means either the wrong path was
+given (falls through to password auth, which isn't configured at all) or the
+passphrase itself was wrong.
 
 Treat this as read-only, debugging-only access. Prefer the app/API for anything that
 should show up correctly — any row you edit or insert directly bypasses the
@@ -111,12 +124,24 @@ Read off `POSTGRES_USER` / `POSTGRES_PASSWORD` / `POSTGRES_DB`.
 
 Same as the [local steps](#steps) above, but:
 
-- Host: `localhost`
+- Host: `localhost` — **not** the server's IP. WebStorm never talks to the server
+  directly; it only ever connects to the local end of the tunnel from step 2, which
+  your terminal's `ssh -L` is silently relaying to the container on the other end.
 - Port: whatever you forwarded in step 2 (e.g. `55432`)
 - Database/User/Password: from step 3
 - Name it clearly, e.g. **"contact_book (PRODUCTION)"** — it'll otherwise look
   identical to the dev connection in the tool window, which is exactly how someone
   runs a dev-only query against real member data by mistake.
+
+**Leave the SSH/SSL tab off entirely.** Don't enter the SSH key there to have
+WebStorm establish its own tunnel — its bundled SSH library (JSch) can't parse
+`id_hetzner_admin`/`id_hetzner`'s key format (ed25519 keys are only ever stored as
+"OPENSSH PRIVATE KEY", which older JSch versions reject with an `unrecognised
+object: OPENSSH PRIVATE KEY` error). The terminal-based tunnel from step 2 already
+handles this outside WebStorm's knowledge; don't configure it twice. Likewise leave
+the SSL sub-tab's **Client certificate/key/root certificate** fields empty and SSL
+mode at `Disable`/`Prefer` — this database has no SSL certificate setup at all, so
+those fields are for a different (Postgres-level) mechanism this server doesn't use.
 
 Close the SSH tunnel when you're done; don't leave production reachable from your
 machine unattended.
