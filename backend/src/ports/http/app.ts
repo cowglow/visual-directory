@@ -5,6 +5,7 @@ import { createAuthRouter, type AuthRouterDeps } from "./routes/auth.routes.js";
 import { createMemberRouter, type MemberRouterDeps } from "./routes/member.routes.js";
 import { createOrganizationRouter, type OrganizationRouterDeps } from "./routes/organization.routes.js";
 import { errorHandler } from "./middleware/error-handler.js";
+import { requestLogger } from "./middleware/request-logger.js";
 
 export type AppDeps = AuthRouterDeps & MemberRouterDeps & OrganizationRouterDeps;
 
@@ -16,6 +17,7 @@ export function createApp(deps: AppDeps) {
   // trusting the header unconditionally (which would let a client spoof its own
   // IP by setting X-Forwarded-For directly).
   app.set("trust proxy", 1);
+  app.use(requestLogger);
   // A pure JSON API with no server-rendered pages, so helmet's defaults (HSTS,
   // X-Content-Type-Options, a locked-down CSP, etc.) apply cleanly. The one default
   // that must be relaxed is Cross-Origin-Resource-Policy: "same-origin" - it would
