@@ -1,3 +1,7 @@
+.dialog-backdrop .window.accounts-window {
+  max-width: 42rem;
+}
+
 .accounts-list-header,
 .accounts-list-row {
   display: grid;

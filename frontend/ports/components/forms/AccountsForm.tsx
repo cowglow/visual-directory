@@ -93,7 +93,11 @@ export default function AccountsForm() {
   };
 
   return (
-    <DialogWindow title={t.accountsForm.title} onClose={() => dispatch(closeWindow("ACCOUNTS_DIALOG"))}>
+    <DialogWindow
+      title={t.accountsForm.title}
+      onClose={() => dispatch(closeWindow("ACCOUNTS_DIALOG"))}
+      className="accounts-window"
+    >
       {accountsStatus === "pending" && accounts.length === 0 ? (
         <p>{t.accountsForm.loading}</p>
       ) : accounts.length === 0 ? (

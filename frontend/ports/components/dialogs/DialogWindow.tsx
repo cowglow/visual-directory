@@ -5,13 +5,19 @@ import "./dialogs.css";
 interface DialogWindowProps {
   title: string;
   onClose: () => void;
+  className?: string;
 }
 
-export default function DialogWindow({ title, onClose, children }: PropsWithChildren<DialogWindowProps>) {
+export default function DialogWindow({
+  title,
+  onClose,
+  className,
+  children,
+}: PropsWithChildren<DialogWindowProps>) {
   const { t } = useTranslation();
 
   return (
-    <div className="window">
+    <div className={className ? `window ${className}` : "window"}>
       <div className="title-bar">
         <button aria-label={t.common.close} className="close" onClick={onClose} />
         <h1 className="title">{title}</h1>
