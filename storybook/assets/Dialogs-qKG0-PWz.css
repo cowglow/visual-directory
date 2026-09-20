@@ -1,0 +1,1 @@
+.dialog-backdrop .window.accounts-window{max-width:42rem}.accounts-list-header,.accounts-list-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:8px;align-items:center}.accounts-list-header{font-weight:700;margin-bottom:6px}.accounts-list-row{margin-top:8px}.accounts-list-row:first-of-type{margin-top:0}.accounts-list-email{overflow-wrap:anywhere}
