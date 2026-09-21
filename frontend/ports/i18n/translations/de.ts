@@ -216,7 +216,7 @@ const de: Translations = {
     noteHint: "Für alle auf dieser Karte sichtbar. Bitte keine Namen von Kindern, Telefonnummern oder vollständige Adressen angeben.",
     noteCounter: (used: number, max: number) => `${used}/${max}`,
     minimizationHint: "Tipp: Platziere die Stecknadel an deiner Haustür — mehr Genauigkeit braucht niemand.",
-    consentLabel: (_link: string) =>
+    consentLabel: () =>
       "Ich habe den obigen Datenschutzhinweis gelesen und bin damit einverstanden, dass meine E-Mail-Adresse, der Standort meiner Stecknadel und meine Notiz anderen eingeladenen Teilnehmer:innen und Besucher:innen dieser Karte angezeigt werden.",
     fairness:
       "Nachbar:innen planen ihren Abend anhand dieser Karte. Bitte lasse deine Stecknadel bis Halloween stehen und entferne sie nicht erst in letzter Minute. Falls nötig, kannst du das aber jederzeit tun — sie wird sofort entfernt.",
@@ -247,7 +247,7 @@ const de: Translations = {
     revokeInviteFailed: "Die Einladung konnte nicht zurückgezogen werden.",
     acceptInviteTitle: "Du wurdest eingeladen",
     acceptInviteRole: (role: string) => `Du wurdest eingeladen, ${role === "participant" ? "als Teilnehmer:in" : "als Besucher:in"} beizutreten.`,
-    acceptInviteConsent: (_link: string) => "Ich habe den obigen Datenschutzhinweis gelesen und trete dieser Karte bei.",
+    acceptInviteConsent: () => "Ich habe den obigen Datenschutzhinweis gelesen und trete dieser Karte bei.",
     acceptInviteSubmit: "Karte beitreten",
     acceptInviteFailed: "Dieser Einladungslink ist ungültig, abgelaufen oder bereits verwendet.",
     acceptInviteConsentRequired: "Bitte bestätige, dass du den Datenschutzhinweis gelesen hast, um fortzufahren.",

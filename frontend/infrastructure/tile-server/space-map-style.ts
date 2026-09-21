@@ -3,9 +3,8 @@
 // CDNs at runtime (fine for the directory's internal map, forbidden here:
 // TASK.md section 3, "NO third-party requests at runtime: self-hosted tiles,
 // fonts, sprites, scripts; no CDNs").
-import type { StyleSpecification } from "maplibre-gl";
+import { addProtocol, type LayerSpecification, type StyleSpecification } from "maplibre-gl";
 import { Protocol } from "pmtiles";
-import maplibregl from "maplibre-gl";
 import { layers, namedFlavor } from "@protomaps/basemaps";
 import { MECKENHAUSEN_BOUNDARY_RING, MECKENHAUSEN_CENTER } from "domain/space/meckenhausen-boundary.ts";
 
@@ -17,7 +16,7 @@ let protocolRegistered = false;
 export function registerPmtilesProtocol(): void {
   if (protocolRegistered) return;
   const protocol = new Protocol();
-  maplibregl.addProtocol("pmtiles", protocol.tile);
+  addProtocol("pmtiles", protocol.tile);
   protocolRegistered = true;
 }
 
@@ -95,7 +94,12 @@ export function pmtilesStyle(lang: "en" | "de"): StyleSpecification {
         attribution: `${OSM_ATTRIBUTION}, © Protomaps`,
       },
     },
-    layers: layers("protomaps", namedFlavor("light"), { lang }),
+    // @protomaps/basemaps pins its own (older) @maplibre/maplibre-gl-style-spec
+    // internally, which this repo's maplibre-gl@6.9.0 doesn't structurally
+    // match at the type level even though the runtime JSON shape is fine (it's
+    // the same MapLibre style spec both packages target) - a version-skew type
+    // cast, not a real type hole; see docs/WORKLOG.md.
+    layers: layers("protomaps", namedFlavor("light"), { lang }) as unknown as LayerSpecification[],
   };
 }
 

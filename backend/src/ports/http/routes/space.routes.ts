@@ -230,6 +230,23 @@ export function createSpaceRouter(deps: SpaceRouterDeps): Router {
       const space = await loadOwnSpace(req, res);
       if (!space) return;
       const locations = await deps.spaceLocationRepository.findAllBySpace(space.id);
+      // TASK.md section 6: "API responses use Cache-Control: private,
+      // max-age=0, must-revalidate with an ETag" - a cheap weak ETag derived
+      // from the data itself (count + the newest updatedAt), not a hash of the
+      // body, so it changes exactly when the collection actually changes and
+      // nothing else. private (session-specific auth header, not a shared
+      // cache) + max-age=0 (always revalidate) + must-revalidate (never serve
+      // stale on a revalidation failure) - the browser/service-worker cache
+      // still gets to skip re-downloading the body via 304, which is the
+      // actual bandwidth win.
+      const newestUpdate = locations.reduce((max, l) => (l.updatedAt > max ? l.updatedAt : max), "");
+      const etag = `W/"${locations.length}-${newestUpdate}"`;
+      res.set("Cache-Control", "private, max-age=0, must-revalidate");
+      res.set("ETag", etag);
+      if (req.header("if-none-match") === etag) {
+        res.status(304).end();
+        return;
+      }
       res.json({ locations });
     }),
   );

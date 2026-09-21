@@ -22,8 +22,12 @@ export const MECKENHAUSEN_BOUNDARY_RING: readonly (readonly [number, number])[] 
 
 export const MECKENHAUSEN_CENTER = { lat: 49.1718269, lng: 11.2890778 } as const;
 
-// MapLibre's maxBounds: [[west, south], [east, north]].
-export const MECKENHAUSEN_MAX_BOUNDS: [[number, number], [number, number]] = [
-  [MECKENHAUSEN_BBOX.west, MECKENHAUSEN_BBOX.south],
-  [MECKENHAUSEN_BBOX.east, MECKENHAUSEN_BBOX.north],
+// MapLibre's maxBounds, flat [west, south, east, north] form (the form this
+// repo's @vis.gl/react-maplibre version's types require - see
+// SpaceMap.tsx).
+export const MECKENHAUSEN_MAX_BOUNDS: [number, number, number, number] = [
+  MECKENHAUSEN_BBOX.west,
+  MECKENHAUSEN_BBOX.south,
+  MECKENHAUSEN_BBOX.east,
+  MECKENHAUSEN_BBOX.north,
 ];

@@ -215,7 +215,7 @@ const es: Translations = {
     noteHint: "Visible para todos en este mapa. Por favor no incluyas nombres de niños, teléfonos ni una dirección completa.",
     noteCounter: (used: number, max: number) => `${used}/${max}`,
     minimizationHint: "Consejo: coloca el marcador en tu puerta principal — nadie necesita más precisión.",
-    consentLabel: (_link: string) =>
+    consentLabel: () =>
       "He leído el aviso de privacidad de arriba y acepto que mi correo, la ubicación de mi marcador y mi nota se muestren a otros participantes y visitantes invitados a este mapa.",
     fairness:
       "Los vecinos planean su noche según este mapa. Mantén tu marcador activo hasta Halloween y evita quitarlo a última hora. Si necesitas hacerlo, siempre puedes, y se elimina de inmediato.",
@@ -246,7 +246,7 @@ const es: Translations = {
     revokeInviteFailed: "No se pudo revocar esa invitación.",
     acceptInviteTitle: "Has sido invitado/a",
     acceptInviteRole: (role: string) => `Has sido invitado/a a unirte ${role === "participant" ? "como participante" : "como visitante"}.`,
-    acceptInviteConsent: (_link: string) => "He leído el aviso de privacidad de arriba y acepto unirme a este mapa.",
+    acceptInviteConsent: () => "He leído el aviso de privacidad de arriba y acepto unirme a este mapa.",
     acceptInviteSubmit: "Unirme al mapa",
     acceptInviteFailed: "Ese enlace de invitación no es válido, ha caducado o ya se ha usado.",
     acceptInviteConsentRequired: "Confirma que has leído el aviso de privacidad para continuar.",

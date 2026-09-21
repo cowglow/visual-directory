@@ -14,12 +14,20 @@ import { join } from "node:path";
 // APIs that would turn a "<script>"/"<img onerror>" payload into executing
 // markup instead of inert text. If nobody ever calls those APIs, no payload
 // can ever become markup, in this file or the next one added later.
-const FORBIDDEN_PATTERNS = [/dangerouslySetInnerHTML/, /\.innerHTML\s*=/, /\.setHTML\(/];
+// Matches actual usage (a JSX prop or object-literal assignment / a method
+// call), not just the word appearing in a comment explaining why it's
+// forbidden - this file's own doc comments (and this file's own pattern
+// list) say these names out loud, so a bare substring match would flag
+// itself.
+const FORBIDDEN_PATTERNS = [/dangerouslySetInnerHTML\s*[=:]/, /\.innerHTML\s*=/, /\.setHTML\(/];
 
 function collectSourceFiles(dir: string): string[] {
   return readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
     const path = join(dir, entry.name);
     if (entry.isDirectory()) return collectSourceFiles(path);
+    // Excludes *.test.ts - this file included, which would otherwise flag
+    // itself for containing the very patterns it's checking for.
+    if (entry.name.endsWith(".test.ts")) return [];
     if (entry.name.endsWith(".tsx") || entry.name.endsWith(".ts")) return [path];
     return [];
   });

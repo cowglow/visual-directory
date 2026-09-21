@@ -85,7 +85,7 @@ export default function LocationForm({
       </p>
       <label className="space-field-checkbox">
         <input type="checkbox" checked={confirmed} onChange={(event) => setConfirmed(event.target.checked)} required />
-        {t.spaceApp.consentLabel(t.spaceApp.privacyLink)}
+        {t.spaceApp.consentLabel()}
       </label>
 
       <p className="space-fairness-note">{t.spaceApp.fairness}</p>

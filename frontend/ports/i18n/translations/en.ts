@@ -213,7 +213,7 @@ const en = {
     noteHint: "Visible to everyone on this map. Please don't include children's names, phone numbers, or a full address.",
     noteCounter: (used: number, max: number) => `${used}/${max}`,
     minimizationHint: "Tip: place the pin at your front door — that's all the precision anyone needs.",
-    consentLabel: (_link: string) =>
+    consentLabel: () =>
       "I have read the privacy notice above and agree that my email, pin location, and note will be shown to other invited participants and visitors of this map.",
     fairness:
       "Neighbors plan their evening around this map. Please keep your pin up through Halloween and avoid removing it at the last minute. If you do need to, you always can, and it is removed immediately.",
@@ -244,7 +244,7 @@ const en = {
     revokeInviteFailed: "Couldn't revoke that invite.",
     acceptInviteTitle: "You've been invited",
     acceptInviteRole: (role: string) => `You've been invited to join ${role === "participant" ? "as a participant" : "as a visitor"}.`,
-    acceptInviteConsent: (_link: string) => "I have read the privacy notice above and agree to join this map.",
+    acceptInviteConsent: () => "I have read the privacy notice above and agree to join this map.",
     acceptInviteSubmit: "Join the map",
     acceptInviteFailed: "That invite link is invalid, expired, or already used.",
     acceptInviteConsentRequired: "Please confirm you've read the privacy notice to continue.",
