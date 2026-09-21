@@ -123,6 +123,32 @@ VITE_EVENT_END_AT=2026-11-01T00:00:00+01:00
 VITE_LOCATION_CACHE_TTL_HOURS=24
 ```
 
+## 2026-09-21 — Font licensing note, and a couple of already-satisfied items
+
+TASK.md section 4: "Check font licenses and note them" - for when the real
+glyphs get bundled (still blocked, see the entry above): Protomaps'
+`@protomaps/basemaps` style layers (frontend/infrastructure/tile-server/
+space-map-style.ts) are designed around **Noto Sans**, licensed under the
+SIL Open Font License 1.1 - permissive, allows bundling/redistribution
+(including in a project like this one) and modification, only restricts
+selling the font *by itself* and requires keeping the license notice with
+it. Whoever generates the glyph PBFs (e.g. via `protomaps/basemaps`' own
+font-build tooling, or `node-fontnik`) should pull Noto Sans specifically
+and keep its `OFL.txt` alongside the bundled `.pbf` files under
+`public/spaces/fonts/`, per the OFL's own redistribution requirement.
+
+Two section 8 items that turned out to already be satisfied rather than
+needing new code, worth recording so they don't look skipped:
+- "Request body size limits": `express.json()` (backend/src/ports/http/app.ts)
+  defaults to a 100kb body limit - already a real, enforced bound, not an
+  unlimited default. Left as-is rather than adding a redundant explicit
+  value.
+- The "sign-up form" fairness-messaging placement (section 3) - added to
+  `LocationForm.tsx` (the pin form) from the start; also added to
+  `InviteAcceptPage.tsx` (the actual account-creation/consent screen) on a
+  re-read, since "sign-up form" more literally means that page. Both now
+  show it, alongside the delete-confirmation dialog.
+
 ## 2026-09-21 — Backend rewrite: schema, use-cases, routes (blocked on DB reset)
 
 Rewrote the backend for real this time (previous entries below described this

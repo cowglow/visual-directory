@@ -71,6 +71,7 @@ export default function InviteAcceptPage() {
           <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} required />
           {t.spaceApp.acceptInviteConsent()}
         </label>
+        <p className="space-fairness-note">{t.spaceApp.fairness}</p>
         <button type="submit" className="btn" disabled={status === "pending"}>
           {t.spaceApp.acceptInviteSubmit}
         </button>
