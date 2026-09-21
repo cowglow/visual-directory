@@ -1,15 +1,14 @@
 [![Publish Site](https://github.com/cowglow/visual-directory/actions/workflows/deploy.yml/badge.svg)](https://github.com/cowglow/visual-directory/actions/workflows/deploy.yml)
 [![Tests](https://github.com/cowglow/visual-directory/actions/workflows/test.yml/badge.svg)](https://github.com/cowglow/visual-directory/actions/workflows/test.yml)
 [![Hetzner Deploy](https://cowglow.github.io/visual-directory/status-badge.svg)](https://api.cowglow.io/health)
-
-# Visual Directory
+# Halloween Opt-In Trick-O-Treating
 
 A map-based contact directory for leadership organizations: leaders add members by
 clicking their location on the map and assign them to organizations. See
 `docs/PLAN.md` for the full product plan and `docs/USER_MANUAL.md` for how to
 actually use the app.
 
-![Visual Directory screenshot](docs/images/app-screenshot.png)
+![Halloween-Opt-In-Trick-O-Treating.png](public/Halloween-Opt-In-Trick-O-Treating.png)
 
 ## Repo layout
 

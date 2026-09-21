@@ -6,7 +6,7 @@
   "scripts": {
     "predev": "scripts/dev-cert-ensure.sh",
     "dev": "vite --host --port 3000",
-    "dev:ai": "claude --dangerously-skip-permissions --resume",
+  "dev:ai": "claude --dangerously-skip-permissions",
     "dev:up": "pnpm backend:up && pnpm dev",
     "dev:down": "docker compose down",
     "docker:dev": "docker compose run --service-ports frontend bash",

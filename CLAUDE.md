@@ -153,3 +153,10 @@ or leader) can read the full directory (address + contact info) — there's no r
 view. The access boundary is *write*, not *read*. This is a trust-based tool for one
 organization, not a multi-tenant product — don't add per-field visibility controls
 without checking `docs/PLAN.md`'s "explicitly deferred" list first.
+
+## Autonomous work log
+Keep a running log in `docs/WORKLOG.md`. Before each major step, append a
+timestamped entry: what you're about to do and why. After each step, note the
+result, files changed, tests run, and any decisions or dead ends. Commit
+small and often. If blocked, log the blocker and move to the next task
+rather than stopping to ask.
