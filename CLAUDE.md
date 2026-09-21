@@ -40,6 +40,8 @@ pnpm test -- path/to/file.test.ts     # run a single unit test file
 pnpm test:e2e                         # playwright test (requires backend running, see e2e/README.md)
 pnpm format                           # prettier . --write
 pnpm storybook                        # storybook dev on :6006
+pnpm build-storybook                  # static build, published at /storybook/ on deploy — see
+                                       # .github/workflows/deploy.yml
 ```
 
 Backend (`backend/`):
