@@ -1,5 +1,16 @@
 name: visual-directory
 
+# TASK.md section 3's access-log retention check (docs/WORKLOG.md, 2026-09-21):
+# none of these three services set a logging driver, so their stdout - under
+# Docker's default json-file driver - has no size or retention limit and
+# accumulates forever. `x-logging` below caps that for all three (Caddy's own
+# access log gets its own explicit file-based retention too - see Caddyfile).
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "7"
+
 services:
   db:
     image: postgres:16
@@ -16,6 +27,7 @@ services:
       interval: 10s
       timeout: 5s
       retries: 5
+    logging: *default-logging
 
   api:
     image: ghcr.io/cowglow/visual-directory-api:latest
@@ -33,6 +45,7 @@ services:
     depends_on:
       db:
         condition: service_healthy
+    logging: *default-logging
 
   caddy:
     image: caddy:2
@@ -46,6 +59,7 @@ services:
       - caddy-data:/data
     depends_on:
       - api
+    logging: *default-logging
 
 volumes:
   postgres-data:
