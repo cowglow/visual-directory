@@ -1,5 +1,107 @@
 # Work log
 
+## SUMMARY (2026-09-21 session) — read this first
+
+TASK.md asked for the full Meckenhausen Halloween map pivot. Section 0's
+claim that a prior session had already half-built the backend **was false**
+(see the finding below) - I built from the actual starting point (the
+generic dynamic-field Spaces prototype), not from that description.
+
+### What's done and verified (build/lint/test all green)
+
+- **Backend**: full schema rewrite (`Space`/`SpaceParticipant` with
+  `role`/`consentAt`/`noticeVersion`/`SpaceLocation`/`SpaceInvite`),
+  invite-only sign-up with anti-enumeration, expiring/revocable/rate-limited/
+  capped invite tokens, ownership-checked pin CRUD, hand-rolled
+  point-in-polygon boundary validation (client *and* server), NFC-normalized/
+  control-character-rejecting text validation, `EVENT_END_AT` → 410 gating,
+  `pnpm seed:space`/`purge:space`/`erase:participant` operator scripts, a
+  strict CSP for the Spaces app, and Docker/Caddy access-log retention (was
+  unbounded before this). **52 backend tests pass** (`cd backend && pnpm
+  test`), covering invite/ownership/role-escalation/boundary/validation
+  logic against fake in-memory repositories - not against a live database
+  (see the blocker below).
+- **Frontend**: self-hosted MapLibre map (pinned `maplibre-gl`/`pmtiles`
+  versions, `@protomaps/basemaps` for style layers, pmtiles protocol
+  registered, `maxBounds` enforced, a real working placeholder style since
+  the real tiles aren't available yet - see below), mouse/touch/keyboard pin
+  placement with nudge buttons, an `aria-live` region, Escape-to-cancel, and
+  `prefers-reduced-motion` respected throughout, map/list toggle, invite
+  panel, remove-me flow with the fairness copy, bilingual (en/de, plus es
+  since the shared `Translations` type requires it) privacy notice, a
+  hand-rolled service worker + IndexedDB location cache with ETag
+  revalidation, and a PWA manifest. **32 frontend tests pass** (`pnpm test`),
+  including a static scan asserting no file in the feature ever uses
+  `innerHTML`/`dangerouslySetInnerHTML`/`setHTML`.
+- `pnpm build` and `pnpm lint` (both frontend and backend) are clean.
+  `pnpm dev:https` starts and serves correctly (verified with `curl -sk`
+  against the running dev server, including from the machine's LAN IP).
+
+### What's blocked, and what I need you to do
+
+1. **Local dev database is stale** (`backend/prisma/migrations/
+   20260915152325_opt_in_spaces` was edited in place, but the local Postgres
+   still has the old table shapes). Prisma's own CLI **refused to run
+   `migrate reset`**, printing a built-in guard against an AI agent running a
+   destructive DB command without your explicit consent - I did not try to
+   route around it. Run this yourself (see the full entry below for a
+   less-destructive alternative):
+   ```
+   cd backend && pnpm exec prisma migrate reset --force
+   ```
+   Until this runs, nothing in this feature has been exercised against a
+   real database - not `pnpm seed:space`, not a live sign-in/invite/pin
+   round-trip, nothing. Everything above is verified at the build/lint/unit-
+   test level only. **Please do a real end-to-end pass once the DB is
+   reset** (seed a space, invite yourself as a visitor, accept, place a pin
+   as the seeded participant, confirm the visitor sees it) before trusting
+   this in front of real neighbors.
+2. **The `.pmtiles` file** doesn't exist - no `go-pmtiles` CLI is installed
+   in this environment, and `https://build.protomaps.com/builds.json`
+   404s from here (the domain itself resolves and responds - see
+   `scripts/build-tiles.sh`'s comment for exactly what that means and what
+   to check). The map currently renders a real, working **placeholder**:
+   the boundary outline on a plain background, self-hosted, zero network
+   requests - not broken, just not the real basemap. Once you have a real
+   `.pmtiles` file (run `scripts/build-tiles.sh`, fixing the builds.json URL
+   first if needed) at `public/spaces/tiles/meckenhausen-v1.pmtiles`, the map
+   will pick it up automatically (`SpaceMap.tsx` checks for it at runtime).
+   **Glyphs (font PBFs) and a sprite sheet also need bundling** under
+   `public/spaces/fonts/` and `public/spaces/sprite/` for label/icon layers
+   to render - see the font-licensing entry below (Noto Sans, OFL-1.1) for
+   what to grab and how to keep its license alongside it.
+3. **192×192 / 512×512 / maskable PNG icons** aren't generated - no
+   rasterizer (ImageMagick, `rsvg-convert`, or an existing npm dependency)
+   was available. The SVG source is at `public/spaces/icon.svg` (already
+   wired into the manifest as a working `sizes: "any"` icon, which many
+   browsers accept directly) - rasterize it yourself (e.g. open it in a
+   browser and export, or `npx sharp-cli`) to `icon-192.png`, `icon-512.png`,
+   and `icon-maskable-512.png` in the same directory.
+4. **`.env.example` lines**: reading/editing both `.env.example` files is
+   blocked by a permission rule in this session (confirmed directly, not
+   assumed). The exact lines to add by hand are in the two entries below
+   titled "`.env.example` lines" - **please add these**, especially
+   `VITE_PRIVACY_CONTROLLER_NAME`/`VITE_PRIVACY_CONTROLLER_CONTACT` (the
+   privacy notice currently shows literal placeholder text until you do).
+5. **Not verified in a real browser** at all - this session had no way to
+   drive one. The CSP, the service worker, the map rendering, touch/mobile
+   behavior, and screen-reader behavior are all written carefully against
+   the relevant specs/APIs but **none of it has been visually or
+   interactively checked**. Please actually open it - on desktop, on a
+   phone (see `docs/DEV-HTTPS.md` for trusting the dev cert there), and
+   ideally with a screen reader - before the event.
+6. No new Playwright e2e specs were added for this feature (blocked on the
+   same DB issue as above) - only backend/frontend unit tests exist.
+
+### Everything else in TASK.md
+
+Every remaining item (sections 1-10) is either implemented and covered
+above, or called out as a specific decision/blocker in the dated entries
+below - nothing was silently skipped. Read chronologically from here down if
+you want the full reasoning behind any specific choice (roles, the boundary
+bbox fallback, why vite-plugin-pwa was dropped in favor of a hand-rolled
+service worker, the CSP relaxations, etc.).
+
 ## 2026-09-21 — New session: TASK.md verification finding (IMPORTANT)
 
 New session starting on `feature/opt-in-signups`, instructed to carry out
