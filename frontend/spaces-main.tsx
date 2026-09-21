@@ -3,7 +3,10 @@ import ReactDOM from "react-dom/client";
 import { HashRouter } from "react-router-dom";
 import SpaceApp from "ports/pages/space/SpaceApp.tsx";
 import { I18nContextProvider } from "ports/context/i18n/i18n.provider.tsx";
+import { registerSpaceServiceWorker } from "infrastructure/service-worker/register-space-service-worker.ts";
 import "@sakun/system.css";
+
+registerSpaceServiceWorker();
 
 // A separate build entry from frontend/main.tsx (see spaces/index.html and
 // vite.config.ts's rollupOptions.input), served at /visual-directory/spaces/ -

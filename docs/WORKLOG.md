@@ -101,9 +101,27 @@ SEED_SPACE_NAME=Meckenhausen Halloween
 SEED_SPACE_PARTICIPANT_EMAIL=
 ```
 
-Will append the frontend/root `.env.example` lines (privacy-notice controller
-contact, cache TTL) here too once that part is built, rather than write this
-entry twice.
+Frontend (root `.env.example`, alongside the existing `VITE_API_URL`):
+
+```
+# Halloween map (docs/WORKLOG.md, 2026-09-21 pivot).
+VITE_SPACE_SLUG=meckenhausen
+
+# Privacy notice controller info (TASK.md section 3) - placeholders, fill in
+# for real before this is ever deployed.
+VITE_PRIVACY_CONTROLLER_NAME=
+VITE_PRIVACY_CONTROLLER_CONTACT=
+
+# Must match the backend's EVENT_END_AT exactly (see backend/.env.example
+# lines above) - this one only controls what date the privacy notice page
+# displays, it doesn't gate anything itself.
+VITE_EVENT_END_AT=2026-11-01T00:00:00+01:00
+
+# How often the IndexedDB location cache revalidates against the API on its
+# own (independent of the "once per session on load" revalidation - see
+# frontend/infrastructure/space-cache/location-cache.ts).
+VITE_LOCATION_CACHE_TTL_HOURS=24
+```
 
 ## 2026-09-21 — Backend rewrite: schema, use-cases, routes (blocked on DB reset)
 
