@@ -6,12 +6,19 @@
 # https://github.com/protomaps/go-pmtiles/releases - and network access to
 # build.protomaps.com.
 #
-# NOT RUN in the session that wrote this script: neither the CLI nor a
-# reachable build.protomaps.com were available (see docs/WORKLOG.md) - this
-# is written correctly against Protomaps' documented extract workflow, but
-# hasn't itself been executed end-to-end. Run it yourself once both
-# prerequisites are met; it's safe to re-run (fully overwrites its own
-# output).
+# NOT RUN in the session that wrote this script, and the exact builds.json
+# URL below is UNVERIFIED: the go-pmtiles CLI isn't installed here, and
+# https://build.protomaps.com/builds.json itself returned a bare 404 (not a
+# DNS/network failure - build.protomaps.com resolves and responds, Cloudflare
+# fronted, just not at that exact path from here) when checked during this
+# session (docs/WORKLOG.md, 2026-09-21). That could mean the path has moved
+# since this was written, or it could be environment-specific (a CDN edge
+# case, a UA block, etc.) - check
+# https://docs.protomaps.com/basemaps/downloads for the current documented
+# way to find the latest daily build before relying on this, and fix the
+# URL below if it's changed. Everything after that lookup (the bbox, the
+# `pmtiles extract` invocation itself) is written correctly against
+# Protomaps' documented CLI usage and just needs a valid input URL.
 set -euo pipefail
 
 ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
