@@ -149,6 +149,10 @@ class FakeInviteRepository implements SpaceInviteRepository {
     return [...this.byId.values()].find((i) => i.tokenHash === tokenHash) ?? null;
   }
 
+  async findAllByInviter(inviterParticipantId: string) {
+    return [...this.byId.values()].filter((i) => i.inviterParticipantId === inviterParticipantId);
+  }
+
   async create(input: {
     spaceId: string;
     email: string;
@@ -212,7 +216,7 @@ function fakeSpaceTokenSigner(): SpaceTokenSigner {
 }
 
 function inviteDeps(overrides: Partial<Parameters<typeof createInviteParticipantUseCase>[0]> = {}) {
-  return {
+  const base = {
     spaceParticipantRepository: new FakeParticipantRepository(),
     spaceInviteRepository: new FakeInviteRepository(),
     mailer: fakeMailer(),
@@ -224,8 +228,13 @@ function inviteDeps(overrides: Partial<Parameters<typeof createInviteParticipant
     inviteRateLimitWindowMs: 60 * 60 * 1000,
     inviteRateLimitMax: 10,
     inviteMaxPerParticipant: 50,
-    ...overrides,
   };
+  // Assigning (not spreading) keeps `spaceParticipantRepository` typed as the
+  // concrete FakeParticipantRepository (so tests can call its `.seed()`
+  // helper, which isn't part of the SpaceParticipantRepository interface)
+  // instead of widening to the interface type the way `{...base, ...overrides}`
+  // would.
+  return Object.assign(base, overrides);
 }
 
 describe("inviteParticipant", () => {

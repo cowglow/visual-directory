@@ -6,7 +6,8 @@
   "scripts": {
     "predev": "scripts/dev-cert-ensure.sh",
     "dev": "vite --host --port 3000",
-  "dev:ai": "claude --dangerously-skip-permissions",
+    "dev:https": "pnpm dev",
+    "dev:ai": "claude --dangerously-skip-permissions",
     "dev:up": "pnpm backend:up && pnpm dev",
     "dev:down": "docker compose down",
     "docker:dev": "docker compose run --service-ports frontend bash",
@@ -26,6 +27,7 @@
     "backend:seed:demo": "docker compose exec -e SEED_LEADER_EMAIL api pnpm seed:demo"
   },
   "dependencies": {
+    "@protomaps/basemaps": "^5.7.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.18.4",
@@ -69,7 +71,8 @@
     "eslint-plugin-react-refresh": "^0.4.19",
     "eslint-plugin-storybook": "^0.12.0",
     "globals": "^17.7.0",
-    "maplibre-gl": "^6.9.0",
+    "maplibre-gl": "6.9.0",
+    "pmtiles": "4.5.0",
     "prettier": "^3.5.2",
     "react-redux": "^9.2.0",
     "storybook": "^8.6.17",
@@ -77,6 +80,7 @@
     "typescript": "^5.7.3",
     "vite": "^6.4.1",
     "vite-plugin-checker": "^0.8.0",
+    "vite-plugin-pwa": "^1.3.0",
     "vite-tsconfig-paths": "^5.1.4",
     "vitest": "^4.1.11"
   },

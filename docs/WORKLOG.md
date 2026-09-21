@@ -74,6 +74,37 @@ confirmed via `which`, so the tile pipeline is blocked at the "no CLI or
 network" case section 4 already anticipates — building against the
 placeholder style as instructed).
 
+## 2026-09-21 — `.env.example` lines (permission-blocked, section 10)
+
+Reading/editing `backend/.env.example` (and presumably the root `.env.example`)
+is blocked by a permission rule in this session - confirmed by trying to
+`Read` it directly, not just inferred from the recovered worklog entry below.
+Per TASK.md section 10 ("do NOT work around it: write the exact lines to
+docs/WORKLOG.md for me"), here's what to add by hand. Backend
+(`backend/.env.example`, alongside the existing `SPACE_JWT_SECRET`):
+
+```
+# Space invites (docs/WORKLOG.md, 2026-09-21 pivot) - all optional, shown with
+# their defaults from backend/src/composition-root.ts.
+SPACE_INVITE_TTL_MS=604800000            # 7 days
+SPACE_INVITE_RATE_LIMIT_WINDOW_MS=3600000 # 1 hour
+SPACE_INVITE_RATE_LIMIT_MAX=10
+SPACE_INVITE_MAX_PER_PARTICIPANT=50
+
+# When the Meckenhausen map's data is purged and the API starts returning 410
+# for it - midnight after Halloween, Europe/Berlin.
+EVENT_END_AT=2026-11-01T00:00:00+01:00
+
+# Seeding the first participant (pnpm seed:space) - see backend/prisma/seed-space.ts.
+SEED_SPACE_SLUG=meckenhausen
+SEED_SPACE_NAME=Meckenhausen Halloween
+SEED_SPACE_PARTICIPANT_EMAIL=
+```
+
+Will append the frontend/root `.env.example` lines (privacy-notice controller
+contact, cache TTL) here too once that part is built, rather than write this
+entry twice.
+
 ## 2026-09-21 — Backend rewrite: schema, use-cases, routes (blocked on DB reset)
 
 Rewrote the backend for real this time (previous entries below described this

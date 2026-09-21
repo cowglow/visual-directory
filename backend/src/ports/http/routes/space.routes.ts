@@ -315,6 +315,24 @@ export function createSpaceRouter(deps: SpaceRouterDeps): Router {
     }),
   );
 
+  router.get(
+    "/:slug/invites",
+    eventActive,
+    deps.requireSpaceAuth,
+    requireSpaceRole("participant"),
+    asyncHandler(async (req, res) => {
+      const space = await loadOwnSpace(req, res);
+      if (!space) return;
+      const requester = await loadParticipant(req, res);
+      if (!requester) return;
+      const invites = await deps.spaceInviteRepository.findAllByInviter(requester.id);
+      // Never expose tokenHash - it's the only secret this record has, and
+      // nothing on the client needs it (the raw token lives only in the
+      // emailed link, never round-tripped back through this endpoint).
+      res.json({ invites: invites.map(({ tokenHash: _tokenHash, ...rest }) => rest) });
+    }),
+  );
+
   router.post(
     "/:slug/invites",
     eventActive,

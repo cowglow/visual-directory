@@ -55,6 +55,7 @@ export interface SpaceMagicLinkTokenRepository {
 export interface SpaceInviteRepository {
   findById(id: string): Promise<SpaceInvite | null>;
   findByTokenHash(tokenHash: string): Promise<SpaceInvite | null>;
+  findAllByInviter(inviterParticipantId: string): Promise<SpaceInvite[]>;
   create(input: {
     spaceId: string;
     email: string;

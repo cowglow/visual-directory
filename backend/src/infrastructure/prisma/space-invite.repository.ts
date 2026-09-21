@@ -39,6 +39,14 @@ export const prismaSpaceInviteRepository: SpaceInviteRepository = {
     return invite ? toDomainInvite(invite) : null;
   },
 
+  async findAllByInviter(inviterParticipantId) {
+    const invites = await prisma.spaceInvite.findMany({
+      where: { inviterParticipantId },
+      orderBy: { createdAt: "desc" },
+    });
+    return invites.map(toDomainInvite);
+  },
+
   async create(input) {
     const invite = await prisma.spaceInvite.create({
       data: {

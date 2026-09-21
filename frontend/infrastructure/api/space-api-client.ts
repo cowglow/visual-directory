@@ -1,3 +1,5 @@
+import type { SpaceRole } from "domain/space/space.types.ts";
+
 // A separate, minimal client from infrastructure/api/api-client.ts on purpose -
 // a browser could hold a directory session and one or more Space sessions at
 // the same time, and the two must never share a token store or an
@@ -12,11 +14,21 @@ export class SpaceApiError extends Error {
   }
 }
 
+// TASK.md section 3: "After [EVENT_END_AT], the API returns 410 and serves no
+// location data" - a dedicated status check (rather than folding it into
+// SpaceApiError) so callers can route it to one clear "this map has ended"
+// screen instead of a generic error message.
+export class SpaceEventEndedError extends Error {
+  constructor() {
+    super("This map has ended and its data has been removed.");
+  }
+}
+
 function tokenKey(spaceSlug: string): string {
   return `space-session:${spaceSlug}`;
 }
 
-export type SpaceSession = { token: string; participantId: string; email: string };
+export type SpaceSession = { token: string; participantId: string; email: string; role: SpaceRole };
 
 export function getSpaceSession(spaceSlug: string): SpaceSession | null {
   try {
@@ -50,6 +62,10 @@ export async function spaceApiFetch<T>(spaceSlug: string | null, path: string, o
     response = await fetch(`${API_URL}${path}`, { ...options, headers });
   } catch {
     throw new SpaceApiError("Unable to reach the server. Check your connection and try again.", 0);
+  }
+
+  if (response.status === 410) {
+    throw new SpaceEventEndedError();
   }
 
   if (!response.ok) {
