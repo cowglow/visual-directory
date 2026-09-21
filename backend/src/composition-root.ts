@@ -13,14 +13,25 @@ import { randomTokenGenerator } from "./infrastructure/auth/token-generator.js";
 import { createRequireSpaceAuth } from "./ports/http/middleware/require-space-auth.js";
 import { prismaSpaceParticipantRepository, prismaSpaceRepository } from "./infrastructure/prisma/space.repository.js";
 import { prismaSpaceMagicLinkTokenRepository } from "./infrastructure/prisma/space-magic-link-token.repository.js";
-import { prismaEventRepository } from "./infrastructure/prisma/event.repository.js";
-import { prismaEntryRepository } from "./infrastructure/prisma/entry.repository.js";
+import { prismaSpaceLocationRepository } from "./infrastructure/prisma/space-location.repository.js";
+import { prismaSpaceInviteRepository } from "./infrastructure/prisma/space-invite.repository.js";
 import { spaceJwtTokenSigner } from "./infrastructure/auth/space-jwt-token-signer.js";
 
 const CLIENT_ORIGIN = process.env.CLIENT_ORIGIN ?? "http://localhost:3000";
 // Must match vite.config.ts's `base` — the SPA is served from this subpath
 // (a GitHub Pages project page), not from CLIENT_ORIGIN's root.
 const CLIENT_APP_PATH = "/visual-directory";
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+// TASK.md section 2/3: all configurable via env, all with sane defaults so a
+// fresh checkout works without setting anything.
+const INVITE_TOKEN_TTL_MS = Number(process.env.SPACE_INVITE_TTL_MS ?? 7 * DAY_MS);
+const INVITE_RATE_LIMIT_WINDOW_MS = Number(process.env.SPACE_INVITE_RATE_LIMIT_WINDOW_MS ?? 60 * 60 * 1000);
+const INVITE_RATE_LIMIT_MAX = Number(process.env.SPACE_INVITE_RATE_LIMIT_MAX ?? 10);
+const INVITE_MAX_PER_PARTICIPANT = Number(process.env.SPACE_INVITE_MAX_PER_PARTICIPANT ?? 50);
+// Midnight after Halloween, Europe/Berlin (TASK.md section 3).
+const EVENT_END_AT = new Date(process.env.EVENT_END_AT ?? "2026-11-01T00:00:00+01:00");
 
 export function buildAppDeps(): AppDeps {
   return {
@@ -39,8 +50,13 @@ export function buildAppDeps(): AppDeps {
     spaceRepository: prismaSpaceRepository,
     spaceParticipantRepository: prismaSpaceParticipantRepository,
     spaceMagicLinkTokenRepository: prismaSpaceMagicLinkTokenRepository,
-    eventRepository: prismaEventRepository,
-    entryRepository: prismaEntryRepository,
+    spaceLocationRepository: prismaSpaceLocationRepository,
+    spaceInviteRepository: prismaSpaceInviteRepository,
     spaceTokenSigner: spaceJwtTokenSigner,
+    inviteTokenTtlMs: INVITE_TOKEN_TTL_MS,
+    inviteRateLimitWindowMs: INVITE_RATE_LIMIT_WINDOW_MS,
+    inviteRateLimitMax: INVITE_RATE_LIMIT_MAX,
+    inviteMaxPerParticipant: INVITE_MAX_PER_PARTICIPANT,
+    eventEndAt: EVENT_END_AT,
   };
 }

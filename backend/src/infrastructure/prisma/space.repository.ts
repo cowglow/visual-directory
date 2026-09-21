@@ -18,17 +18,23 @@ export const prismaSpaceRepository: SpaceRepository = {
   },
 };
 
-function toDomainParticipant(participant: {
+export function toDomainParticipant(participant: {
   id: string;
   spaceId: string;
   email: string;
-  displayName: string | null;
+  role: SpaceParticipant["role"];
+  consentAt: Date;
+  noticeVersion: string;
+  createdAt: Date;
 }): SpaceParticipant {
   return {
     id: participant.id,
     spaceId: participant.spaceId,
     email: participant.email,
-    displayName: participant.displayName,
+    role: participant.role,
+    consentAt: participant.consentAt.toISOString(),
+    noticeVersion: participant.noticeVersion,
+    createdAt: participant.createdAt.toISOString(),
   };
 }
 
@@ -43,12 +49,31 @@ export const prismaSpaceParticipantRepository: SpaceParticipantRepository = {
     return participant ? toDomainParticipant(participant) : null;
   },
 
-  async findOrCreate(spaceId, email) {
-    const participant = await prisma.spaceParticipant.upsert({
-      where: { spaceId_email: { spaceId, email } },
-      update: {},
-      create: { spaceId, email },
+  async create(input) {
+    const participant = await prisma.spaceParticipant.create({
+      data: {
+        spaceId: input.spaceId,
+        email: input.email,
+        role: input.role,
+        consentAt: input.consentAt,
+        noticeVersion: input.noticeVersion,
+      },
     });
     return toDomainParticipant(participant);
+  },
+
+  async deleteCascade(id) {
+    // One transaction: a crash partway through must not leave a live session or
+    // an orphaned pin for a participant whose row is gone (TASK.md section 2).
+    await prisma.$transaction([
+      prisma.spaceLocation.deleteMany({ where: { participantId: id } }),
+      prisma.spaceMagicLinkToken.deleteMany({ where: { participantId: id } }),
+      // Only *their own unaccepted* invites - "their unaccepted invites" in the
+      // spec means invites this participant sent that nobody has accepted yet,
+      // not invites sent *to* them (those aren't tied to a participant row at
+      // all until accepted).
+      prisma.spaceInvite.deleteMany({ where: { inviterParticipantId: id, usedAt: null } }),
+      prisma.spaceParticipant.delete({ where: { id } }),
+    ]);
   },
 };

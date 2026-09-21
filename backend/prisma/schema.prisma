@@ -110,12 +110,27 @@ model AuditLogEntry {
   @@index([sequence])
 }
 
-// --- Opt-in signups (Spaces/Events/Entries) ---
+// --- Opt-in neighborhood maps (Spaces) ---
 // Deliberately decoupled from Account/Member/Organization above: this is a
-// separate, multi-tenant system (many independent neighborhoods) bolted onto
-// the same app, not an extension of the single-organization directory. No
-// foreign keys cross the boundary in either direction, and no audit log -
-// that trail is a directory-specific trust mechanism, not a blanket app rule.
+// separate, multi-tenant system (many independent neighborhoods, e.g. one per
+// event) bolted onto the same app, not an extension of the single-organization
+// directory. No foreign keys cross the boundary in either direction, and no
+// audit log - that trail is a directory-specific trust mechanism, not a
+// blanket app rule.
+//
+// Pivoted from a generic dynamic-field-schema opt-in form system to a fixed
+// map-pin sign-up (docs/WORKLOG.md, 2026-09-21): one participant, one
+// SpaceLocation pin, invite-only. The old FieldDef/OptInEvent/OptInEntry
+// tables are gone - a single-purpose map has no use for a generic form
+// builder, and keeping both would be an abstraction nobody asked for.
+
+enum SpaceRole {
+  // Owns a pin, can invite others, inherits every former "leader" capability
+  // that still applies to a neighborhood map.
+  participant
+  // Read-only map access. Arrives by invite only, same as a participant.
+  visitor
+}
 
 model Space {
   id        String   @id @default(uuid())
@@ -124,21 +139,48 @@ model Space {
   createdAt DateTime @default(now())
 
   participants SpaceParticipant[]
-  events       OptInEvent[]
+  locations    SpaceLocation[]
+  invites      SpaceInvite[]
 }
 
 model SpaceParticipant {
-  id          String   @id @default(uuid())
-  spaceId     String
-  space       Space    @relation(fields: [spaceId], references: [id])
-  email       String
-  displayName String?
-  createdAt   DateTime @default(now())
+  id            String    @id @default(uuid())
+  spaceId       String
+  space         Space     @relation(fields: [spaceId], references: [id])
+  email         String
+  role          SpaceRole
+  // GDPR consent record captured at invite-accept time - see
+  // domain/audit... no, this system has no audit log (see comment above);
+  // consentAt/noticeVersion IS the record, kept forever until the participant
+  // is deleted (consent withdrawal = deletion, see "Remove me").
+  consentAt     DateTime
+  noticeVersion String
+  createdAt     DateTime  @default(now())
 
+  location        SpaceLocation?
   magicLinkTokens SpaceMagicLinkToken[]
-  entries         OptInEntry[]
+  sentInvites     SpaceInvite[]         @relation("SpaceInviteInviter")
 
   @@unique([spaceId, email])
+}
+
+// One pin per participant (TASK.md section 1) - a 1:1 with SpaceParticipant
+// rather than a list, so "one entry per participant" is enforced by the
+// schema itself, not application logic.
+model SpaceLocation {
+  id            String   @id @default(uuid())
+  spaceId       String
+  space         Space    @relation(fields: [spaceId], references: [id])
+  participantId String   @unique
+  participant   SpaceParticipant @relation(fields: [participantId], references: [id])
+  label         String
+  note          String
+  lat           Float
+  lng           Float
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([spaceId])
 }
 
 model SpaceMagicLinkToken {
@@ -151,40 +193,26 @@ model SpaceMagicLinkToken {
   createdAt     DateTime  @default(now())
 }
 
-model OptInEvent {
-  id          String    @id @default(uuid())
-  spaceId     String
-  space       Space     @relation(fields: [spaceId], references: [id])
-  slug        String
-  title       String
-  // Free-text tag ("trick-or-treat", "block-party", ...), not an enum - a new
-  // kind of event never needs a migration.
-  kind        String
-  // FieldDef[] (see domain/space/space.types.ts) - what an entry's `data` must
-  // contain for this event. The whole point: a new event type is a new
-  // fieldSchema value, not a new table or form component.
-  fieldSchema Json
-  opensAt     DateTime?
-  closesAt    DateTime?
-  createdAt   DateTime  @default(now())
+// A single-use, revocable invite token - separate from SpaceMagicLinkToken
+// (which is only ever issued to an *existing* participant to sign back in).
+// Accepting one is what creates the SpaceParticipant row in the first place;
+// there's no other path to a participant/visitor account (section 2: "NO
+// public access").
+model SpaceInvite {
+  id                    String    @id @default(uuid())
+  spaceId               String
+  space                 Space     @relation(fields: [spaceId], references: [id])
+  email                 String
+  role                  SpaceRole
+  tokenHash             String    @unique
+  inviterParticipantId  String
+  inviter               SpaceParticipant @relation("SpaceInviteInviter", fields: [inviterParticipantId], references: [id])
+  expiresAt             DateTime
+  usedAt                DateTime?
+  revokedAt             DateTime?
+  createdAt             DateTime  @default(now())
 
-  entries OptInEntry[]
-
-  @@unique([spaceId, slug])
-}
-
-model OptInEntry {
-  id            String   @id @default(uuid())
-  eventId       String
-  event         OptInEvent @relation(fields: [eventId], references: [id])
-  participantId String
-  participant   SpaceParticipant @relation(fields: [participantId], references: [id])
-  // Denormalized for sorting/display/print even though the full answer set
-  // lives in `data` - avoids parsing JSON just to sort the list.
-  addressLabel  String?
-  data          Json
-  createdAt     DateTime @default(now())
-  updatedAt     DateTime @updatedAt
-
-  @@index([eventId])
+  @@index([spaceId])
+  @@index([email])
+  @@index([inviterParticipantId])
 }

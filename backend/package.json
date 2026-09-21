@@ -12,6 +12,9 @@
     "prisma:deploy": "prisma migrate deploy",
     "seed": "tsx prisma/seed.ts",
     "seed:demo": "tsx prisma/demo-seed.ts",
+    "seed:space": "tsx prisma/seed-space.ts",
+    "purge:space": "tsx prisma/purge-space.ts",
+    "erase:participant": "tsx prisma/erase-participant.ts",
     "test": "vitest run"
   },
   "dependencies": {

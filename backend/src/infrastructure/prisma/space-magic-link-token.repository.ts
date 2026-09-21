@@ -1,5 +1,6 @@
 import type { SpaceMagicLinkTokenRepository } from "../../application/space/space.repository.js";
 import { prisma } from "./prisma-client.js";
+import { toDomainParticipant } from "./space.repository.js";
 
 export const prismaSpaceMagicLinkTokenRepository: SpaceMagicLinkTokenRepository = {
   async create(participantId, tokenHash, expiresAt) {
@@ -16,12 +17,7 @@ export const prismaSpaceMagicLinkTokenRepository: SpaceMagicLinkTokenRepository 
     }
     return {
       record: { id: record.id, expiresAt: record.expiresAt, usedAt: record.usedAt },
-      participant: {
-        id: record.participant.id,
-        spaceId: record.participant.spaceId,
-        email: record.participant.email,
-        displayName: record.participant.displayName,
-      },
+      participant: toDomainParticipant(record.participant),
     };
   },
 

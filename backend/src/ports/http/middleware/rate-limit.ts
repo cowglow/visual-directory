@@ -38,3 +38,26 @@ export const spaceMagicLinkRateLimiter = rateLimit({
   legacyHeaders: false,
   message: { error: "Too many login link requests. Please wait a few minutes and try again." },
 });
+
+// Defense in depth on top of the per-inviter window/lifetime caps enforced in
+// space.use-cases.ts's inviteParticipant (which is the authoritative check,
+// since it's keyed by participant rather than IP) - this stops raw request
+// flooding against the endpoint regardless of whether a request even carries a
+// valid session.
+export const spaceInviteRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 30,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many invites sent. Please wait a few minutes and try again." },
+});
+
+// /spaces/:slug/invites/:token/accept has no session yet, same reasoning as
+// verifyRateLimiter for the directory's own /auth/verify.
+export const spaceInviteAcceptRateLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  limit: 20,
+  standardHeaders: true,
+  legacyHeaders: false,
+  message: { error: "Too many attempts. Please wait a few minutes and try again." },
+});

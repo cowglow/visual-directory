@@ -44,7 +44,13 @@ export function createRequireSpaceAuth(
       return;
     }
 
-    req.spaceSession = { scope: "space", participantId: participant.id, spaceId: participant.spaceId, email: participant.email };
+    req.spaceSession = {
+      scope: "space",
+      participantId: participant.id,
+      spaceId: participant.spaceId,
+      email: participant.email,
+      role: participant.role,
+    };
     next();
   });
 }
