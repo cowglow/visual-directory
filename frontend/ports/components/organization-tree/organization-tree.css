@@ -145,21 +145,41 @@
   color: var(--text-muted);
 }
 
+/* Sticky, not just the next block in flow — with a long expanded tree, the
+   selected member's details would otherwise scroll away below the fold,
+   needing a scroll back up to see them again. Stuck to the bottom of the
+   panel's own scroll area (not the page) on a stacked (mobile) layout, a
+   background + shadow so tree rows are clearly scrolling *behind* it, and
+   its own max-height + scroll so a long preview never pushes past the
+   viewport itself. */
 .org-preview {
   flex: 1 1 260px;
   min-width: 260px;
-  border-left: none;
+  position: sticky;
+  bottom: 0;
+  z-index: 1;
+  max-height: 45vh;
+  overflow-y: auto;
+  background: var(--surface);
   border-top: 1px solid var(--border);
-  padding-top: 1rem;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.08);
+  padding: 16px;
+  margin: 0 -16px -16px;
   font-size: 0.9em;
 }
 
 @media (min-width: 700px) {
   .org-preview {
+    top: 0;
+    bottom: auto;
+    max-height: calc(100vh - 56px - var(--bottom-nav-h) - 2rem);
     border-top: none;
     border-left: 1px solid var(--border);
-    padding-top: 0;
-    padding-left: 1rem;
+    border-radius: 0;
+    box-shadow: none;
+    padding: 0 0 0 1rem;
+    margin: 0;
   }
 }
 

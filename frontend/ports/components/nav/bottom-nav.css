@@ -4,13 +4,37 @@
   right: 0;
   bottom: 0;
   z-index: 1500;
-  display: flex;
   background: var(--surface);
   border-top: 1px solid var(--border);
   padding: 8px 8px calc(8px + env(safe-area-inset-bottom, 0px));
 }
 
+.bottom-nav-track {
+  position: relative;
+  display: flex;
+}
+
+/* The active tab's highlighted "surface" — one element that slides between
+   tab positions (see BottomNav.tsx's inline translateX) instead of each tab
+   independently toggling its own background on/off. prefers-reduced-motion
+   still gets an instant snap, never the slide. */
+.bottom-nav-indicator {
+  position: absolute;
+  inset: 0;
+  width: 25%;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  transition: transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-nav-indicator {
+    transition: none;
+  }
+}
+
 .bottom-nav-tab {
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -26,7 +50,6 @@
 }
 
 .bottom-nav-tab.is-active {
-  background: var(--accent-soft);
   color: var(--accent);
   font-weight: 600;
 }
