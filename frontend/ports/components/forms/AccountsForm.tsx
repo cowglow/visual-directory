@@ -19,7 +19,6 @@ import {
 import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { createRequestId } from "infrastructure/redux/request-id.ts";
 import Panel from "ports/components/panel/Panel.tsx";
-import BottomNav from "ports/components/nav/BottomNav.tsx";
 import "./AccountsForm.css";
 
 type Edit = { role: Role; memberId: string };
@@ -103,7 +102,7 @@ export default function AccountsForm({ z }: { z?: number }) {
       onClose={() => dispatch(closeWindow("ACCOUNTS_DIALOG"))}
       closeIcon="back"
       padded={false}
-      footer={<BottomNav active="accounts" />}
+      bottomNav
       headerAction={
         <button type="button" onClick={() => dispatch(openWindow({ type: "INVITE_DIALOG" }))}>
           {t.menu.inviteAccount}

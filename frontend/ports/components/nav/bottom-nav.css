@@ -1,5 +1,9 @@
 .bottom-nav {
-  flex: 0 0 auto;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1500;
   display: flex;
   background: var(--surface);
   border-top: 1px solid var(--border);

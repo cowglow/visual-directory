@@ -15,7 +15,6 @@ import { getOrganizations } from "infrastructure/redux/organization/organization
 import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { getMemberId, isLeader } from "infrastructure/redux/auth/auth.selectors.ts";
 import Panel from "ports/components/panel/Panel.tsx";
-import BottomNav from "ports/components/nav/BottomNav.tsx";
 import type { Member } from "domain/member/member.types.ts";
 import type { Organization } from "domain/organization/organization.types.ts";
 import type { OrganizationType } from "domain/shared/types.ts";
@@ -414,12 +413,17 @@ export default function OrganizationTree({ z }: { z?: number }) {
       onClose={() => dispatch(closeWindow("ORGANIZATION_TREE_DIALOG"))}
       closeIcon="back"
       padded={false}
-      footer={<BottomNav active="organizations" />}
+      bottomNav
       headerAction={
         leader && (
-          <button type="button" onClick={() => dispatch(openWindow({ type: "ORGANIZATION_DIALOG" }))}>
-            {t.menu.addOrganization}
-          </button>
+          <>
+            <button type="button" onClick={() => dispatch(openWindow({ type: "MEMBER_DIALOG" }))}>
+              {t.menu.addMember}
+            </button>
+            <button type="button" onClick={() => dispatch(openWindow({ type: "ORGANIZATION_DIALOG" }))}>
+              {t.menu.addOrganization}
+            </button>
+          </>
         )
       }
       z={z}

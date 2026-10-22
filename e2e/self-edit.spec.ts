@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { SEED_LEADER_EMAIL } from "./helpers/config.ts";
 import { loginAs, logout } from "./helpers/auth.ts";
 import { uniqueEmail, uniqueName } from "./helpers/test-data.ts";
-import { addMemberViaMap, editSelectedMemberFromPreview, selectMemberInTree } from "./helpers/map.ts";
+import { addMemberViaMap, editSelectedMemberFromPreview, openAccounts, selectMemberInTree } from "./helpers/map.ts";
 
 test("a member linked to their own record can edit it but not others, and cannot delete it", async ({ page }) => {
   const ownFirstName = uniqueName("Alex");
@@ -24,7 +24,7 @@ test("a member linked to their own record can edit it but not others, and cannot
   });
 
   await test.step("leader invites a member-role account linked to the first member", async () => {
-    await page.locator('ul[role="menu-bar"] > li[role="menu-item"]', { hasText: "Organization" }).click();
+    await openAccounts(page);
     await page.click('button:has-text("Invite Account")');
     await expect(page.locator("#invite-email")).toBeVisible({ timeout: 5000 });
     await page.fill("#invite-email", selfEmail);

@@ -8,18 +8,12 @@ import {
 } from "infrastructure/redux/auth/auth.selectors.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import { languageLabels, languages } from "ports/i18n/language.ts";
-import Panel from "ports/components/panel/Panel.tsx";
-import PrivacyNotice from "ports/components/privacy/PrivacyNotice.tsx";
 import "./login-form.css";
 
 export default function LoginForm() {
   const dispatch = useDispatch();
   const { t, language, setLanguage } = useTranslation();
   const [email, setEmail] = useState("");
-  // No windows/dialog system is mounted pre-auth (AuthGate renders this instead
-  // of App+Dialogs), so the privacy notice's visibility here is plain local
-  // state rather than the redux window stack the rest of the app uses.
-  const [showPrivacy, setShowPrivacy] = useState(false);
   const magicLinkStatus = useSelector(getMagicLinkStatus);
   const magicLinkError = useSelector(getMagicLinkError);
   // Set when a magic link was clicked but rejected (expired - 15 min TTL - or
@@ -30,14 +24,6 @@ export default function LoginForm() {
     event.preventDefault();
     dispatch(requestMagicLinkRequested({ email }));
   };
-
-  if (showPrivacy) {
-    return (
-      <Panel title={t.privacy.title} onClose={() => setShowPrivacy(false)}>
-        <PrivacyNotice />
-      </Panel>
-    );
-  }
 
   return (
     <div className="login-screen">
@@ -83,9 +69,13 @@ export default function LoginForm() {
           ))}
         </div>
         <div className="login-links">
-          <button type="button" className="login-form-link" onClick={() => setShowPrivacy(true)}>
+          {/* A separate static page (privacy.html), not an in-app panel — see
+          PrivacyPage.tsx. Reachable without signing in either way, but this
+          is a real page load, not app state, so it survives a page reload
+          and is linkable on its own. */}
+          <a className="login-form-link" href="./privacy.html" target="_blank" rel="noreferrer">
             {t.auth.privacyLink}
-          </button>
+          </a>
           <a className="login-form-link" href="https://github.com/cowglow/visual-directory" target="_blank" rel="nofollow noreferrer">
             {t.auth.source}
           </a>

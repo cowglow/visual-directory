@@ -5,14 +5,12 @@ import { getMemberById } from "infrastructure/redux/member/member.selectors.ts";
 import { getOrganizationById } from "infrastructure/redux/organization/organization.selectors.ts";
 import { buildMemberDataExport } from "application/member/member-export.ts";
 import { createJSONFile } from "infrastructure/json/json.file.ts";
-import "./privacy-notice.css";
+import PrivacyNoticeContent from "ports/components/privacy/PrivacyNoticeContent.tsx";
 
-// The member-facing half of docs/PRIVACY.md - what's collected, why, who can
-// see it, and how to ask about it. The operator-facing half (retention policy,
-// sub-processors, incident response) stays in that doc; it's not this
-// audience's concern. Shared between LoginForm (pre-auth, no window chrome)
-// and PrivacyDialog (post-auth, inside a DesktopWindow) so the text and its
-// translations live in exactly one place.
+// The in-app version — same text as the standalone static page
+// (PrivacyNoticeContent), plus the one thing that only makes sense inside
+// the real app with a real session: letting a signed-in member export their
+// own data. Shared between LoginForm (pre-auth) and PrivacyDialog (post-auth).
 export default function PrivacyNotice() {
   const { t } = useTranslation();
   const account = useSelector(getAccount);
@@ -34,23 +32,13 @@ export default function PrivacyNotice() {
   };
 
   return (
-    <div className="privacy-notice">
-      <p>{t.privacy.intro}</p>
-      <h3>{t.privacy.whatWeCollectTitle}</h3>
-      <p>{t.privacy.whatWeCollect}</p>
-      <h3>{t.privacy.whyTitle}</h3>
-      <p>{t.privacy.why}</p>
-      <h3>{t.privacy.whoSeesTitle}</h3>
-      <p>{t.privacy.whoSees}</p>
-      <h3>{t.privacy.retentionTitle}</h3>
-      <p>{t.privacy.retention}</p>
-      <h3>{t.privacy.rightsTitle}</h3>
-      <p>{t.privacy.rights}</p>
+    <>
+      <PrivacyNoticeContent />
       {canExport && (
         <button type="button" className="btn" onClick={handleExport}>
           {t.privacy.exportMyData}
         </button>
       )}
-    </div>
+    </>
   );
 }

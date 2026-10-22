@@ -1,23 +1,33 @@
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import { openWindow, DialogType } from "infrastructure/redux/windows/windows.slice.ts";
+import { getTopmostWindow } from "infrastructure/redux/windows/windows.selectors.ts";
 import { isLeader } from "infrastructure/redux/auth/auth.selectors.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import "./bottom-nav.css";
 
-type Tab = "map" | "organizations" | "accounts";
+const NAV_TYPES: ReadonlySet<DialogType> = new Set<DialogType>([
+  "MAP_DIALOG",
+  "ORGANIZATION_TREE_DIALOG",
+  "ACCOUNTS_DIALOG",
+]);
 
-interface BottomNavProps {
-  active: Tab;
-}
-
-// Replaces the old hover-driven top menu bar (action-menu.css relied entirely
-// on :hover/:focus-within CSS, with no touch equivalent). Rendered by each of
-// the three top-level screens it links between, not globally — Menu and every
-// form/dialog screen below it deliberately has no bottom nav of its own.
-export default function BottomNav({ active }: BottomNavProps) {
+// Rendered exactly once (App.tsx), fixed to the viewport, above every Panel —
+// not per-screen. Each of Map/Organizations/Accounts used to mount its own
+// <BottomNav>, which put several copies of the same tab bar in the DOM
+// simultaneously (only one ever visible, but all of them real, focusable
+// elements) — a real accessibility bug, not just a testing inconvenience.
+// Panel's `bottomNav` prop reserves the matching space in whichever screen is
+// actually on top so this never covers that screen's own content.
+export default function BottomNav() {
   const dispatch = useDispatch();
   const leader = useSelector(isLeader);
   const { t } = useTranslation();
+  const topmost = useSelector(getTopmostWindow);
+
+  if (!topmost || !NAV_TYPES.has(topmost.type)) {
+    return null;
+  }
+  const active = topmost.type;
 
   const go = (type: DialogType) => () => dispatch(openWindow({ type }));
 
@@ -25,8 +35,8 @@ export default function BottomNav({ active }: BottomNavProps) {
     <div className="bottom-nav">
       <button
         type="button"
-        className={`bottom-nav-tab${active === "map" ? " is-active" : ""}`}
-        aria-current={active === "map" ? "page" : undefined}
+        className={`bottom-nav-tab${active === "MAP_DIALOG" ? " is-active" : ""}`}
+        aria-current={active === "MAP_DIALOG" ? "page" : undefined}
         onClick={go("MAP_DIALOG")}
       >
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -38,8 +48,8 @@ export default function BottomNav({ active }: BottomNavProps) {
 
       <button
         type="button"
-        className={`bottom-nav-tab${active === "organizations" ? " is-active" : ""}`}
-        aria-current={active === "organizations" ? "page" : undefined}
+        className={`bottom-nav-tab${active === "ORGANIZATION_TREE_DIALOG" ? " is-active" : ""}`}
+        aria-current={active === "ORGANIZATION_TREE_DIALOG" ? "page" : undefined}
         onClick={go("ORGANIZATION_TREE_DIALOG")}
       >
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -54,8 +64,8 @@ export default function BottomNav({ active }: BottomNavProps) {
       {leader ? (
         <button
           type="button"
-          className={`bottom-nav-tab${active === "accounts" ? " is-active" : ""}`}
-          aria-current={active === "accounts" ? "page" : undefined}
+          className={`bottom-nav-tab${active === "ACCOUNTS_DIALOG" ? " is-active" : ""}`}
+          aria-current={active === "ACCOUNTS_DIALOG" ? "page" : undefined}
           onClick={go("ACCOUNTS_DIALOG")}
         >
           <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">

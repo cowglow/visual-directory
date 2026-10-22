@@ -31,4 +31,16 @@ export default defineConfig({
     port: 3000,
     https: hasMkcertCert ? { key: fs.readFileSync(keyFile), cert: fs.readFileSync(certFile) } : undefined,
   },
+  build: {
+    rollupOptions: {
+      // privacy.html is a second, independent entry (frontend/privacy-main.tsx)
+      // with no Redux/API/MapLibre dependency — see its own file for why.
+      // Specifying any custom input means listing every entry; the default
+      // (just index.html) disappears otherwise.
+      input: {
+        main: path.resolve(__dirname, "index.html"),
+        privacy: path.resolve(__dirname, "privacy.html"),
+      },
+    },
+  },
 });

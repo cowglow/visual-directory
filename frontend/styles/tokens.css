@@ -12,6 +12,7 @@
   --danger: #9B3B3B;
   --focus-ring: #2B3A67;
   --font: "Noto Sans", system-ui, -apple-system, sans-serif;
+  --bottom-nav-h: calc(64px + env(safe-area-inset-bottom, 0px));
   color-scheme: light dark;
 }
 

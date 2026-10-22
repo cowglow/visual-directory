@@ -1,5 +1,6 @@
 import { useEffect, useRef } from "react";
 import ConnectionErrorBanner from "ports/components/ui/ConnectionErrorBanner.tsx";
+import BottomNav from "ports/components/nav/BottomNav.tsx";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import { fetchMembersRequested } from "infrastructure/redux/member/member.slice.ts";
 import { getMemberError, getMembers } from "infrastructure/redux/member/member.selectors.ts";
@@ -47,17 +48,23 @@ export default function App() {
 
   const connectionError = memberError ?? organizationError;
 
-  // No app chrome of its own — every screen is a full-screen Panel rendered
-  // by Dialogs at the viewport level (see dialog.config.tsx). This banner is
-  // the one thing that needs to float above whichever Panel is open, hence
-  // its own fixed positioning (z-index 3000 in connection-error-banner.css).
-  return connectionError ? (
-    <ConnectionErrorBanner
-      message={t.connectionError(connectionError)}
-      onRetry={() => {
-        dispatch(fetchMembersRequested());
-        dispatch(fetchOrganizationsRequested());
-      }}
-    />
-  ) : null;
+  // No app chrome of its own except two things that must float above
+  // whichever full-screen Panel is open (rendered by Dialogs — see
+  // dialog.config.tsx): the connection-error banner, and the single shared
+  // BottomNav (it decides its own visibility/active tab from which window is
+  // topmost — see its own file for why it isn't mounted per-screen).
+  return (
+    <>
+      {connectionError && (
+        <ConnectionErrorBanner
+          message={t.connectionError(connectionError)}
+          onRetry={() => {
+            dispatch(fetchMembersRequested());
+            dispatch(fetchOrganizationsRequested());
+          }}
+        />
+      )}
+      <BottomNav />
+    </>
+  );
 }

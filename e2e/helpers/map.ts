@@ -51,8 +51,6 @@ export async function addMemberViaMap(
     city,
   } = options;
   await clickMap(page, xRatio, yRatio);
-  // Not "text=Add Member" — that string also matches the Organization menu's
-  // own "Add Member" item (present in the DOM even while the menu is closed).
   await expect(page.locator("#member-first-name")).toBeVisible({
     timeout: 5000,
   });
@@ -68,48 +66,44 @@ export async function addMemberViaMap(
   });
 }
 
-// DesktopWindow.tsx raises a window's z-index on any pointerdown inside it
-// (onPointerDownCapture={onFocus}, taking no arguments — a plain "bring me to
-// front", not a real click). moveSelectedMemberMarker deliberately raises the
-// Map window over Organizations to interact with a marker's popup, and once
-// the two overlap enough that Map fully covers Organizations on screen there's
-// no point left to aim a real mouse click at — a Playwright click() waits for
-// its target to be the topmost element at some point and simply never gets
-// there. dispatchEvent bypasses that hit-testing and fires the pointerdown
-// directly on the element, exactly reproducing what raises a window in the
-// real app, without needing an actually-uncovered pixel to click through.
-async function bringWindowToFront(
-  page: Page,
-  titleText: string,
-): Promise<void> {
-  await page
-    .locator(".window", {
-      has: page.locator(".title-bar", { hasText: titleText }),
-    })
-    .dispatchEvent("pointerdown");
+// Every screen is a full-screen Panel now (see ports/components/panel/Panel.tsx)
+// — there's no floating-window stacking order left to manage, just "which of
+// the bottom nav's screens is currently on top." These just tap the matching
+// tab; BottomNav.tsx renders one on Map/Organizations/Accounts.
+export async function goToMap(page: Page): Promise<void> {
+  await page.locator(".bottom-nav-tab", { hasText: "Map" }).click();
+  await expect(page.locator(".maplibregl-canvas").first()).toBeVisible({ timeout: 5000 });
 }
 
-// Opens the Organizations window from the menu bar (the "Organization" menu's
-// "Open Organizations" item), if it isn't open already — and brings it to
-// front either way, since being visible doesn't mean it's on top (see
-// bringWindowToFront).
 export async function openOrganizationsTree(page: Page): Promise<void> {
-  if (
-    await page
-      .locator(".org-tree")
-      .isVisible()
-      .catch(() => false)
-  ) {
-    await bringWindowToFront(page, "Organizations");
-    return;
-  }
-  await page
-    .locator('ul[role="menu-bar"] > li[role="menu-item"]', {
-      hasText: "Organization",
-    })
-    .click();
-  await page.click("text=Open Organizations");
+  await page.locator(".bottom-nav-tab", { hasText: "Organizations" }).click();
   await expect(page.locator(".org-tree")).toBeVisible({ timeout: 5000 });
+}
+
+// Leader-only — the tab itself is `disabled` for a member-role account (see
+// BottomNav.tsx), so this only makes sense after confirming leader access.
+export async function openAccounts(page: Page): Promise<void> {
+  await page.locator(".bottom-nav-tab", { hasText: "Accounts" }).click();
+  await expect(page.locator(".panel-title", { hasText: "Manage Accounts" })).toBeVisible({ timeout: 5000 });
+}
+
+export async function openMenu(page: Page): Promise<void> {
+  await page.locator(".bottom-nav-tab", { hasText: "Menu" }).click();
+  await expect(page.locator(".menu-row", { hasText: "Import" })).toBeVisible({ timeout: 5000 });
+}
+
+// Menu has no bottom nav of its own (see BottomNav.tsx) — goToMap can't reach
+// it from there. Use its own back button instead, which reveals whatever was
+// open underneath (the screen Menu was opened from). Scoped to the header
+// that actually has the "Menu" title — Organizations/Accounts have their own
+// back buttons too, and every opened screen stays mounted (just covered), so
+// an unscoped `.panel-header-btn` risks matching more than one of them.
+export async function closeMenu(page: Page): Promise<void> {
+  await page
+    .locator(".panel-header", { has: page.locator(".panel-title", { hasText: "Menu" }) })
+    .locator(".panel-header-btn")
+    .click();
+  await expect(page.locator(".menu-row", { hasText: "Import" })).toHaveCount(0, { timeout: 5000 });
 }
 
 // Selects a member by full name in the Organizations tree (a single click — not
@@ -165,11 +159,10 @@ export async function moveSelectedMemberMarker(
   dx: number,
   dy: number,
 ): Promise<void> {
-  // The Organizations window (opened by selectMemberInTree) can visually overlap
-  // the Map window's auto-centered popup — bring Map back to front (see
-  // bringWindowToFront; a plain click on the canvas would register as "add a
-  // member here" instead, so this must target the title bar specifically).
-  await bringWindowToFront(page, "Map");
+  // selectMemberInTree leaves the Organizations screen on top — every screen
+  // is a full-screen Panel now, so the Map (and the popup SelectionCamera
+  // auto-opened on it) isn't visible, or clickable, until we navigate there.
+  await goToMap(page);
   await page.locator('.maplibregl-popup button:has-text("Move")').click();
 
   const marker = page.locator(".map-marker-moving");

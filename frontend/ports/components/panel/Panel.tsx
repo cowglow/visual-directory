@@ -10,8 +10,16 @@ interface PanelProps {
   closeIcon?: "back" | "close";
   /** A single header-right control, e.g. "Invite" or "Add organization". */
   headerAction?: ReactNode;
-  /** The bottom nav, for the handful of screens that show it. */
-  footer?: ReactNode;
+  /**
+   * Reserves space at the bottom of the body for the single global BottomNav
+   * (see App.tsx) to float over without covering this panel's own content.
+   * Not a `footer` slot rendering an actual nav — every screen that showed
+   * one used to mount its own <BottomNav>, which put several copies of the
+   * same tab bar in the DOM at once (only one ever visible, but all of them
+   * real, focusable, duplicate elements) — a real accessibility bug as much
+   * as a testability one.
+   */
+  bottomNav?: boolean;
   /** false for content that manages its own padding (lists, the map). */
   padded?: boolean;
   /** false only for the map — it fills the body exactly via its own flex sizing, never scrolls. */
@@ -28,7 +36,7 @@ export default function Panel({
   onClose,
   closeIcon = "close",
   headerAction,
-  footer,
+  bottomNav = false,
   padded = true,
   scroll = true,
   z,
@@ -83,6 +91,7 @@ export default function Panel({
         className="panel-body"
         style={{
           padding: padded ? "20px" : 0,
+          paddingBottom: bottomNav ? `calc(${padded ? "20px" : "0px"} + var(--bottom-nav-h))` : undefined,
           display: padded ? "block" : "flex",
           flexDirection: padded ? undefined : "column",
           overflowY: scroll ? "auto" : "hidden",
@@ -90,7 +99,6 @@ export default function Panel({
       >
         {children}
       </div>
-      {footer}
     </div>
   );
 }
