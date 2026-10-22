@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/120</span>
+                <span class='fraction'>0/119</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/86</span>
+                <span class='fraction'>0/83</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/103</span>
+                <span class='fraction'>0/102</span>
             </div>
         
             
@@ -598,7 +598,8 @@
 <a name='L533'></a><a href='#L533'>533</a>
 <a name='L534'></a><a href='#L534'>534</a>
 <a name='L535'></a><a href='#L535'>535</a>
-<a name='L536'></a><a href='#L536'>536</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L536'></a><a href='#L536'>536</a>
+<a name='L537'></a><a href='#L537'>537</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -978,10 +979,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -1016,6 +1013,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1135,7 +1137,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { KeyboardEvent, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
-import { bringToFront, closeWindow, openWindow } from "infrastructure/redux/windows/windows.slice.ts";
+import { closeWindow, openWindow } from "infrastructure/redux/windows/windows.slice.ts";
 import {
   clearSelection,
   selectMembers,
@@ -1149,8 +1151,8 @@ import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import { getOrganizations } from "infrastructure/redux/organization/organization.selectors.ts";
 import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { getMemberId, isLeader } from "infrastructure/redux/auth/auth.selectors.ts";
-import { isMobileDevice } from "infrastructure/device/is-mobile-device.ts";
-import DesktopWindow from "ports/components/windows/DesktopWindow.tsx";
+import Panel from "ports/components/panel/Panel.tsx";
+import BottomNav from "ports/components/nav/BottomNav.tsx";
 import type { Member } from "domain/member/member.types.ts";
 import type { Organization } from "domain/organization/organization.types.ts";
 import type { OrganizationType } from "domain/shared/types.ts";
@@ -1294,7 +1296,7 @@ function <span class="fstat-no" title="function not covered" >OrgNodeHeader({</s
       &lt;div className="org-row"&gt;
         &lt;span className="org-name"&gt;{displayOrgName(organization)}&lt;/span&gt;
         &lt;span className="org-member-count"&gt;{t.organizationTree.memberCount(memberCount)}&lt;/span&gt;
-        {leader &amp;&amp; !isMobileDevice() &amp;&amp; (
+        {leader &amp;&amp; (
           &lt;button
             type="button"
             className="btn org-edit-btn"
@@ -1513,10 +1515,6 @@ export default function <span class="fstat-no" title="function not covered" >Org
 &nbsp;
   const selectedSet = <span class="cstat-no" title="statement not covered" >new Set(selectedIds);</span>
   const hasSelection = <span class="cstat-no" title="statement not covered" >selectedIds.length &gt; 0;</span>
-  // On mobile, selecting a group still highlights it on the map (the actual
-  // point of selecting) - the text preview panel is desktop-only real estate
-  // better spent letting the map itself be seen.
-  const showPreview = <span class="cstat-no" title="statement not covered" >hasSelection &amp;&amp; !isMobileDevice();</span>
   const hasOrganizations = <span class="cstat-no" title="statement not covered" >organizations.length &gt; 0;</span>
   const tree = <span class="cstat-no" title="statement not covered" >buildOrgTree(organizations);</span>
   const allExpandableIds = <span class="cstat-no" title="statement not covered" >expandableIds(tree);</span>
@@ -1548,15 +1546,20 @@ export default function <span class="fstat-no" title="function not covered" >Org
 <span class="cstat-no" title="statement not covered" >    organizations.find(<span class="fstat-no" title="function not covered" >(o</span>rganization) =&gt; <span class="cstat-no" title="statement not covered" >organization.id === member.organizationId)</span>?.name;</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;DesktopWindow
+    &lt;Panel
       title={t.organizationTree.title}
       onClose={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(closeWindow("ORGANIZATION_TREE_DIALOG"))}</span>
-      onFocus={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(bringToFront("ORGANIZATION_TREE_DIALOG"))}</span>
-      initialPosition={{ x: 96, y: 96 }}
-      width={showPreview ? "min(810px, 94vw)" : "min(460px, 92vw)"}
-      height="auto"
+      closeIcon="back"
+      padded={false}
+      footer={&lt;BottomNav active="organizations" /&gt;}
+      headerAction={
+        leader &amp;&amp; (
+          &lt;button type="button" onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(openWindow({ type: "ORGANIZATION_DIALOG" }))}&gt;</span>
+            {t.menu.addOrganization}
+          &lt;/button&gt;
+        )
+      }
       z={z}
-      padded
     &gt;
       &lt;div className="org-tree-layout"&gt;
         &lt;div className="org-tree-main"&gt;
@@ -1635,7 +1638,7 @@ export default function <span class="fstat-no" title="function not covered" >Org
           &lt;/ul&gt;
         &lt;/div&gt;
 &nbsp;
-        {showPreview &amp;&amp; (
+        {hasSelection &amp;&amp; (
           &lt;aside className="org-preview"&gt;
             {selectedMembers.length === 1 ? (
               &lt;MemberPreview
@@ -1665,7 +1668,7 @@ export default function <span class="fstat-no" title="function not covered" >Org
           &lt;/aside&gt;
         )}
       &lt;/div&gt;
-    &lt;/DesktopWindow&gt;
+    &lt;/Panel&gt;
   );
 }
 &nbsp;</pre></td></tr></table></pre>
@@ -1675,7 +1678,7 @@ export default function <span class="fstat-no" title="function not covered" >Org
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-21T19:17:05.791Z
+                at 2026-10-22T21:07:03.961Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>

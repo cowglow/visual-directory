@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/25</span>
+                <span class='fraction'>0/24</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/24</span>
+                <span class='fraction'>0/23</span>
             </div>
         
             
@@ -126,39 +126,13 @@
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
 <a name='L63'></a><a href='#L63'>63</a>
-<a name='L64'></a><a href='#L64'>64</a>
-<a name='L65'></a><a href='#L65'>65</a>
-<a name='L66'></a><a href='#L66'>66</a>
-<a name='L67'></a><a href='#L67'>67</a>
-<a name='L68'></a><a href='#L68'>68</a>
-<a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a>
-<a name='L71'></a><a href='#L71'>71</a>
-<a name='L72'></a><a href='#L72'>72</a>
-<a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a>
-<a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a>
-<a name='L77'></a><a href='#L77'>77</a>
-<a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L64'></a><a href='#L64'>64</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -204,23 +178,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect, useRef } from "react";
-import styled from "styled-components";
 import ConnectionErrorBanner from "ports/components/ui/ConnectionErrorBanner.tsx";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import { fetchMembersRequested } from "infrastructure/redux/member/member.slice.ts";
@@ -230,16 +199,6 @@ import { getOrganizationError, getOrganizations } from "infrastructure/redux/org
 import { openWindow, pruneStaleWindows } from "infrastructure/redux/windows/windows.slice.ts";
 import { getOpenWindows } from "infrastructure/redux/windows/windows.selectors.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
-import ActionMenu from "ports/components/action-menu/ActionMenu.tsx";
-&nbsp;
-// The desktop menu bar and the connection banner beneath it stay above every
-// floating window: a window dragged to the top of the screen tucks under the
-// menu bar, classic-Mac style. This sits above DesktopWindow's z-index (100)
-// and below the modal dialog backdrop (2000, in dialogs.css).
-const <span class="cstat-no" title="statement not covered" >DesktopChrome = styled("header")`</span>
-  position: relative;
-  z-index: 1000;
-`;
 &nbsp;
 export default function <span class="fstat-no" title="function not covered" >App() {</span>
   const <span class="cstat-no" title="statement not covered" >dispatch = useDispatch();</span>
@@ -279,23 +238,19 @@ export default function <span class="fstat-no" title="function not covered" >App
 &nbsp;
   const connectionError = <span class="cstat-no" title="statement not covered" >memberError ?? organizationError;</span>
 &nbsp;
-  // No app window chrome — the menu bar sits directly on the desktop and every
-  // other surface (the map, dialogs) is a floating DesktopWindow rendered by
-  // Dialogs at the viewport level.
-<span class="cstat-no" title="statement not covered" >  return (</span>
-    &lt;DesktopChrome&gt;
-      &lt;ActionMenu /&gt;
-      {connectionError &amp;&amp; (
-        &lt;ConnectionErrorBanner
-          message={t.connectionError(connectionError)}
-          onRetry={<span class="fstat-no" title="function not covered" >() =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            dispatch(fetchMembersRequested());</span>
-<span class="cstat-no" title="statement not covered" >            dispatch(fetchOrganizationsRequested());</span>
-          }}
-        /&gt;
-      )}
-    &lt;/DesktopChrome&gt;
-  );
+  // No app chrome of its own — every screen is a full-screen Panel rendered
+  // by Dialogs at the viewport level (see dialog.config.tsx). This banner is
+  // the one thing that needs to float above whichever Panel is open, hence
+  // its own fixed positioning (z-index 3000 in connection-error-banner.css).
+<span class="cstat-no" title="statement not covered" >  return connectionError ? (</span>
+    &lt;ConnectionErrorBanner
+      message={t.connectionError(connectionError)}
+      onRetry={<span class="fstat-no" title="function not covered" >() =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchMembersRequested());</span>
+<span class="cstat-no" title="statement not covered" >        dispatch(fetchOrganizationsRequested());</span>
+      }}
+    /&gt;
+  ) : null;
 }
 &nbsp;</pre></td></tr></table></pre>
 
@@ -304,7 +259,7 @@ export default function <span class="fstat-no" title="function not covered" >App
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-21T19:17:05.791Z
+                at 2026-10-22T21:07:03.961Z
             </div>
         <script src="../prettify.js"></script>
         <script>

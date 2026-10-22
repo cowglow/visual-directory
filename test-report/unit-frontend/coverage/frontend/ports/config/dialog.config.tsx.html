@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/7</span>
+                <span class='fraction'>0/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/9</span>
             </div>
         
             
@@ -85,7 +85,11 @@
 <a name='L20'></a><a href='#L20'>20</a>
 <a name='L21'></a><a href='#L21'>21</a>
 <a name='L22'></a><a href='#L22'>22</a>
-<a name='L23'></a><a href='#L23'>23</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L23'></a><a href='#L23'>23</a>
+<a name='L24'></a><a href='#L24'>24</a>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -98,6 +102,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -115,19 +123,23 @@ import AccountsForm from "ports/components/forms/AccountsForm.tsx";
 import OrganizationTree from "ports/components/organization-tree/OrganizationTree.tsx";
 import MapWindow from "ports/components/map/MapWindow.tsx";
 import PrivacyDialog from "ports/components/privacy/PrivacyDialog.tsx";
+import MenuSheet from "ports/components/nav/MenuSheet.tsx";
 import { JSX } from "react";
 &nbsp;
+// Every window is a full-screen Panel now, so the only thing z ever needs to
+// reach is each component's own &lt;Panel z={z}&gt; — see Dialogs.tsx.
 export const dialogConfig: Record&lt;
   DialogType,
   (payload: DialogPayload | null, z?: number) =&gt; JSX.Element
 &gt; = <span class="cstat-no" title="statement not covered" >{</span>
-  MEMBER_DIALOG: <span class="fstat-no" title="function not covered" >(p</span>ayload) =&gt; <span class="cstat-no" title="statement not covered" >&lt;MemberForm payload={payload} /&gt;,</span>
+  MEMBER_DIALOG: <span class="fstat-no" title="function not covered" >(p</span>ayload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;MemberForm payload={payload} z={z} /&gt;,</span>
   ORGANIZATION_DIALOG: <span class="fstat-no" title="function not covered" >(p</span>ayload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;OrganizationForm payload={payload} z={z} /&gt;,</span>
-  INVITE_DIALOG: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >&lt;</span>InviteForm /&gt;,</span>
-  ACCOUNTS_DIALOG: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >&lt;</span>AccountsForm /&gt;,</span>
+  INVITE_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;InviteForm z={z} /&gt;,</span>
+  ACCOUNTS_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;AccountsForm z={z} /&gt;,</span>
   ORGANIZATION_TREE_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;OrganizationTree z={z} /&gt;,</span>
   MAP_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;MapWindow z={z} /&gt;,</span>
-  PRIVACY_DIALOG: <span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >&lt;</span>PrivacyDialog /&gt;,</span>
+  PRIVACY_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;PrivacyDialog z={z} /&gt;,</span>
+  MENU_DIALOG: <span class="fstat-no" title="function not covered" >(_</span>payload, z) =&gt; <span class="cstat-no" title="statement not covered" >&lt;MenuSheet z={z} /&gt;,</span>
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -136,7 +148,7 @@ export const dialogConfig: Record&lt;
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-09-21T19:17:05.791Z
+                at 2026-10-22T21:07:03.961Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
