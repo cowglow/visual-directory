@@ -61,7 +61,9 @@ button {
   font-family: inherit;
 }
 
-input,
+/* Not checkbox/radio — those keep their native appearance (checked state,
+   sizing) rather than becoming a 44px bordered text-field box. */
+input:not([type="checkbox"]):not([type="radio"]),
 select,
 textarea {
   font-family: inherit;
@@ -72,6 +74,14 @@ textarea {
   border-radius: 10px;
   padding: 0 12px;
   height: 44px;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent);
+  flex: 0 0 auto;
 }
 
 textarea {

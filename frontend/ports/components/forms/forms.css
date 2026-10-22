@@ -25,12 +25,42 @@
 }
 
 .field-row {
+  display: flex;
+  align-items: center;
   flex-wrap: wrap;
   gap: var(--form-row-gap) var(--form-field-gap);
+  margin-top: var(--form-field-gap);
+}
+
+.field-row:first-child {
+  margin-top: 0;
 }
 
 .field-row > .field-stack {
   flex: 1 1 var(--form-field-min-width);
   margin-top: 0;
   margin-left: 0;
+}
+
+/* A primary/secondary action group, stacked full-width — the typical mobile
+   pattern, instead of a row of auto-width buttons that have to wrap or
+   crowd each other at phone width. Each direct <button> child fills the row. */
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: var(--form-field-gap);
+}
+
+.form-actions > .btn {
+  width: 100%;
+}
+
+.form-actions-danger {
+  height: 40px;
+  border: none;
+  background: none;
+  color: var(--danger);
+  font-size: 14px;
+  cursor: pointer;
 }

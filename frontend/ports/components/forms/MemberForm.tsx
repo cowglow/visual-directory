@@ -324,10 +324,10 @@ export default function MemberForm({ payload, z }: MemberFormProps) {
           </div>
         )}
 
-        <div
-          className="field-row field-stack"
-          style={{ justifyContent: "flex-end" }}
-        >
+        <div className="form-actions">
+          <button type="submit" className="btn btn-default">
+            {t.common.save}
+          </button>
           <button
             type="button"
             className="btn"
@@ -338,15 +338,12 @@ export default function MemberForm({ payload, z }: MemberFormProps) {
           {isEditMode && leader && (
             <button
               type="button"
-              className="btn"
+              className="form-actions-danger"
               onClick={() => setConfirmingRemove(true)}
             >
               {t.common.remove}
             </button>
           )}
-          <button type="submit" className="btn btn-default">
-            {t.common.save}
-          </button>
         </div>
       </form>
     </Panel>
