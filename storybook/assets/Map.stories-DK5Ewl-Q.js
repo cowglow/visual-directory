@@ -1,8 +1,0 @@
-import{j as r}from"./jsx-runtime-D_zvdyIk.js";import{M as s}from"./Map-CKzCCM2C.js";import{M as p}from"./Marker.OwnPosition-FYoyi57K.js";import{M as n}from"./Marker.Member-D1hqduX_.js";import{a as m}from"./story-fixtures-CINZKkVm.js";import"./index-D4lIrffr.js";import"./map-CChGJ7x9.js";import"./iframe-BXA4bIh1.js";import"./base-maps-BBP73P2T.js";import"./marker-D9II9FvY.js";import"./index-DsJinFGm.js";import"./i18n.hook-BlClNCeC.js";import"./i18n.context-LpD-Y7pc.js";import"./auth.selectors-CpYfVHzn.js";import"./redux-toolkit.modern-Ca_JRSPk.js";import"./windows.slice-tqPi5hlj.js";import"./member.slice-CsKKRx-I.js";import"./member.selectors-xU41z2R0.js";import"./request-id-CAY4q5cO.js";import"./selection.slice-DLRicAGB.js";import"./selection.selectors-dzruBmhK.js";const l={member:{items:m,filteredLimit:m.length,loading:!1,error:null},auth:{status:"authenticated",account:{id:"account-1",email:"leader@example.com",role:"leader"},error:null}},F={title:"ports/map/Map",component:s,decorators:[e=>r.jsx("div",{style:{height:"400px",width:"100%",display:"flex"},children:r.jsx(e,{})})],args:{center:{longitude:11.0767,latitude:49.4521},zoom:13,scrollZoom:!0},parameters:{reduxState:l}},t={args:{children:r.jsxs(r.Fragment,{children:[r.jsx(p,{}),m.map(e=>r.jsx(n,{member:e},e.id))]})}};var o,a,i;t.parameters={...t.parameters,docs:{...(o=t.parameters)==null?void 0:o.docs,source:{originalSource:`{
-  args: {
-    children: <>
-        <MarkerOwnPosition />
-        {sampleMembers.map(member => <MemberMarker key={member.id} member={member} />)}
-      </>
-  }
-}`,...(i=(a=t.parameters)==null?void 0:a.docs)==null?void 0:i.source}}};const L=["WithMembers"];export{t as WithMembers,L as __namedExportsOrder,F as default};
