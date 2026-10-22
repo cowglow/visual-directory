@@ -8,7 +8,7 @@ import { baseMaps, mapStyleFor } from "../frontend/infrastructure/tile-server/ba
 import { I18nContext } from "../frontend/ports/context/i18n/i18n.context.ts";
 import { translations } from "../frontend/ports/i18n/translations/index.ts";
 import { languages, languageLabels, type Language } from "../frontend/ports/i18n/language.ts";
-import "@sakun/system.css";
+import "../frontend/styles/tokens.css";
 import "maplibre-gl/dist/maplibre-gl.css";
 
 // Desktop browsers rarely have a meaningful real geolocation reading, so stories

@@ -45,10 +45,10 @@ export default function AuthGate({ children }: PropsWithChildren) {
 
   if (status === "offline") {
     return (
-      <div className="standard-dialog" style={{ maxWidth: "320px", margin: "10vh auto" }}>
+      <div style={{ maxWidth: "320px", margin: "10vh auto", padding: "0 20px", textAlign: "center" }}>
         <h2>{t.auth.cantConnect}</h2>
-        <p>{error}</p>
-        <button type="button" className="btn" onClick={() => dispatch(restoreSessionRequested())}>
+        <p style={{ color: "var(--text-muted)" }}>{error}</p>
+        <button type="button" className="btn btn-default" onClick={() => dispatch(restoreSessionRequested())}>
           {t.common.retry}
         </button>
       </div>

@@ -1,19 +1,12 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { expect, fn, userEvent, within } from "@storybook/test";
 import ConfirmDialog from "ports/components/dialogs/ConfirmDialog.tsx";
-import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
 
 const meta: Meta<typeof ConfirmDialog> = {
   title: "ports/dialogs/ConfirmDialog",
   component: ConfirmDialog,
-  decorators: [
-    (Story) => (
-      <DialogWindow title="Confirmation Dialog" onClose={fn()}>
-        <Story />
-      </DialogWindow>
-    ),
-  ],
   args: {
+    title: "Remove Member?",
     message: "Remove Anna Keller? This cannot be undone.",
     onConfirm: fn(),
     onCancel: fn(),
@@ -27,6 +20,7 @@ export const Default: Story = {};
 
 export const CustomLabels: Story = {
   args: {
+    title: "Remove Organization?",
     message:
       "Delete the District organization? Members assigned to it will become unassigned.",
     confirmLabel: "Delete",

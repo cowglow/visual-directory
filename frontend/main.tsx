@@ -4,7 +4,7 @@ import App from "./App.tsx";
 import Dialogs from "ports/components/dialogs/Dialogs.tsx";
 import AuthGate from "ports/components/auth/AuthGate.tsx";
 import { ContextProviders } from "ports/context/context-providers.tsx";
-import "@sakun/system.css";
+import "./styles/tokens.css";
 // import { installGeoSim } from "infrastructure/geo-simulation/geo-simulation.ts";
 
 if (import.meta.env.DEV) {

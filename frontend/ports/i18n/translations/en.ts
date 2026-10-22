@@ -3,7 +3,6 @@ const en = {
     save: "Save",
     cancel: "Cancel",
     close: "Close",
-    resize: "Resize",
     edit: "Edit",
     move: "Move",
     remove: "Remove",
@@ -19,6 +18,12 @@ const en = {
   },
   mapWindow: {
     title: "Map",
+  },
+  nav: {
+    accounts: "Accounts",
+    accountsRestricted: "Accounts (leaders only)",
+    menu: "Menu",
+    back: "Back",
   },
   menu: {
     file: "File",
@@ -39,8 +44,8 @@ const en = {
     basemap: "Basemap",
     selectByLevel: "Select by Level",
     clearSelection: "Clear Selection",
-    systemCss: "system.css",
-    sakunsTwitter: "sakun's twitter",
+    dataGroup: "Data",
+    accountGroup: "Account",
     githubRepo: "GitHub Repo",
     privacy: "Privacy",
   },

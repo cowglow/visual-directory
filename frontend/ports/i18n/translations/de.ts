@@ -5,7 +5,6 @@ const de: Translations = {
     save: "Speichern",
     cancel: "Abbrechen",
     close: "Schließen",
-    resize: "Größe ändern",
     edit: "Bearbeiten",
     move: "Verschieben",
     remove: "Entfernen",
@@ -21,6 +20,12 @@ const de: Translations = {
   },
   mapWindow: {
     title: "Karte",
+  },
+  nav: {
+    accounts: "Konten",
+    accountsRestricted: "Konten (nur für Verantwortliche)",
+    menu: "Menü",
+    back: "Zurück",
   },
   menu: {
     file: "Datei",
@@ -41,8 +46,8 @@ const de: Translations = {
     basemap: "Kartenhintergrund",
     selectByLevel: "Nach Ebene auswählen",
     clearSelection: "Auswahl aufheben",
-    systemCss: "system.css",
-    sakunsTwitter: "sakuns Twitter",
+    dataGroup: "Daten",
+    accountGroup: "Konto",
     githubRepo: "GitHub-Repo",
     privacy: "Datenschutz",
   },

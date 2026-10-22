@@ -1,0 +1,52 @@
+.menu-group-label {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 18px 16px 6px;
+}
+
+.menu-row {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 16px;
+  background: var(--surface);
+  border: none;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  font-size: 15px;
+  text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.menu-row-value {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 14px;
+}
+
+.menu-row.is-selected {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.menu-row-danger {
+  color: var(--danger);
+}
+
+.menu-subrows .menu-subrow {
+  padding-left: 32px;
+  background: var(--bg);
+}
+
+summary.menu-row {
+  cursor: pointer;
+}
+
+summary.menu-row::-webkit-details-marker {
+  color: var(--text-muted);
+}

@@ -15,44 +15,94 @@
   border: 0;
 }
 
-/* Stacked label-above-input, full width - a modern form layout rather than
-   System.css's own horizontal field-row convention (see LoginForm.tsx). */
-.login-form-field {
+.login-screen {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  gap: 0.35rem;
-  margin-bottom: 0.75rem;
+  background: var(--bg);
+  color: var(--text);
 }
 
-.login-form-field input {
+.login-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  padding: 32px;
+  text-align: center;
+}
+
+.login-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.login-form-fields {
   width: 100%;
-  box-sizing: border-box;
+  max-width: 320px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .login-form-submit {
   width: 100%;
-  box-sizing: border-box;
+  margin-top: 8px;
 }
 
-/* System.css has no opinion on a bare <button> (only .btn gets styled) and no
-   "plain text link" component at all - this isn't overriding the library,
-   it's filling a gap it deliberately leaves for the app to fill. Applied to
-   both a <button> (Privacy notice) and an <a> (Source) so the two need
-   identical treatment to look like the same kind of link. */
+.login-error {
+  color: var(--danger);
+  font-size: 14px;
+}
+
+.login-footer {
+  flex: 0 0 auto;
+  padding: 16px 20px calc(16px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.login-lang-pills {
+  display: flex;
+  gap: 8px;
+}
+
+.login-lang-pill {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  background: none;
+  color: var(--text-muted);
+  cursor: pointer;
+}
+
+.login-lang-pill.is-active {
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.login-links {
+  display: flex;
+  gap: 16px;
+}
+
+/* No "plain text link" element exists natively - applied to both a <button>
+   (Privacy notice) and an <a> (Source) so the two need identical treatment
+   to look like the same kind of link. */
 .login-form-link {
   background: none;
   border: none;
   padding: 0;
-  /* Resets to the surrounding text's own font first - a bare <button> and a
-     bare <a> don't share a default font/size in any browser, library or not,
-     so without this "Privacy notice" and "Source" render in two visibly
-     different typefaces even though both say font-size: 0.85em below. */
   font: inherit;
-  font-size: 0.85em;
+  font-size: 13px;
+  color: var(--text-muted);
   text-decoration: underline;
   cursor: pointer;
 }
-
-/* No margin rule needed between the two links - they're wrapped in a
-   field-row now, which already spaces its children (field-row > * + *). */

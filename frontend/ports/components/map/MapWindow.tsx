@@ -1,25 +1,16 @@
-import DesktopWindow from "ports/components/windows/DesktopWindow.tsx";
+import Panel from "ports/components/panel/Panel.tsx";
+import BottomNav from "ports/components/nav/BottomNav.tsx";
 import MembersMap from "ports/components/map/MembersMap.tsx";
-import { useDispatch } from "infrastructure/redux/hooks.ts";
-import { bringToFront, closeWindow } from "infrastructure/redux/windows/windows.slice.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 
+// The map is the home screen — nowhere to go "back" to, so Panel gets no
+// onClose at all (see Panel.tsx's own doc comment on that prop).
 export default function MapWindow({ z }: { z?: number }) {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
 
   return (
-    // Dialogs renders every window at the viewport level, so DesktopWindow's
-    // position is relative to the viewport. Offset it down enough to clear the
-    // desktop menu bar instead of spawning underneath it.
-    <DesktopWindow
-      title={t.mapWindow.title}
-      initialPosition={{ x: 24, y: 44 }}
-      z={z}
-      onFocus={() => dispatch(bringToFront("MAP_DIALOG"))}
-      onClose={() => dispatch(closeWindow("MAP_DIALOG"))}
-    >
+    <Panel title={t.mapWindow.title} padded={false} scroll={false} footer={<BottomNav active="map" />} z={z}>
       <MembersMap />
-    </DesktopWindow>
+    </Panel>
   );
 }

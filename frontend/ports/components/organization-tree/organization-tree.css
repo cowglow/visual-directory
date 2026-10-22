@@ -1,11 +1,13 @@
 .org-tree-layout {
   display: flex;
+  flex-wrap: wrap;
   align-items: flex-start;
   gap: 1rem;
+  padding: 16px;
 }
 
 .org-tree-main {
-  flex: 1 1 auto;
+  flex: 1 1 280px;
   min-width: 0;
 }
 
@@ -32,7 +34,7 @@
   position: relative;
   padding-left: 1.5rem;
   margin-left: 0.65rem;
-  border-left: 1px solid #000;
+  border-left: 1px solid var(--border);
 }
 
 .org-tree ul > li {
@@ -45,7 +47,7 @@
   top: 0.85em;
   left: -1.5rem;
   width: 1.5rem;
-  border-top: 1px solid #000;
+  border-top: 1px solid var(--border);
 }
 
 .org-tree > li + li {
@@ -70,17 +72,19 @@
 .org-edit-btn {
   font-size: 0.8em;
   padding: 0 0.5em;
+  height: 32px;
 }
 
 /* The two-line block shared by an expandable row's <summary> and a leaf
    row's plain div: a small type-name line above the name/count/action grid
    line. */
 .org-node-header {
-  padding: 0.15rem 0.3rem;
+  padding: 0.5rem 0.3rem;
 }
 
 .org-type-label {
   font-size: 0.72em;
+  color: var(--text-muted);
   margin-bottom: 0.15em;
 }
 
@@ -99,33 +103,38 @@
 
 .org-member-count {
   font-size: 0.85em;
+  color: var(--text-muted);
   white-space: nowrap;
   justify-self: end;
 }
 
 .org-node-header--some {
-  background: #ddd;
+  background: var(--accent-soft);
 }
 
 .org-node-header--all {
-  background: #000;
-  color: #fff;
+  background: var(--accent);
+  color: var(--surface);
+}
+
+.org-node-header--all .org-member-count {
+  color: var(--surface);
 }
 
 .org-tree-member {
   cursor: pointer;
-  padding: 1px 4px 1px 6px;
+  padding: 6px 4px 6px 6px;
   border-left: 3px solid transparent;
 }
 
 .org-tree-member:hover {
-  background: #ddd;
+  background: var(--accent-soft);
 }
 
 .org-tree-member.is-selected {
-  background: #000;
-  color: #fff;
-  border-left-color: #e5484d;
+  background: var(--accent);
+  color: var(--surface);
+  border-left-color: var(--danger);
 }
 
 .org-tree-empty {
@@ -133,13 +142,25 @@
   padding-left: 1.15em;
   font-style: italic;
   font-size: 0.85em;
+  color: var(--text-muted);
 }
 
 .org-preview {
-  flex: 0 0 18rem;
-  border-left: 2px solid #000;
-  padding-left: 1rem;
+  flex: 1 1 260px;
+  min-width: 260px;
+  border-left: none;
+  border-top: 1px solid var(--border);
+  padding-top: 1rem;
   font-size: 0.9em;
+}
+
+@media (min-width: 700px) {
+  .org-preview {
+    border-top: none;
+    border-left: 1px solid var(--border);
+    padding-top: 0;
+    padding-left: 1rem;
+  }
 }
 
 .org-preview-actions {

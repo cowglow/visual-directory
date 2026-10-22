@@ -8,8 +8,7 @@ import {
 } from "infrastructure/redux/auth/auth.selectors.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import { languageLabels, languages } from "ports/i18n/language.ts";
-import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
-import "ports/components/dialogs/dialogs.css";
+import Panel from "ports/components/panel/Panel.tsx";
 import PrivacyNotice from "ports/components/privacy/PrivacyNotice.tsx";
 import "./login-form.css";
 
@@ -32,48 +31,25 @@ export default function LoginForm() {
     dispatch(requestMagicLinkRequested({ email }));
   };
 
+  if (showPrivacy) {
+    return (
+      <Panel title={t.privacy.title} onClose={() => setShowPrivacy(false)}>
+        <PrivacyNotice />
+      </Panel>
+    );
+  }
+
   return (
-    <div
-      className="standard-dialog"
-      style={{ minWidth: "320px", maxWidth: "66%", margin: "10vh auto" }}
-    >
-      {/* field-row, right-aligned per System.css's own docs. */}
-      <div className="field-row" style={{ justifyContent: "flex-end" }}>
-        <select
-          aria-label={t.menu.language}
-          value={language}
-          onChange={(event) =>
-            setLanguage(event.target.value as typeof language)
-          }
-        >
-          {languages.map((lang) => (
-            <option key={lang} value={lang}>
-              {languageLabels[lang]}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className="login-screen">
+      <div className="login-content">
+        <h1 className="login-title">{t.auth.signIn}</h1>
 
-      <h2>{t.auth.signIn}</h2>
+        {authError ? <p className="login-error">{t.auth.linkExpired}</p> : null}
 
-      {authError ? (
-        <p role="alert" style={{ color: "firebrick" }}>
-          {t.auth.linkExpired}
-        </p>
-      ) : null}
-
-      {magicLinkStatus === "sent" ? (
-        <p>{t.auth.linkSent}</p>
-      ) : (
-        <form onSubmit={handleSubmit}>
-          {/* Stacked, not System.css's horizontal field-row - a modern form
-          reads label-above-input better than the library's own side-by-side
-          dialog convention, especially with a full-width input. */}
-          <div className="login-form-field">
-            {/* Visually hidden, not removed - screen readers still get a real
-            associated label (more robust than relying on the placeholder
-            alone, which disappears once there's input and isn't consistently
-            exposed as an accessible name by every assistive tech). */}
+        {magicLinkStatus === "sent" ? (
+          <p>{t.auth.linkSent}</p>
+        ) : (
+          <form onSubmit={handleSubmit} className="login-form-fields">
             <label htmlFor="login-email" className="visually-hidden">
               {t.auth.email}
             </label>
@@ -85,48 +61,36 @@ export default function LoginForm() {
               onChange={(event) => setEmail(event.target.value)}
               required
             />
-          </div>
-          <button type="submit" className="btn login-form-submit">
-            {t.auth.sendLoginLink}
-          </button>
-          {magicLinkStatus === "failed" ? (
-            <p role="alert" style={{ color: "firebrick" }}>
-              {magicLinkError ?? t.auth.genericError}
-            </p>
-          ) : null}
-        </form>
-      )}
-
-      <div className="field-row" style={{ marginTop: "1rem" }}>
-        <button
-          type="button"
-          className="login-form-link"
-          onClick={() => setShowPrivacy(true)}
-        >
-          {t.auth.privacyLink}
-        </button>
-        <a
-          className="login-form-link"
-          href="https://github.com/cowglow/visual-directory"
-          target="_blank"
-          rel="nofollow noreferrer"
-        >
-          {t.auth.source}
-        </a>
+            <button type="submit" className="btn btn-default login-form-submit">
+              {t.auth.sendLoginLink}
+            </button>
+            {magicLinkStatus === "failed" ? <p className="login-error">{magicLinkError ?? t.auth.genericError}</p> : null}
+          </form>
+        )}
       </div>
 
-      {showPrivacy ? (
-        <div className="dialog-backdrop" onClick={() => setShowPrivacy(false)}>
-          <div onClick={(event) => event.stopPropagation()}>
-            <DialogWindow
-              title={t.privacy.title}
-              onClose={() => setShowPrivacy(false)}
+      <div className="login-footer">
+        <div className="login-lang-pills">
+          {languages.map((lang) => (
+            <button
+              type="button"
+              key={lang}
+              className={`login-lang-pill${lang === language ? " is-active" : ""}`}
+              onClick={() => setLanguage(lang)}
             >
-              <PrivacyNotice />
-            </DialogWindow>
-          </div>
+              {languageLabels[lang]}
+            </button>
+          ))}
         </div>
-      ) : null}
+        <div className="login-links">
+          <button type="button" className="login-form-link" onClick={() => setShowPrivacy(true)}>
+            {t.auth.privacyLink}
+          </button>
+          <a className="login-form-link" href="https://github.com/cowglow/visual-directory" target="_blank" rel="nofollow noreferrer">
+            {t.auth.source}
+          </a>
+        </div>
+      </div>
     </div>
   );
 }

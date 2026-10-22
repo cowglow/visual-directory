@@ -1,28 +1,54 @@
-.dialog-backdrop .window.accounts-window {
-  max-width: 42rem;
+.accounts-empty {
+  padding: 20px;
+  color: var(--text-muted);
 }
 
-.accounts-list-header,
-.accounts-list-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr auto;
-  gap: 8px;
+.account-row {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
 }
 
-.accounts-list-header {
-  font-weight: bold;
-  margin-bottom: 6px;
+.account-avatar {
+  flex: 0 0 auto;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--accent-soft);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
 }
 
-.accounts-list-row {
-  margin-top: 8px;
+.account-identity {
+  flex: 1 1 160px;
+  min-width: 0;
 }
 
-.accounts-list-row:first-of-type {
-  margin-top: 0;
-}
-
-.accounts-list-email {
+.account-email {
+  font-size: 15px;
+  font-weight: 600;
   overflow-wrap: anywhere;
+}
+
+.account-member {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.account-controls {
+  flex: 1 1 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.account-controls select {
+  flex: 1 1 140px;
 }

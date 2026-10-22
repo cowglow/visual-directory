@@ -47,7 +47,7 @@ export default function PrivacyNotice() {
       <h3>{t.privacy.rightsTitle}</h3>
       <p>{t.privacy.rights}</p>
       {canExport && (
-        <button type="button" onClick={handleExport}>
+        <button type="button" className="btn" onClick={handleExport}>
           {t.privacy.exportMyData}
         </button>
       )}

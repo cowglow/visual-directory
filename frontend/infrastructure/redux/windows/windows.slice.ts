@@ -8,7 +8,8 @@ export type DialogType =
   | "ACCOUNTS_DIALOG"
   | "ORGANIZATION_TREE_DIALOG"
   | "MAP_DIALOG"
-  | "PRIVACY_DIALOG";
+  | "PRIVACY_DIALOG"
+  | "MENU_DIALOG";
 
 export type DialogPayload = {
   coordinates?: GeoCoordinate;

@@ -5,7 +5,6 @@ const es: Translations = {
     save: "Guardar",
     cancel: "Cancelar",
     close: "Cerrar",
-    resize: "Cambiar tamaño",
     edit: "Editar",
     move: "Mover",
     remove: "Eliminar",
@@ -21,6 +20,12 @@ const es: Translations = {
   },
   mapWindow: {
     title: "Mapa",
+  },
+  nav: {
+    accounts: "Cuentas",
+    accountsRestricted: "Cuentas (solo para líderes)",
+    menu: "Menú",
+    back: "Atrás",
   },
   menu: {
     file: "Archivo",
@@ -41,8 +46,8 @@ const es: Translations = {
     basemap: "Mapa base",
     selectByLevel: "Seleccionar por nivel",
     clearSelection: "Borrar selección",
-    systemCss: "system.css",
-    sakunsTwitter: "Twitter de sakun",
+    dataGroup: "Datos",
+    accountGroup: "Cuenta",
     githubRepo: "Repositorio de GitHub",
     privacy: "Privacidad",
   },

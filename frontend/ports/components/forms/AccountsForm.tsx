@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { closeWindow } from "infrastructure/redux/windows/windows.slice.ts";
+import { closeWindow, openWindow } from "infrastructure/redux/windows/windows.slice.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import {
@@ -18,13 +18,13 @@ import {
 } from "infrastructure/redux/auth/auth.selectors.ts";
 import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { createRequestId } from "infrastructure/redux/request-id.ts";
-import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
-import "./forms.css";
+import Panel from "ports/components/panel/Panel.tsx";
+import BottomNav from "ports/components/nav/BottomNav.tsx";
 import "./AccountsForm.css";
 
 type Edit = { role: Role; memberId: string };
 
-export default function AccountsForm() {
+export default function AccountsForm({ z }: { z?: number }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const accounts = useSelector(getAccounts);
@@ -92,29 +92,48 @@ export default function AccountsForm() {
     );
   };
 
+  const memberName = (memberId: string | null) => {
+    const member = members.find((candidate) => candidate.id === memberId);
+    return member ? `${member.name.firstName} ${member.name.lastName}` : null;
+  };
+
   return (
-    <DialogWindow
+    <Panel
       title={t.accountsForm.title}
       onClose={() => dispatch(closeWindow("ACCOUNTS_DIALOG"))}
-      className="accounts-window"
+      closeIcon="back"
+      padded={false}
+      footer={<BottomNav active="accounts" />}
+      headerAction={
+        <button type="button" onClick={() => dispatch(openWindow({ type: "INVITE_DIALOG" }))}>
+          {t.menu.inviteAccount}
+        </button>
+      }
+      z={z}
     >
       {accountsStatus === "pending" && accounts.length === 0 ? (
-        <p>{t.accountsForm.loading}</p>
+        <p className="accounts-empty">{t.accountsForm.loading}</p>
       ) : accounts.length === 0 ? (
-        <p>{t.accountsForm.empty}</p>
+        <p className="accounts-empty">{t.accountsForm.empty}</p>
       ) : (
-        <div className="accounts-list">
-          <div className="accounts-list-header">
-            <span>{t.accountsForm.email}</span>
-            <span>{t.accountsForm.role}</span>
-            <span>{t.accountsForm.member}</span>
-            <span />
-          </div>
-          {accounts.map((account) => {
-            const edit = editFor(account);
-            return (
-              <div className="accounts-list-row" key={account.id}>
-                <span className="accounts-list-email">{account.email}</span>
+        accounts.map((account) => {
+          const edit = editFor(account);
+          const linkedName = memberName(edit.memberId || null);
+          const initials =
+            (linkedName ?? account.email)
+              .split(/[\s.@]+/)
+              .filter(Boolean)
+              .slice(0, 2)
+              .map((part) => part[0]?.toUpperCase())
+              .join("") || "?";
+          return (
+            <div className="account-row" key={account.id}>
+              <div className="account-avatar">{initials}</div>
+              <div className="account-identity">
+                <div className="account-email">{account.email}</div>
+                <div className="account-member">{linkedName ?? t.inviteForm.noMemberLink}</div>
+              </div>
+              <div className="account-controls">
                 <select
                   aria-label={t.accountsForm.role}
                   value={edit.role}
@@ -137,17 +156,17 @@ export default function AccountsForm() {
                 </select>
                 <button
                   type="button"
-                  className="btn"
+                  className="btn btn-default"
                   disabled={!isDirty(account) || savingId === account.id}
                   onClick={() => handleSave(account)}
                 >
                   {t.common.save}
                 </button>
               </div>
-            );
-          })}
-        </div>
+            </div>
+          );
+        })
       )}
-    </DialogWindow>
+    </Panel>
   );
 }

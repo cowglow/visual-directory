@@ -1,6 +1,6 @@
 import { KeyboardEvent, MouseEvent, useState } from "react";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
-import { bringToFront, closeWindow, openWindow } from "infrastructure/redux/windows/windows.slice.ts";
+import { closeWindow, openWindow } from "infrastructure/redux/windows/windows.slice.ts";
 import {
   clearSelection,
   selectMembers,
@@ -14,8 +14,8 @@ import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import { getOrganizations } from "infrastructure/redux/organization/organization.selectors.ts";
 import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { getMemberId, isLeader } from "infrastructure/redux/auth/auth.selectors.ts";
-import { isMobileDevice } from "infrastructure/device/is-mobile-device.ts";
-import DesktopWindow from "ports/components/windows/DesktopWindow.tsx";
+import Panel from "ports/components/panel/Panel.tsx";
+import BottomNav from "ports/components/nav/BottomNav.tsx";
 import type { Member } from "domain/member/member.types.ts";
 import type { Organization } from "domain/organization/organization.types.ts";
 import type { OrganizationType } from "domain/shared/types.ts";
@@ -159,7 +159,7 @@ function OrgNodeHeader({
       <div className="org-row">
         <span className="org-name">{displayOrgName(organization)}</span>
         <span className="org-member-count">{t.organizationTree.memberCount(memberCount)}</span>
-        {leader && !isMobileDevice() && (
+        {leader && (
           <button
             type="button"
             className="btn org-edit-btn"
@@ -378,10 +378,6 @@ export default function OrganizationTree({ z }: { z?: number }) {
 
   const selectedSet = new Set(selectedIds);
   const hasSelection = selectedIds.length > 0;
-  // On mobile, selecting a group still highlights it on the map (the actual
-  // point of selecting) - the text preview panel is desktop-only real estate
-  // better spent letting the map itself be seen.
-  const showPreview = hasSelection && !isMobileDevice();
   const hasOrganizations = organizations.length > 0;
   const tree = buildOrgTree(organizations);
   const allExpandableIds = expandableIds(tree);
@@ -413,15 +409,20 @@ export default function OrganizationTree({ z }: { z?: number }) {
     organizations.find((organization) => organization.id === member.organizationId)?.name;
 
   return (
-    <DesktopWindow
+    <Panel
       title={t.organizationTree.title}
       onClose={() => dispatch(closeWindow("ORGANIZATION_TREE_DIALOG"))}
-      onFocus={() => dispatch(bringToFront("ORGANIZATION_TREE_DIALOG"))}
-      initialPosition={{ x: 96, y: 96 }}
-      width={showPreview ? "min(810px, 94vw)" : "min(460px, 92vw)"}
-      height="auto"
+      closeIcon="back"
+      padded={false}
+      footer={<BottomNav active="organizations" />}
+      headerAction={
+        leader && (
+          <button type="button" onClick={() => dispatch(openWindow({ type: "ORGANIZATION_DIALOG" }))}>
+            {t.menu.addOrganization}
+          </button>
+        )
+      }
       z={z}
-      padded
     >
       <div className="org-tree-layout">
         <div className="org-tree-main">
@@ -500,7 +501,7 @@ export default function OrganizationTree({ z }: { z?: number }) {
           </ul>
         </div>
 
-        {showPreview && (
+        {hasSelection && (
           <aside className="org-preview">
             {selectedMembers.length === 1 ? (
               <MemberPreview
@@ -530,6 +531,6 @@ export default function OrganizationTree({ z }: { z?: number }) {
           </aside>
         )}
       </div>
-    </DesktopWindow>
+    </Panel>
   );
 }

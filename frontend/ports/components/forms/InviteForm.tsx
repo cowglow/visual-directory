@@ -14,7 +14,7 @@ import {
 } from "infrastructure/redux/member/member.selectors.ts";
 import { addMemberRequested, resetMemberMutation } from "infrastructure/redux/member/member.slice.ts";
 import { createMember } from "domain/member/member.factory.ts";
-import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
+import Panel from "ports/components/panel/Panel.tsx";
 import "./forms.css";
 
 // Either invite links to a member picked from the existing list, or (once the
@@ -26,7 +26,7 @@ type Pending =
   | { phase: "member"; requestId: string; memberId: string }
   | { phase: "invite"; requestId: string };
 
-export default function InviteForm() {
+export default function InviteForm({ z }: { z?: number }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const members = useSelector(getMembers);
@@ -109,7 +109,7 @@ export default function InviteForm() {
   const roleLabel = role === "leader" ? t.inviteForm.roleLeader : t.inviteForm.roleMember;
 
   return (
-    <DialogWindow title={t.inviteForm.title} onClose={handleClose}>
+    <Panel title={t.inviteForm.title} onClose={handleClose} z={z}>
       {sent ? (
         <>
           <p>{t.inviteForm.invited(email, roleLabel)}</p>
@@ -205,6 +205,6 @@ export default function InviteForm() {
           </div>
         </form>
       )}
-    </DialogWindow>
+    </Panel>
   );
 }

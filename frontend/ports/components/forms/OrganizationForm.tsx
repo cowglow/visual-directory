@@ -1,6 +1,6 @@
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
-import { bringToFront, closeWindow, DialogPayload } from "infrastructure/redux/windows/windows.slice.ts";
+import { closeWindow, DialogPayload } from "infrastructure/redux/windows/windows.slice.ts";
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import {
   addOrganizationRequested,
@@ -19,7 +19,7 @@ import { createRequestId } from "infrastructure/redux/request-id.ts";
 import { createOrganization } from "domain/organization/organization.factory.ts";
 import { getOrganizations } from "infrastructure/redux/organization/organization.selectors.ts";
 import type { OrganizationType } from "domain/shared/types.ts";
-import DesktopWindow from "ports/components/windows/DesktopWindow.tsx";
+import Panel from "ports/components/panel/Panel.tsx";
 import ConfirmDialog from "ports/components/dialogs/ConfirmDialog.tsx";
 import "./forms.css";
 
@@ -137,36 +137,21 @@ export default function OrganizationForm({ payload, z }: OrganizationFormProps) 
 
   if (confirmingRemove && existingOrganization) {
     return (
-      <DesktopWindow
+      <ConfirmDialog
         title={t.organizationForm.confirmRemoveTitle}
-        onClose={() => dispatch(closeWindow("ORGANIZATION_DIALOG"))}
-        onFocus={() => dispatch(bringToFront("ORGANIZATION_DIALOG"))}
-        initialPosition={{ x: 160, y: 140 }}
-        width="min(400px, 92vw)"
-        height="auto"
-        z={z}
-        padded
-      >
-        <ConfirmDialog
-          message={t.organizationForm.confirmRemoveMessage(existingOrganization.name)}
-          confirmLabel={t.common.remove}
-          onConfirm={handleRemove}
-          onCancel={() => setConfirmingRemove(false)}
-        />
-      </DesktopWindow>
+        message={t.organizationForm.confirmRemoveMessage(existingOrganization.name)}
+        confirmLabel={t.common.remove}
+        onConfirm={handleRemove}
+        onCancel={() => setConfirmingRemove(false)}
+      />
     );
   }
 
   return (
-    <DesktopWindow
+    <Panel
       title={isEditMode ? t.organizationForm.editTitle : t.organizationForm.addTitle}
       onClose={() => dispatch(closeWindow("ORGANIZATION_DIALOG"))}
-      onFocus={() => dispatch(bringToFront("ORGANIZATION_DIALOG"))}
-      initialPosition={{ x: 160, y: 140 }}
-      width="min(400px, 92vw)"
-      height="auto"
       z={z}
-      padded
     >
       <form onSubmit={handleSubmit}>
         <div className="field-stack">
@@ -248,6 +233,6 @@ export default function OrganizationForm({ payload, z }: OrganizationFormProps) 
           </button>
         </div>
       </form>
-    </DesktopWindow>
+    </Panel>
   );
 }

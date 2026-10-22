@@ -28,15 +28,16 @@ import {
   updateMemberTelephone,
 } from "domain/member/member.factory.ts";
 import type { Member, MemberAddress } from "domain/member/member.types.ts";
-import DialogWindow from "ports/components/dialogs/DialogWindow.tsx";
+import Panel from "ports/components/panel/Panel.tsx";
 import ConfirmDialog from "ports/components/dialogs/ConfirmDialog.tsx";
 import "./forms.css";
 
 interface MemberFormProps {
   payload: DialogPayload | null;
+  z?: number;
 }
 
-export default function MemberForm({ payload }: MemberFormProps) {
+export default function MemberForm({ payload, z }: MemberFormProps) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const organizations = useSelector(getOrganizations);
@@ -146,21 +147,20 @@ export default function MemberForm({ payload }: MemberFormProps) {
 
   if (confirmingRemove && existingMember) {
     return (
-      <DialogWindow title={t.memberForm.confirmRemoveTitle} onClose={() => dispatch(closeWindow("MEMBER_DIALOG"))}>
-        <ConfirmDialog
-          message={t.memberForm.confirmRemoveMessage(
-            `${existingMember.name.firstName} ${existingMember.name.lastName}`,
-          )}
-          confirmLabel={t.common.remove}
-          onConfirm={handleRemove}
-          onCancel={() => setConfirmingRemove(false)}
-        />
-      </DialogWindow>
+      <ConfirmDialog
+        title={t.memberForm.confirmRemoveTitle}
+        message={t.memberForm.confirmRemoveMessage(
+          `${existingMember.name.firstName} ${existingMember.name.lastName}`,
+        )}
+        confirmLabel={t.common.remove}
+        onConfirm={handleRemove}
+        onCancel={() => setConfirmingRemove(false)}
+      />
     );
   }
 
   return (
-    <DialogWindow title={title} onClose={() => dispatch(closeWindow("MEMBER_DIALOG"))}>
+    <Panel title={title} onClose={() => dispatch(closeWindow("MEMBER_DIALOG"))} z={z}>
       <form onSubmit={handleSubmit}>
         <div className="field-row field-stack">
           <div className="field-stack">
@@ -349,6 +349,6 @@ export default function MemberForm({ payload }: MemberFormProps) {
           </button>
         </div>
       </form>
-    </DialogWindow>
+    </Panel>
   );
 }

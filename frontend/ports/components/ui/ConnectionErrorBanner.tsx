@@ -1,4 +1,5 @@
 import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
+import "./connection-error-banner.css";
 
 interface ConnectionErrorBannerProps {
   message: string;
@@ -9,10 +10,7 @@ export default function ConnectionErrorBanner({ message, onRetry }: ConnectionEr
   const { t } = useTranslation();
 
   return (
-    <div
-      className="standard-dialog"
-      style={{ display: "flex", alignItems: "center", gap: "1rem", padding: "0.5rem 1rem" }}
-    >
+    <div className="connection-error-banner">
       <span>{message}</span>
       <button type="button" className="btn" onClick={onRetry}>
         {t.connectionErrorBanner.retry}
