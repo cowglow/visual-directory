@@ -25,7 +25,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/119</span>
+                <span class='fraction'>0/120</span>
             </div>
         
             
@@ -39,14 +39,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/57</span>
+                <span class='fraction'>0/58</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/102</span>
+                <span class='fraction'>0/103</span>
             </div>
         
             
@@ -599,7 +599,11 @@
 <a name='L534'></a><a href='#L534'>534</a>
 <a name='L535'></a><a href='#L535'>535</a>
 <a name='L536'></a><a href='#L536'>536</a>
-<a name='L537'></a><a href='#L537'>537</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L537'></a><a href='#L537'>537</a>
+<a name='L538'></a><a href='#L538'>538</a>
+<a name='L539'></a><a href='#L539'>539</a>
+<a name='L540'></a><a href='#L540'>540</a>
+<a name='L541'></a><a href='#L541'>541</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -624,7 +628,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1013,12 +1016,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1152,7 +1160,6 @@ import { getOrganizations } from "infrastructure/redux/organization/organization
 import { getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { getMemberId, isLeader } from "infrastructure/redux/auth/auth.selectors.ts";
 import Panel from "ports/components/panel/Panel.tsx";
-import BottomNav from "ports/components/nav/BottomNav.tsx";
 import type { Member } from "domain/member/member.types.ts";
 import type { Organization } from "domain/organization/organization.types.ts";
 import type { OrganizationType } from "domain/shared/types.ts";
@@ -1551,12 +1558,17 @@ export default function <span class="fstat-no" title="function not covered" >Org
       onClose={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(closeWindow("ORGANIZATION_TREE_DIALOG"))}</span>
       closeIcon="back"
       padded={false}
-      footer={&lt;BottomNav active="organizations" /&gt;}
+      bottomNav
       headerAction={
         leader &amp;&amp; (
-          &lt;button type="button" onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(openWindow({ type: "ORGANIZATION_DIALOG" }))}&gt;</span>
-            {t.menu.addOrganization}
-          &lt;/button&gt;
+          &lt;&gt;
+            &lt;button type="button" onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(openWindow({ type: "MEMBER_DIALOG" }))}&gt;</span>
+              {t.menu.addMember}
+            &lt;/button&gt;
+            &lt;button type="button" onClick={<span class="fstat-no" title="function not covered" >() =&gt; <span class="cstat-no" title="statement not covered" >d</span>ispatch(openWindow({ type: "ORGANIZATION_DIALOG" }))}&gt;</span>
+              {t.menu.addOrganization}
+            &lt;/button&gt;
+          &lt;/&gt;
         )
       }
       z={z}
@@ -1678,7 +1690,7 @@ export default function <span class="fstat-no" title="function not covered" >Org
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-10-22T21:07:03.961Z
+                at 2026-10-22T22:03:55.558Z
             </div>
         <script src="../../../../prettify.js"></script>
         <script>
