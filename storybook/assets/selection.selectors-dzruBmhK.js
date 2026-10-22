@@ -1,0 +1,1 @@
+function s(e){return e.selection.memberIds}function r(e,t){return e.selection.memberIds.includes(t)}function i(e){return e.selection.memberIds.length}function c(e){const t=new Set(e.selection.memberIds);return e.member.items.filter(n=>t.has(n.id))}export{i as a,c as b,s as g,r as i};

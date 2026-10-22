@@ -1,1 +1,0 @@
-[role=menu-item] [role=menu-item]>ul[role=menu]{left:100%;top:-1px}ul[role=menu]>[role=menu-item][aria-haspopup=true]:after{content:"▸";position:absolute;right:10px;top:5px}
