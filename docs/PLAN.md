@@ -12,9 +12,17 @@ if they were still upcoming:
 
 - The map runs on MapLibre GL, not Leaflet (the migration this plan doesn't mention at
   all, since it happened after this document was written).
-- Phase 5's "map-first" framing became a full desktop-window UI: the map and the
-  Organizations tree are independent, draggable/resizable `DesktopWindow`s with
-  z-order cycling, not just one map window.
+- Phase 5's "map-first" framing became a full desktop-window UI (the map and the
+  Organizations tree as independent, draggable/resizable `DesktopWindow`s with
+  z-order cycling) — and that in turn was *replaced*, not extended, by a
+  mobile-first rebuild: `@sakun/system.css` and the whole floating-window/
+  hover-menu-bar UI are gone, replaced by full-screen `Panel`s (one screen visible
+  at a time, every viewport size) reached via a bottom tab bar (`BottomNav`) and a
+  `Menu` sheet (`MenuSheet`) rather than the planned "rework the menu bar around
+  the desktop metaphor" in Phase 5c below — see `docs/USER_MANUAL.md` for the
+  current UI and `git log` around the "Replace system.css with a hand-rolled
+  mobile-first UI" commit for the full rationale. Phase 5's steps below are kept
+  for history, not as the current architecture.
 - Two features exist beyond this plan's scope: quick-pinning an "incomplete" member
   (Shift+click, fill in details later) and two-way selection binding between the
   Organizations tree and the map markers.

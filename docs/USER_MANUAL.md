@@ -35,9 +35,10 @@ nothing will show up in your inbox.
   everything), but can't add, edit, or remove anything. Think of it as "read-only."
 
 If you're logged in as a member, you'll notice a few things are simply missing
-compared to what's described below — no "Actions" menu, no Edit/Remove buttons on
-people's pins, and clicking the map doesn't do anything. That's expected; that's what
-read-only means here.
+compared to what's described below — the **Accounts** tab at the bottom is greyed
+out, the Menu's **Data** section (import/export) isn't there at all, there are no
+Edit/Remove buttons on people's pins, and clicking the map doesn't do anything.
+That's expected; that's what read-only means here.
 
 ## The map
 
@@ -87,20 +88,24 @@ updates their address's coordinates only; if their street address also changed, 
 ## Organizations
 
 Leaders can group members into organizations (Region, Headquarter, Area, or
-District). To create one: open the menu bar in the top-left corner, click
-**Actions**, then **Add Organization**. Give it a name and pick its type. Once
-created, it shows up as an option when adding or editing a member.
+District). To create one: tap **Organizations** in the bottom navigation, then
+**Add Organization** at the top of the screen. Give it a name and pick its type.
+Once created, it shows up as an option when adding or editing a member.
 
-Open **Actions → Organizations** to see everyone grouped into a tree by
-organization. Click a member's name there to highlight and center their pin on the
-map; double-click an organization's name to select and center every member in it at
-once (a single click only expands/collapses the group, so browsing the tree doesn't
-accidentally light up the whole map). Clicking a member also opens a small preview
-with their details and an **Edit** shortcut, without leaving the tree.
+The **Organizations** tab shows everyone grouped into a tree by organization. Tap a
+member's name there to highlight and center their pin on the map (switch to the
+**Map** tab to see it — selecting a member doesn't change which screen you're on);
+double-tap an organization's name to select and center every member in it at once
+(a single tap only expands/collapses the group, so browsing the tree doesn't
+accidentally light up the whole map). Tapping a member also opens a details panel
+pinned near the bottom of the screen, with an **Edit** shortcut — it stays in view
+as you keep scrolling the tree, so a long, fully-expanded tree never pushes it out
+of sight.
 
-## Importing and exporting the roster
+## Importing and exporting the roster (leaders only)
 
-The **File** menu in the top-left menu bar handles the whole directory as a file:
+Tap **Menu** in the bottom navigation — the **Data** section (leader-only; members
+won't see it at all) handles the whole directory as a file:
 
 - **Export as CSV** downloads everyone currently in the directory as a CSV file —
   useful as a backup, or for opening in a spreadsheet.
@@ -109,31 +114,32 @@ The **File** menu in the top-left menu bar handles the whole directory as a file
   Mapbox. Each member is a point feature; members you haven't placed on the map yet
   are still included, just without a location.
 - **Import** lets you pick a CSV file (in the same format the CSV export produces).
-  It replaces the current directory with the file's contents. If a row's ID already
-  matches someone in the directory (for example, re-importing a file you just
-  exported), that row is skipped rather than creating a duplicate — you'll see a
-  message telling you how many rows were skipped.
+  This **replaces the entire directory** with the file's contents — every existing
+  member is removed first, then every row in the file is (re)created. It's not a
+  merge and nothing is skipped by matching ID, so re-importing an older export will
+  bring the roster back down to exactly what's in that file. Double-check you have
+  the file you mean to before importing.
 
 ## Inviting someone (leaders only)
 
-Open the menu bar's **Actions** menu, then **Invite Account**. Enter their email and
-pick whether they should be a **Member** (read-only) or **Leader** (read + write),
-then **Send invite**. They can now sign in with that email using the steps at the
-top of this manual — there's nothing else they need to do to accept the invite.
+Tap **Accounts** in the bottom navigation, then **Invite Account** at the top of the
+screen. Enter their email and pick whether they should be a **Member** (read-only)
+or **Leader** (read + write), then **Send invite**. They can now sign in with that
+email using the steps at the top of this manual — there's nothing else they need to
+do to accept the invite.
 
 ## Other things in the interface
 
-- **Top-left**: the menu bar (File, Actions, About), sitting directly on the
-  desktop — there's no surrounding app window. "File" has import/export and the
-  language picker. "About" has some external links (not part of the directory
-  itself). "Actions" has the Organizations and Map windows, plus — for leaders —
-  Add Organization and Invite Account.
-- **Windows**: the map and the Organizations tree are separate, independent
-  windows, each with its own title bar — drag a title bar to move it, or click the
-  small zoom box in its corner to expand it to (nearly) full screen and again to
-  restore it. Clicking anywhere in a window brings it to the front of the others.
-  Closing a window (its title bar's close box) doesn't lose any data — reopen it
-  from the **Actions** menu any time.
+- **Bottom navigation**: four tabs — **Map**, **Organizations**, **Accounts**
+  (leader-only; greyed out for members), and **Menu**. Each one is a full screen of
+  its own; there are no floating or overlapping windows to manage.
+- **Menu**: everything that doesn't belong on one of the other three tabs — the
+  leader-only **Data** section (import/export above), the map's basemap choice,
+  language, signing out, and About (the project's source code and this app's
+  privacy notice).
+- Screens you navigate away from (an edit form, say) aren't lost — closing one with
+  its **X** or **Cancel** just returns you to whatever was open before it, same as
+  tapping a different bottom-nav tab.
 
 ## If something goes wrong
 

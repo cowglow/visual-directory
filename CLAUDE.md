@@ -99,13 +99,32 @@ a dependency rule where each layer may only depend on itself or layers inward of
   (raster and vector basemap sources + `mapStyleFor()`, which returns the MapLibre
   style the map renders — a locally-built wrapper style for a raster source, or the
   provider's own hosted style URL passed straight through for a vector one (e.g.
-  `OpenFreeMap`) — `TileServerContext`'s `setSelectedBaseMap` is wired to a Map menu →
-  Basemap submenu in `ActionMenu.tsx`/`menu.config.ts`, listing every key of
-  `baseMaps` and persisting the choice to `localStorage`), `geo-simulation/`.
+  `OpenFreeMap`) — `TileServerContext`'s `setSelectedBaseMap` is wired to the Menu
+  screen's Basemap row in `MenuSheet.tsx`, listing every key of `baseMaps` and
+  persisting the choice to `localStorage`), `geo-simulation/`.
 - **`ports/`** — the public/UI surface: `components/` (React components, grouped by
-  feature area — `map/`, `markers/`, `forms/`, `dialogs/`, `auth/`, etc.),
-  `context/` (React context providers: dialogs, i18n, tile server config), `hooks/`,
-  `i18n/`, `config/`, `testing/` (Storybook fixtures).
+  feature area — `map/`, `markers/`, `forms/`, `dialogs/`, `auth/`, `nav/`
+  (`BottomNav.tsx`, `MenuSheet.tsx`), `panel/` (`Panel.tsx` — the one full-screen
+  layout every screen is built from; see below), etc.), `pages/` (standalone
+  top-level pages that aren't part of the main app's screen stack — currently just
+  `privacy/PrivacyPage.tsx`, see below), `context/` (React context providers: i18n,
+  tile server config), `hooks/`, `i18n/`, `config/`, `testing/` (Storybook fixtures).
+
+There is no floating/draggable-window desktop metaphor (that was Phase 5 of
+`docs/PLAN.md`, since superseded) and no `@sakun/system.css` dependency — every
+screen is a full-screen `Panel` (header with back/close + title, scrollable body),
+one visible at a time, navigated via the bottom tab bar (`BottomNav.tsx`, rendered
+once in `App.tsx` — not per-screen, see its own doc comment for why) and the `Menu`
+tab's `MenuSheet.tsx`. Styling is hand-written CSS with design tokens
+(`styles/tokens.css`) rather than a UI library — light/dark palettes follow
+`prefers-color-scheme` automatically.
+
+`index.html`/`main.tsx` is the main app's entry; `privacy.html`/`privacy-main.tsx` is
+a second, independent Vite build entry (`vite.config.ts`'s `build.rollupOptions.input`)
+for a standalone privacy-notice page with no Redux/API dependency at all, reachable
+with no sign-in. `ports/components/privacy/PrivacyNoticeContent.tsx` holds the shared
+text so the standalone page and the in-app privacy dialog (which adds a signed-in
+member's "export my data" action) never drift apart.
 
 Imports are absolute from `frontend/` (e.g. `ports/components/map/MembersMap.tsx`, not
 a relative path) — enabled via `baseUrl: "./frontend"` in `tsconfig.json` and the
@@ -113,8 +132,9 @@ a relative path) — enabled via `baseUrl: "./frontend"` in `tsconfig.json` and 
 
 Role gating (`member` = read-only, `leader` = read/write) is enforced both in the UI
 (`infrastructure/redux/auth/auth.selectors.ts`'s `isLeader`, gating things like
-click-to-add-member on the map in `App.tsx`) and, authoritatively, on the backend — the
-frontend check is a UX convenience, not the security boundary.
+click-to-add-member on the map in `MembersMap.tsx` and which bottom-nav tabs/Menu
+sections even render) and, authoritatively, on the backend — the frontend check is a
+UX convenience, not the security boundary.
 
 ## Architecture (backend)
 

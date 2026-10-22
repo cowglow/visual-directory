@@ -43,7 +43,7 @@ actually happens — not speculatively.
 - **Directories and files are lowercase, kebab/dot-separated**, not `UpperCamelCase`:
   `domain/member/`, `member.factory.ts`, `member.types.ts` — not `Domain/Member/`,
   `MemberFactory.ts`. React component files are the one exception, in ordinary React
-  style: `PascalCase.tsx` (`MembersMap.tsx`, `DesktopWindow.tsx`), including the
+  style: `PascalCase.tsx` (`MembersMap.tsx`, `BottomNav.tsx`), including the
   dot-separated variants for a family of related components sharing a concept
   (`Map.Marker.tsx`, `Marker.Member.tsx`, `Marker.OwnPosition.tsx`).
 - **No `Interface`/`Trait` suffix convention.** TypeScript's structural typing makes
