@@ -44,8 +44,6 @@ const de: Translations = {
     map: "Karte",
     openMap: "Karte öffnen",
     basemap: "Kartenhintergrund",
-    selectByLevel: "Nach Ebene auswählen",
-    clearSelection: "Auswahl aufheben",
     dataGroup: "Daten",
     accountGroup: "Konto",
     githubRepo: "GitHub-Repo",

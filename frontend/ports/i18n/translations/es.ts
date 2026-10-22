@@ -44,8 +44,6 @@ const es: Translations = {
     map: "Mapa",
     openMap: "Abrir mapa",
     basemap: "Mapa base",
-    selectByLevel: "Seleccionar por nivel",
-    clearSelection: "Borrar selección",
     dataGroup: "Datos",
     accountGroup: "Cuenta",
     githubRepo: "Repositorio de GitHub",

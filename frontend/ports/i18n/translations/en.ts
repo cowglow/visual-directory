@@ -42,8 +42,6 @@ const en = {
     map: "Map",
     openMap: "Open Map",
     basemap: "Basemap",
-    selectByLevel: "Select by Level",
-    clearSelection: "Clear Selection",
     dataGroup: "Data",
     accountGroup: "Account",
     githubRepo: "GitHub Repo",

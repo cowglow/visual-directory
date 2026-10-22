@@ -8,22 +8,18 @@ import { useTranslation } from "ports/context/i18n/i18n.hook.ts";
 import { useTileServer } from "ports/context/tile-server/tile-server.hook.ts";
 import { useDispatch, useSelector } from "infrastructure/redux/hooks.ts";
 import { closeWindow, openWindow } from "infrastructure/redux/windows/windows.slice.ts";
+import { isLeader } from "infrastructure/redux/auth/auth.selectors.ts";
 import { logout } from "infrastructure/redux/auth/auth.slice.ts";
 import { getMemberImportResult, getMembers } from "infrastructure/redux/member/member.selectors.ts";
 import { clearImportResult, importMembersRequested } from "infrastructure/redux/member/member.slice.ts";
-import { getOrganizations } from "infrastructure/redux/organization/organization.selectors.ts";
-import { clearSelection, selectMembers } from "infrastructure/redux/selection/selection.slice.ts";
 import { languageLabels, languages } from "ports/i18n/language.ts";
-import type { OrganizationType } from "domain/shared/types.ts";
 import "./menu-sheet.css";
-
-const ORGANIZATION_TYPES: OrganizationType[] = ["Region", "Headquarter", "Area", "District", "Group"];
 
 export default function MenuSheet({ z }: { z?: number }) {
   const dispatch = useDispatch();
   const { t, language, setLanguage } = useTranslation();
+  const leader = useSelector(isLeader);
   const members = useSelector(getMembers);
-  const organizations = useSelector(getOrganizations);
   const importResult = useSelector(getMemberImportResult);
   const { data, importCSVFile, exportCSVFile } = useCsvData();
   const { baseMaps, selectedBaseMap, setSelectedBaseMap } = useTileServer();
@@ -51,57 +47,32 @@ export default function MenuSheet({ z }: { z?: number }) {
     target.value = "";
   };
 
-  // Selects every member belonging to any organization of the given type (and
-  // everything beneath it in the hierarchy) — see the former menu.config.ts
-  // for the original rationale, carried over unchanged.
-  const descendantOrgIds = (rootIds: Set<string>): Set<string> => {
-    const result = new Set(rootIds);
-    let grew = true;
-    while (grew) {
-      grew = false;
-      for (const organization of organizations) {
-        if (organization.parentId && result.has(organization.parentId) && !result.has(organization.id)) {
-          result.add(organization.id);
-          grew = true;
-        }
-      }
-    }
-    return result;
-  };
-
-  const selectByLevel = (type: OrganizationType) => {
-    const orgIdsOfType = new Set(
-      organizations.filter((organization) => organization.type === type).map((organization) => organization.id),
-    );
-    const scopeOrgIds = descendantOrgIds(orgIdsOfType);
-    const memberIds = members
-      .filter((member) => member.organizationId && scopeOrgIds.has(member.organizationId))
-      .map((member) => member.id);
-    dispatch(selectMembers(memberIds));
-  };
-
   return (
     <Panel title={t.nav.menu} onClose={() => dispatch(closeWindow("MENU_DIALOG"))} closeIcon="back" padded={false} z={z}>
       <input ref={fileInputRef} type="file" accept=".csv" style={{ display: "none" }} onChange={inputHandler} />
 
-      <div className="menu-group-label">{t.menu.dataGroup}</div>
-      <button type="button" className="menu-row" onClick={() => fileInputRef.current?.click()}>
-        {t.menu.import}
-      </button>
-      <button
-        type="button"
-        className="menu-row"
-        onClick={() => exportCSVFile(members.map(memberToCSVRow), "members.csv")}
-      >
-        {t.menu.exportCsv}
-      </button>
-      <button
-        type="button"
-        className="menu-row"
-        onClick={() => createGeoJSONFile(JSON.stringify(membersToGeoJSON(members), null, 2), "members.geojson")}
-      >
-        {t.menu.exportGeoJson}
-      </button>
+      {leader && (
+        <>
+          <div className="menu-group-label">{t.menu.dataGroup}</div>
+          <button type="button" className="menu-row" onClick={() => fileInputRef.current?.click()}>
+            {t.menu.import}
+          </button>
+          <button
+            type="button"
+            className="menu-row"
+            onClick={() => exportCSVFile(members.map(memberToCSVRow), "members.csv")}
+          >
+            {t.menu.exportCsv}
+          </button>
+          <button
+            type="button"
+            className="menu-row"
+            onClick={() => createGeoJSONFile(JSON.stringify(membersToGeoJSON(members), null, 2), "members.geojson")}
+          >
+            {t.menu.exportGeoJson}
+          </button>
+        </>
+      )}
 
       <div className="menu-group-label">{t.menu.map}</div>
       <details>
@@ -122,19 +93,6 @@ export default function MenuSheet({ z }: { z?: number }) {
           ))}
         </div>
       </details>
-      <details>
-        <summary className="menu-row">{t.menu.selectByLevel}</summary>
-        <div className="menu-subrows">
-          {ORGANIZATION_TYPES.map((type) => (
-            <button type="button" key={type} className="menu-row menu-subrow" onClick={() => selectByLevel(type)}>
-              {t.organizationTypes[type]}
-            </button>
-          ))}
-        </div>
-      </details>
-      <button type="button" className="menu-row" onClick={() => dispatch(clearSelection())}>
-        {t.menu.clearSelection}
-      </button>
 
       <div className="menu-group-label">{t.menu.language}</div>
       {languages.map((lang) => (

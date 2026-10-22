@@ -89,7 +89,9 @@ export async function openAccounts(page: Page): Promise<void> {
 
 export async function openMenu(page: Page): Promise<void> {
   await page.locator(".bottom-nav-tab", { hasText: "Menu" }).click();
-  await expect(page.locator(".menu-row", { hasText: "Import" })).toBeVisible({ timeout: 5000 });
+  // Not "Import"/etc — the Data group is leader-only, so this needs to hold
+  // for a member-role account too. Basemap is always shown regardless of role.
+  await expect(page.locator(".menu-row", { hasText: "Basemap" })).toBeVisible({ timeout: 5000 });
 }
 
 // Menu has no bottom nav of its own (see BottomNav.tsx) — goToMap can't reach
@@ -103,7 +105,7 @@ export async function closeMenu(page: Page): Promise<void> {
     .locator(".panel-header", { has: page.locator(".panel-title", { hasText: "Menu" }) })
     .locator(".panel-header-btn")
     .click();
-  await expect(page.locator(".menu-row", { hasText: "Import" })).toHaveCount(0, { timeout: 5000 });
+  await expect(page.locator(".menu-row", { hasText: "Basemap" })).toHaveCount(0, { timeout: 5000 });
 }
 
 // Selects a member by full name in the Organizations tree (a single click — not
